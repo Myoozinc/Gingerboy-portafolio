@@ -1,31 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { Image as ImageIcon, Upload, Plus, Trash2, Maximize2, Sparkles, Camera, Check } from 'lucide-react';
+import { Camera, Upload, Check, Maximize2, Sparkles } from 'lucide-react';
 
 const DEFAULT_PHOTOS = [
   {
     id: 1,
-    title: 'París Travel Lifestyle',
+    title: 'Campana / Sesión #1',
     category: 'Travel & Lifestyle',
     url: '/images/travel.jpg',
     isSample: true
   },
   {
     id: 2,
-    title: 'Urban Fashion Portrait',
+    title: 'Campana / Sesión #2',
     category: 'Fashion & Outfits',
     url: '/images/avatar.jpg',
     isSample: true
   },
   {
     id: 3,
-    title: 'European City Exploration',
-    category: 'City Escapes',
+    title: 'Campana / Sesión #3',
+    category: 'Urban Discovery',
     url: '/images/travel.jpg',
     isSample: true
   },
   {
     id: 4,
-    title: 'Commercial Brand Collaboration',
+    title: 'Campana / Sesión #4',
     category: 'Brand Showcase',
     url: '/images/avatar.jpg',
     isSample: true
@@ -57,7 +57,7 @@ export default function PhotoGallery({ lang }) {
           ...updated[index],
           url: reader.result,
           isSample: false,
-          title: file.name.replace(/\.[^/.]+$/, "") || updated[index].title
+          title: file.name.replace(/\.[^/.]+$/, "") || `Foto de Campaña ${index + 1}`
         };
         setPhotos(updated);
       };
@@ -73,34 +73,34 @@ export default function PhotoGallery({ lang }) {
   const content = {
     es: {
       tag: 'GALERÍA DE FOTOS & CAMPANAS',
-      title: 'Galería Fotográfica Comercial',
-      subtitle: 'Espacio preparado para integrar las 4 fotos adicionales de tu campaña o sesión de contenido.',
-      uploadBtn: 'Subir Foto',
-      changeBtn: 'Cambiar Imagen',
-      resetBtn: 'Restablecer Galería Original',
-      dropNotice: 'Haz clic en cualquier tarjeta para cargar tus propias fotos.',
-      customBadge: 'Foto Personalizada'
+      title: 'Galería Fotográfica Profesional',
+      subtitle: 'Espacio preparado para integrar las 4 fotos reales de tu campaña o sesión de contenido.',
+      uploadBtn: 'Subir Foto Real',
+      changeBtn: 'Reemplazar Foto',
+      resetBtn: 'Restablecer Muestra',
+      dropNotice: 'Haz clic en cualquier casilla para subir tus 4 fotos.',
+      customBadge: 'Foto de Campaña'
     },
     en: {
-      tag: 'PHOTO GALLERY & CAMPAIGN LOOKBOOK',
+      tag: 'PHOTO GALLERY & LOOKBOOK',
       title: 'Commercial Photo Gallery',
-      subtitle: 'Slot ready to display the 4 upcoming campaign photos of Ginger Boy.',
-      uploadBtn: 'Upload Photo',
-      changeBtn: 'Replace Image',
-      resetBtn: 'Reset Gallery',
-      dropNotice: 'Click any slot to upload your custom photos.',
-      customBadge: 'Custom Upload'
+      subtitle: 'Slots ready to display the 4 campaign photos of Ginger Boy.',
+      uploadBtn: 'Upload Real Photo',
+      changeBtn: 'Replace Photo',
+      resetBtn: 'Reset Sample',
+      dropNotice: 'Click any slot to upload your custom 4 photos.',
+      customBadge: 'Campaign Photo'
     }
   }[lang];
 
   return (
-    <section id="gallery" style={{ padding: '6rem 0', background: 'rgba(9, 11, 16, 0.8)' }}>
+    <section id="gallery" style={{ padding: '5.5rem 0', background: '#F8FAFC' }}>
       <div className="container">
         
         {/* Section Header */}
         <div className="section-header">
           <div className="section-tag">
-            <Camera size={14} style={{ display: 'inline', marginRight: '0.4rem' }} />
+            <Camera size={14} />
             {content.tag}
           </div>
           <h2 className="section-title">
@@ -109,7 +109,7 @@ export default function PhotoGallery({ lang }) {
           <p className="section-subtitle">
             {content.subtitle}
           </p>
-          <p style={{ fontSize: '0.88rem', color: 'var(--ginger-primary)', marginTop: '0.6rem', fontWeight: '600' }}>
+          <p style={{ fontSize: '0.88rem', color: 'var(--ginger-primary)', marginTop: '0.6rem', fontWeight: '700' }}>
             ✨ {content.dropNotice}
           </p>
         </div>
@@ -120,21 +120,22 @@ export default function PhotoGallery({ lang }) {
             <div key={item.id} className="glass-card" style={{
               padding: '0',
               overflow: 'hidden',
-              borderRadius: '22px',
-              border: item.isSample ? '1px solid var(--border-light)' : '1px solid var(--ginger-primary)',
-              boxShadow: item.isSample ? 'none' : 'var(--ginger-glow)',
+              borderRadius: '20px',
+              border: item.isSample ? '1px solid var(--border-light)' : '2px solid var(--ginger-primary)',
+              background: '#FFFFFF',
               position: 'relative',
               display: 'flex',
-              flexDirection: 'column'
+              flexDirection: 'column',
+              boxShadow: 'var(--shadow-md)'
             }}>
               
               {/* Photo Image Container */}
               <div style={{
-                height: '320px',
+                height: '310px',
                 width: '100%',
                 position: 'relative',
                 overflow: 'hidden',
-                background: '#151821'
+                background: '#F1F5F9'
               }}>
                 <img 
                   src={item.url} 
@@ -151,19 +152,18 @@ export default function PhotoGallery({ lang }) {
                   position: 'absolute',
                   top: '0.8rem',
                   left: '0.8rem',
-                  background: item.isSample ? 'rgba(9, 11, 16, 0.75)' : 'var(--ginger-gradient)',
+                  background: item.isSample ? 'rgba(15, 23, 42, 0.8)' : 'var(--ginger-gradient)',
                   color: '#FFF',
                   padding: '0.3rem 0.75rem',
                   borderRadius: 'var(--radius-full)',
                   fontSize: '0.75rem',
                   fontWeight: '700',
-                  backdropFilter: 'blur(8px)',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.3rem'
                 }}>
                   {item.isSample ? <Camera size={12} /> : <Check size={12} />}
-                  <span>{item.isSample ? `Slot #${idx + 1}` : content.customBadge}</span>
+                  <span>{item.isSample ? `Casilla #${idx + 1}` : content.customBadge}</span>
                 </div>
 
                 {/* Lightbox Expand Button */}
@@ -176,14 +176,14 @@ export default function PhotoGallery({ lang }) {
                     width: '34px',
                     height: '34px',
                     borderRadius: '50%',
-                    background: 'rgba(9, 11, 16, 0.7)',
+                    background: 'rgba(255, 255, 255, 0.9)',
                     border: '1px solid var(--border-light)',
-                    color: '#FFF',
+                    color: 'var(--text-main)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     cursor: 'pointer',
-                    backdropFilter: 'blur(8px)'
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
                   }}
                   title="Ampliar Imagen"
                 >
@@ -193,32 +193,32 @@ export default function PhotoGallery({ lang }) {
 
               {/* Card Controls & Info */}
               <div style={{ padding: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-                <div style={{ fontSize: '0.75rem', color: 'var(--gold-accent)', fontWeight: '700', textTransform: 'uppercase' }}>
+                <div style={{ fontSize: '0.72rem', color: 'var(--gold-accent)', fontWeight: '800', textTransform: 'uppercase' }}>
                   {item.category}
                 </div>
                 
-                <h4 style={{ fontSize: '1rem', color: '#FFF' }}>
+                <h4 style={{ fontSize: '1rem', color: 'var(--text-main)' }}>
                   {item.title}
                 </h4>
 
-                {/* File Upload Button Input */}
+                {/* File Upload Button */}
                 <label style={{
                   marginTop: '0.4rem',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   gap: '0.5rem',
-                  padding: '0.6rem 1rem',
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  border: '1px dashed var(--border-ginger)',
+                  padding: '0.65rem 1rem',
+                  background: item.isSample ? 'var(--ginger-light)' : '#F8FAFC',
+                  border: item.isSample ? '1px dashed var(--ginger-primary)' : '1px solid var(--border-light)',
                   borderRadius: 'var(--radius-md)',
-                  color: 'var(--text-main)',
+                  color: 'var(--ginger-primary)',
                   fontSize: '0.85rem',
-                  fontWeight: '600',
+                  fontWeight: '700',
                   cursor: 'pointer',
-                  transition: 'var(--transition-fast)'
+                  transition: 'var(--transition-smooth)'
                 }}>
-                  <Upload size={14} color="#FF5E36" />
+                  <Upload size={14} color="var(--ginger-primary)" />
                   <span>{item.isSample ? content.uploadBtn : content.changeBtn}</span>
                   <input 
                     type="file" 
@@ -233,17 +233,18 @@ export default function PhotoGallery({ lang }) {
           ))}
         </div>
 
-        {/* Reset button if custom photos added */}
-        <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+        {/* Reset button */}
+        <div style={{ textAlign: 'center', marginTop: '2rem' }}>
           <button 
             onClick={handleReset}
             style={{
               background: 'none',
               border: 'none',
-              color: 'var(--text-dim)',
+              color: 'var(--text-muted)',
               fontSize: '0.85rem',
               cursor: 'pointer',
-              textDecoration: 'underline'
+              textDecoration: 'underline',
+              fontWeight: '500'
             }}
           >
             {content.resetBtn}
@@ -260,8 +261,8 @@ export default function PhotoGallery({ lang }) {
             position: 'fixed',
             inset: 0,
             zIndex: 9999,
-            background: 'rgba(0,0,0,0.9)',
-            backdropFilter: 'blur(20px)',
+            background: 'rgba(15, 23, 42, 0.9)',
+            backdropFilter: 'blur(16px)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -276,7 +277,7 @@ export default function PhotoGallery({ lang }) {
               maxHeight: '90vh',
               borderRadius: '16px',
               objectFit: 'contain',
-              boxShadow: '0 25px 50px rgba(0,0,0,0.8)'
+              boxShadow: '0 25px 50px rgba(0,0,0,0.5)'
             }} 
           />
         </div>

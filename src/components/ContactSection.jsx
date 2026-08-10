@@ -40,7 +40,7 @@ export default function ContactSection({ lang, preselectedPkg }) {
     en: {
       tag: 'START COMMERCIAL COLLABORATION',
       title: 'Let\'s Partner on Your Next Campaign',
-      subtitle: 'Send your campaign direct pitch for calendar availability and formal proposal.',
+      subtitle: 'Send your campaign pitch for calendar availability and formal proposal.',
       formBrand: 'Brand / Agency Name',
       formName: 'Contact Person Name',
       formEmail: 'Corporate Email',
@@ -54,13 +54,13 @@ export default function ContactSection({ lang, preselectedPkg }) {
   }[lang];
 
   return (
-    <section id="contact" style={{ padding: '6rem 0', background: 'rgba(11, 14, 20, 0.9)' }}>
+    <section id="contact" style={{ padding: '5.5rem 0', background: '#F8FAFC' }}>
       <div className="container">
         
         {/* Section Header */}
         <div className="section-header">
           <div className="section-tag">
-            <Mail size={14} style={{ display: 'inline', marginRight: '0.4rem' }} />
+            <Mail size={14} />
             {content.tag}
           </div>
           <h2 className="section-title">
@@ -71,16 +71,16 @@ export default function ContactSection({ lang, preselectedPkg }) {
           </p>
         </div>
 
-        <div className="grid-2" style={{ alignItems: 'start', gap: '3rem' }}>
+        <div className="grid-2" style={{ alignItems: 'start', gap: '2.5rem' }}>
           
-          {/* Left Column: Direct Contact Info & Socials */}
-          <div className="glass-card" style={{ padding: '2.5rem', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          {/* Left Column */}
+          <div className="glass-card" style={{ padding: '2.5rem', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: '#FFFFFF' }}>
             <div>
-              <h3 style={{ fontSize: '1.8rem', color: '#FFF', marginBottom: '1rem' }}>
+              <h3 style={{ fontSize: '1.7rem', color: 'var(--text-main)', marginBottom: '1rem' }}>
                 Conexión Directa para Marcas
               </h3>
 
-              <p style={{ color: 'var(--text-muted)', fontSize: '1.05rem', marginBottom: '2rem', lineHeight: '1.6' }}>
+              <p style={{ color: 'var(--text-muted)', fontSize: '1.02rem', marginBottom: '2rem', lineHeight: '1.6' }}>
                 Buscamos colaboraciones orgánicas y de alto valor donde los productos y servicios se integren de forma natural con la audiencia de Ginger Boy.
               </p>
 
@@ -91,7 +91,7 @@ export default function ContactSection({ lang, preselectedPkg }) {
                     width: '46px',
                     height: '46px',
                     borderRadius: '50%',
-                    background: 'rgba(255,94,54,0.15)',
+                    background: 'var(--ginger-light)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -100,8 +100,8 @@ export default function ContactSection({ lang, preselectedPkg }) {
                     <Mail size={22} />
                   </div>
                   <div>
-                    <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Email Comercial</div>
-                    <div style={{ fontSize: '1.05rem', fontWeight: '700', color: '#FFF' }}>contacto@gingerboy.com</div>
+                    <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', fontWeight: '600' }}>Email Comercial</div>
+                    <div style={{ fontSize: '1.05rem', fontWeight: '700', color: 'var(--text-main)' }}>contacto@gingerboy.com</div>
                   </div>
                 </div>
 
@@ -110,7 +110,7 @@ export default function ContactSection({ lang, preselectedPkg }) {
                     width: '46px',
                     height: '46px',
                     borderRadius: '50%',
-                    background: 'rgba(16, 185, 129, 0.15)',
+                    background: 'rgba(16, 185, 129, 0.12)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -119,8 +119,8 @@ export default function ContactSection({ lang, preselectedPkg }) {
                     <MessageSquare size={22} />
                   </div>
                   <div>
-                    <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>WhatsApp Business</div>
-                    <div style={{ fontSize: '1.05rem', fontWeight: '700', color: '#FFF' }}>+58 412 000 0000</div>
+                    <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', fontWeight: '600' }}>WhatsApp Business</div>
+                    <div style={{ fontSize: '1.05rem', fontWeight: '700', color: 'var(--text-main)' }}>+58 412 000 0000</div>
                   </div>
                 </div>
 
@@ -129,7 +129,7 @@ export default function ContactSection({ lang, preselectedPkg }) {
                     width: '46px',
                     height: '46px',
                     borderRadius: '50%',
-                    background: 'rgba(229, 178, 93, 0.15)',
+                    background: 'rgba(217, 119, 6, 0.12)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -138,15 +138,15 @@ export default function ContactSection({ lang, preselectedPkg }) {
                     <Instagram size={22} />
                   </div>
                   <div>
-                    <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Instagram Oficial</div>
-                    <div style={{ fontSize: '1.05rem', fontWeight: '700', color: '#FFF' }}>@gingerboy</div>
+                    <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', fontWeight: '600' }}>Instagram Oficial</div>
+                    <div style={{ fontSize: '1.05rem', fontWeight: '700', color: 'var(--text-main)' }}>@gingerboy</div>
                   </div>
                 </div>
 
               </div>
             </div>
 
-            {/* WhatsApp Quick Direct Link */}
+            {/* WhatsApp CTA */}
             <a 
               href="https://wa.me/?text=Hola%20Ginger%20Boy,%20quisiera%20consultar%20disponibilidad%20para%20una%20colaboración" 
               target="_blank" 
@@ -155,9 +155,9 @@ export default function ContactSection({ lang, preselectedPkg }) {
               style={{
                 width: '100%',
                 justify: 'center',
-                background: 'rgba(16, 185, 129, 0.15)',
-                borderColor: 'rgba(16, 185, 129, 0.4)',
-                color: '#10B981'
+                background: '#ECFDF5',
+                borderColor: '#A7F3D0',
+                color: '#047857'
               }}
             >
               <MessageSquare size={18} />
@@ -165,8 +165,8 @@ export default function ContactSection({ lang, preselectedPkg }) {
             </a>
           </div>
 
-          {/* Right Column: Commercial Inquiry Form */}
-          <div className="glass-card" style={{ padding: '2.5rem', borderColor: 'var(--border-ginger)' }}>
+          {/* Form */}
+          <div className="glass-card" style={{ padding: '2.5rem', background: '#FFFFFF' }}>
             
             {submitted ? (
               <div style={{
@@ -177,8 +177,8 @@ export default function ContactSection({ lang, preselectedPkg }) {
                 alignItems: 'center',
                 gap: '1rem'
               }}>
-                <CheckCircle size={60} color="#10B981" />
-                <h3 style={{ fontSize: '1.6rem', color: '#FFF' }}>¡Propuesta Enviada!</h3>
+                <CheckCircle size={54} color="#10B981" />
+                <h3 style={{ fontSize: '1.6rem', color: 'var(--text-main)' }}>¡Propuesta Enviada!</h3>
                 <p style={{ color: 'var(--text-muted)', maxWidth: '400px' }}>
                   {content.successMsg}
                 </p>
@@ -294,12 +294,12 @@ const labelStyle = {
 
 const inputStyle = {
   width: '100%',
-  padding: '0.8rem 1rem',
-  background: 'var(--bg-input)',
+  padding: '0.75rem 1rem',
+  background: '#FFFFFF',
   border: '1px solid var(--border-light)',
   borderRadius: 'var(--radius-md)',
-  color: '#FFF',
-  fontSize: '0.95rem',
+  color: 'var(--text-main)',
+  fontSize: '0.92rem',
   outline: 'none',
   fontFamily: 'inherit'
 };

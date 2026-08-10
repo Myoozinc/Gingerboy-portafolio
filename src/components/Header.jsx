@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, Download, Globe, Menu, X, ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { Download, Globe, Menu, X, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 
 export default function Header({ lang, setLang, onOpenMediaKit }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -32,43 +32,44 @@ export default function Header({ lang, setLang, onOpenMediaKit }) {
       left: 0,
       right: 0,
       zIndex: 1000,
-      background: 'rgba(9, 11, 16, 0.85)',
-      backdropFilter: 'blur(20px)',
-      WebkitBackdropFilter: 'blur(20px)',
+      background: 'rgba(255, 255, 255, 0.92)',
+      backdropFilter: 'blur(16px)',
+      WebkitBackdropFilter: 'blur(16px)',
       borderBottom: '1px solid var(--border-light)',
-      padding: '1rem 0'
+      padding: '0.9rem 0',
+      boxShadow: '0 2px 15px rgba(0, 0, 0, 0.03)'
     }}>
       <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         
         {/* Brand Logo */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }} onClick={() => scrollTo('hero')}>
           <div style={{
-            width: '42px',
-            height: '42px',
+            width: '40px',
+            height: '40px',
             borderRadius: '50%',
             background: 'var(--ginger-gradient)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             fontWeight: '800',
-            fontSize: '1.2rem',
+            fontSize: '1.1rem',
             color: '#FFF',
             boxShadow: 'var(--ginger-glow)'
           }}>
             GB
           </div>
           <div>
-            <div style={{ fontWeight: '800', fontSize: '1.25rem', letterSpacing: '-0.02em', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              Ginger Boy <CheckCircle2 size={16} color="#FF5E36" fill="rgba(255, 94, 54, 0.2)" />
+            <div style={{ fontWeight: '800', fontSize: '1.2rem', letterSpacing: '-0.02em', display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-main)' }}>
+              Ginger Boy <CheckCircle2 size={16} color="var(--ginger-primary)" />
             </div>
-            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-              Creator & Influencer Media Kit
+            <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: '600' }}>
+              Creator & Commercial Hub
             </div>
           </div>
         </div>
 
         {/* Desktop Nav */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: '2rem' }} className="desktop-nav">
+        <nav style={{ display: 'flex', alignItems: 'center', gap: '1.8rem' }} className="desktop-nav">
           <button onClick={() => scrollTo('metrics')} style={navBtnStyle}>{t.nav[1]}</button>
           <button onClick={() => scrollTo('featured')} style={navBtnStyle}>{t.nav[2]}</button>
           <button onClick={() => scrollTo('gallery')} style={navBtnStyle}>{t.nav[3]}</button>
@@ -83,10 +84,10 @@ export default function Header({ lang, setLang, onOpenMediaKit }) {
           <button 
             onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
             style={{
-              background: 'rgba(255, 255, 255, 0.05)',
+              background: '#F1F5F9',
               border: '1px solid var(--border-light)',
-              color: '#FFF',
-              padding: '0.5rem 0.8rem',
+              color: 'var(--text-main)',
+              padding: '0.45rem 0.8rem',
               borderRadius: 'var(--radius-full)',
               cursor: 'pointer',
               display: 'flex',
@@ -96,7 +97,7 @@ export default function Header({ lang, setLang, onOpenMediaKit }) {
               fontWeight: '600'
             }}
           >
-            <Globe size={14} color="#FF9E2C" />
+            <Globe size={14} color="var(--ginger-primary)" />
             {lang.toUpperCase()}
           </button>
 
@@ -104,7 +105,7 @@ export default function Header({ lang, setLang, onOpenMediaKit }) {
           <button 
             onClick={onOpenMediaKit}
             className="btn-secondary"
-            style={{ padding: '0.55rem 1.1rem', fontSize: '0.85rem' }}
+            style={{ padding: '0.5rem 1.1rem', fontSize: '0.85rem' }}
           >
             <Download size={14} />
             <span className="hide-mobile">{t.mediaKit}</span>
@@ -114,7 +115,7 @@ export default function Header({ lang, setLang, onOpenMediaKit }) {
           <button 
             onClick={() => scrollTo('contact')}
             className="btn-primary"
-            style={{ padding: '0.55rem 1.25rem', fontSize: '0.85rem' }}
+            style={{ padding: '0.5rem 1.25rem', fontSize: '0.85rem' }}
           >
             <span>{t.contact}</span>
             <ArrowUpRight size={14} />
@@ -126,7 +127,7 @@ export default function Header({ lang, setLang, onOpenMediaKit }) {
             style={{
               background: 'none',
               border: 'none',
-              color: '#FFF',
+              color: 'var(--text-main)',
               display: 'none',
               cursor: 'pointer'
             }}
@@ -152,9 +153,8 @@ const navBtnStyle = {
   background: 'none',
   border: 'none',
   color: 'var(--text-muted)',
-  fontSize: '0.95rem',
-  fontWeight: '500',
+  fontSize: '0.92rem',
+  fontWeight: '600',
   cursor: 'pointer',
-  transition: 'var(--transition-fast)',
-  ':hover': { color: '#FFF' }
+  transition: 'var(--transition-smooth)'
 };

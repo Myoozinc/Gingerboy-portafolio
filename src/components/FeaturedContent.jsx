@@ -1,12 +1,12 @@
 import React from 'react';
-import { Play, Flame, MapPin, Eye, Sparkles, ExternalLink } from 'lucide-react';
+import { Play, Flame, MapPin, Eye, ExternalLink } from 'lucide-react';
 
 export default function FeaturedContent({ lang }) {
   const content = {
     es: {
       tag: 'CONTENIDO DESTACADO SEGÚN VISUALIZACIONES',
       title: 'Top Reels & Casos de Éxito',
-      subtitle: 'Contenido travel & lifestyle con mayor número de reproducciones e interacción de la cuenta.',
+      subtitle: 'Videos de viajes y estilo de vida con mayor alcance e interacción de la cuenta.',
       reels: [
         {
           title: 'Arco del Triunfo • París',
@@ -21,7 +21,7 @@ export default function FeaturedContent({ lang }) {
           views: '9,100',
           tag: 'Guía de Viaje',
           location: 'Europa UI/Map',
-          img: '/images/travel.jpg',
+          img: '/images/analytics_proof.png',
           desc: 'Formato dinámico interactivo mostrando puntos clave de interés urbano.'
         },
         {
@@ -60,7 +60,7 @@ export default function FeaturedContent({ lang }) {
           views: '9,100',
           tag: 'Travel Guide',
           location: 'Europe Map',
-          img: '/images/travel.jpg',
+          img: '/images/analytics_proof.png',
           desc: 'Interactive map format highlighting key urban discovery spots.'
         },
         {
@@ -84,13 +84,13 @@ export default function FeaturedContent({ lang }) {
   }[lang];
 
   return (
-    <section id="featured" style={{ padding: '6rem 0' }}>
+    <section id="featured" style={{ padding: '5.5rem 0', background: '#FFFFFF' }}>
       <div className="container">
         
         {/* Section Header */}
         <div className="section-header">
-          <div className="section-tag" style={{ borderColor: 'rgba(255,94,54,0.3)' }}>
-            <Flame size={14} style={{ display: 'inline', marginRight: '0.4rem', color: '#FF5E36' }} />
+          <div className="section-tag">
+            <Flame size={14} />
             {content.tag}
           </div>
           <h2 className="section-title">
@@ -110,14 +110,16 @@ export default function FeaturedContent({ lang }) {
               borderRadius: '20px',
               display: 'flex',
               flexDirection: 'column',
-              position: 'relative'
+              background: '#FFFFFF',
+              boxShadow: 'var(--shadow-md)'
             }}>
-              {/* Media Thumbnail Container */}
+              {/* Thumbnail */}
               <div style={{
                 position: 'relative',
-                height: '280px',
+                height: '270px',
                 width: '100%',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                background: '#0F172A'
               }}>
                 <img 
                   src={reel.img} 
@@ -125,48 +127,44 @@ export default function FeaturedContent({ lang }) {
                   style={{
                     width: '100%',
                     height: '100%',
-                    objectFit: 'cover',
-                    transition: 'transform 0.5s ease'
+                    objectFit: 'cover'
                   }}
-                  className="reel-img"
                 />
                 
-                {/* Dark Gradient Overlay */}
                 <div style={{
                   position: 'absolute',
                   inset: 0,
-                  background: 'linear-gradient(to top, rgba(9, 11, 16, 0.95) 0%, transparent 60%)'
+                  background: 'linear-gradient(to top, rgba(15, 23, 42, 0.85) 0%, transparent 60%)'
                 }} />
 
-                {/* View Counter Badge */}
+                {/* View Badge */}
                 <div style={{
                   position: 'absolute',
-                  top: '1rem',
-                  left: '1rem',
-                  background: 'rgba(9, 11, 16, 0.85)',
-                  backdropFilter: 'blur(10px)',
-                  padding: '0.4rem 0.8rem',
+                  top: '0.8rem',
+                  left: '0.8rem',
+                  background: 'rgba(255, 255, 255, 0.95)',
+                  padding: '0.35rem 0.75rem',
                   borderRadius: 'var(--radius-full)',
-                  border: '1px solid var(--border-ginger)',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.4rem',
-                  fontSize: '0.85rem',
+                  fontSize: '0.82rem',
                   fontWeight: '700',
-                  color: '#FFF'
+                  color: 'var(--text-main)',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
                 }}>
-                  <Eye size={14} color="#FF5E36" />
+                  <Eye size={14} color="var(--ginger-primary)" />
                   <span>{reel.views} vistas</span>
                 </div>
 
-                {/* Play Button Icon Overlay */}
+                {/* Play Icon */}
                 <div style={{
                   position: 'absolute',
                   top: '50%',
                   left: '50%',
                   transform: 'translate(-50%, -50%)',
-                  width: '50px',
-                  height: '50px',
+                  width: '48px',
+                  height: '48px',
                   borderRadius: '50%',
                   background: 'var(--ginger-gradient)',
                   display: 'flex',
@@ -175,21 +173,21 @@ export default function FeaturedContent({ lang }) {
                   boxShadow: 'var(--ginger-glow)',
                   cursor: 'pointer'
                 }}>
-                  <Play size={20} fill="#FFF" color="#FFF" style={{ marginLeft: '3px' }} />
+                  <Play size={18} fill="#FFF" color="#FFF" style={{ marginLeft: '3px' }} />
                 </div>
 
-                {/* Bottom Location Overlay */}
                 <div style={{
                   position: 'absolute',
-                  bottom: '1rem',
-                  left: '1rem',
+                  bottom: '0.8rem',
+                  left: '0.8rem',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.4rem',
-                  fontSize: '0.8rem',
-                  color: 'var(--text-muted)'
+                  gap: '0.3rem',
+                  fontSize: '0.78rem',
+                  color: 'rgba(255, 255, 255, 0.85)',
+                  fontWeight: '500'
                 }}>
-                  <MapPin size={14} color="#FF9E2C" />
+                  <MapPin size={13} color="#F59E0B" />
                   <span>{reel.location}</span>
                 </div>
               </div>
@@ -198,9 +196,9 @@ export default function FeaturedContent({ lang }) {
               <div style={{ padding: '1.2rem', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <div>
                   <div style={{
-                    fontSize: '0.75rem',
+                    fontSize: '0.72rem',
                     color: 'var(--ginger-primary)',
-                    fontWeight: '700',
+                    fontWeight: '800',
                     textTransform: 'uppercase',
                     letterSpacing: '0.05em',
                     marginBottom: '0.3rem'
@@ -208,7 +206,7 @@ export default function FeaturedContent({ lang }) {
                     {reel.tag}
                   </div>
 
-                  <h3 style={{ fontSize: '1.1rem', marginBottom: '0.5rem', color: '#FFF' }}>
+                  <h3 style={{ fontSize: '1.05rem', marginBottom: '0.4rem', color: 'var(--text-main)' }}>
                     {reel.title}
                   </h3>
 
@@ -218,7 +216,7 @@ export default function FeaturedContent({ lang }) {
                 </div>
 
                 <div style={{ marginTop: '1rem', paddingTop: '0.8rem', borderTop: '1px solid var(--border-light)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: '0.78rem', color: '#10B981', fontWeight: '600' }}>Alto Engagement</span>
+                  <span style={{ fontSize: '0.78rem', color: '#10B981', fontWeight: '700' }}>Alto Engagement</span>
                   <ExternalLink size={14} color="var(--text-dim)" />
                 </div>
               </div>
@@ -228,12 +226,6 @@ export default function FeaturedContent({ lang }) {
         </div>
 
       </div>
-
-      <style>{`
-        .reel-img:hover {
-          transform: scale(1.06);
-        }
-      `}</style>
     </section>
   );
 }

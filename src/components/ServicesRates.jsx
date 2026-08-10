@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Briefcase, Calculator, Check, Sparkles, Zap, ShieldAlert, ArrowRight } from 'lucide-react';
+import { Briefcase, Calculator, Check, ArrowRight } from 'lucide-react';
 
 export default function ServicesRates({ lang, onSelectPackage }) {
   const [selectedDeliverables, setSelectedDeliverables] = useState({
@@ -48,9 +48,9 @@ export default function ServicesRates({ lang, onSelectPackage }) {
         {
           id: 'ambassador',
           title: 'Embajaduría Mensual',
-          tag: 'MAXIMO IMPACTO',
+          tag: 'MÁXIMO IMPACTO',
           desc: 'Alianza continua de marca con presencia constante y exclusividad.',
-          price: 'Personalizado',
+          price: 'Cotización a Medida',
           features: [
             '2x Reels dedicados por mes',
             '6x Historias estratégicas al mes',
@@ -62,7 +62,7 @@ export default function ServicesRates({ lang, onSelectPackage }) {
         }
       ],
       calcTitle: 'Calculadora Personalizada de Inversión',
-      calcSub: 'Selecciona las entregas deseadas para estimar el alcance total y costo aproximado.',
+      calcSub: 'Selecciona las entregas deseadas para estimar el alcance total y presupuesto sugerido.',
       reelsLabel: 'Número de Reels:',
       storiesLabel: 'Número de Historias:',
       feedLabel: 'Publicaciones en Feed:',
@@ -140,13 +140,13 @@ export default function ServicesRates({ lang, onSelectPackage }) {
   const finalBudget = selectedDeliverables.rights ? Math.round(baseBudget * 1.25) : baseBudget;
 
   return (
-    <section id="services" style={{ padding: '6rem 0' }}>
+    <section id="services" style={{ padding: '5.5rem 0', background: '#FFFFFF' }}>
       <div className="container">
         
         {/* Section Header */}
         <div className="section-header">
           <div className="section-tag">
-            <Briefcase size={14} style={{ display: 'inline', marginRight: '0.4rem' }} />
+            <Briefcase size={14} />
             {content.tag}
           </div>
           <h2 className="section-title">
@@ -158,7 +158,7 @@ export default function ServicesRates({ lang, onSelectPackage }) {
         </div>
 
         {/* Packages Grid */}
-        <div className="grid-3" style={{ marginBottom: '4.5rem' }}>
+        <div className="grid-3" style={{ marginBottom: '4rem' }}>
           {content.packages.map((pkg) => (
             <div key={pkg.id} className="glass-card" style={{
               display: 'flex',
@@ -166,8 +166,8 @@ export default function ServicesRates({ lang, onSelectPackage }) {
               justifyContent: 'space-between',
               position: 'relative',
               borderColor: pkg.highlight ? 'var(--ginger-primary)' : 'var(--border-light)',
-              boxShadow: pkg.highlight ? 'var(--ginger-glow)' : 'none',
-              background: pkg.highlight ? 'linear-gradient(180deg, rgba(255,94,54,0.08) 0%, rgba(18,22,31,0.85) 100%)' : 'var(--bg-card)'
+              boxShadow: pkg.highlight ? 'var(--ginger-glow)' : 'var(--shadow-md)',
+              background: '#FFFFFF'
             }}>
               {pkg.highlight && (
                 <div style={{
@@ -188,7 +188,7 @@ export default function ServicesRates({ lang, onSelectPackage }) {
               )}
 
               <div>
-                <h3 style={{ fontSize: '1.4rem', color: '#FFF', marginBottom: '0.4rem', marginTop: pkg.highlight ? '0.5rem' : '0' }}>
+                <h3 style={{ fontSize: '1.4rem', color: 'var(--text-main)', marginBottom: '0.4rem', marginTop: pkg.highlight ? '0.5rem' : '0' }}>
                   {pkg.title}
                 </h3>
 
@@ -199,7 +199,7 @@ export default function ServicesRates({ lang, onSelectPackage }) {
                 <div style={{
                   fontSize: '2rem',
                   fontWeight: '900',
-                  color: pkg.highlight ? 'var(--ginger-primary)' : 'var(--gold-accent)',
+                  color: pkg.highlight ? 'var(--ginger-primary)' : 'var(--text-main)',
                   marginBottom: '1.5rem',
                   paddingBottom: '1rem',
                   borderBottom: '1px solid var(--border-light)'
@@ -232,12 +232,13 @@ export default function ServicesRates({ lang, onSelectPackage }) {
         {/* Interactive Custom Calculator */}
         <div className="glass-card" style={{
           padding: '2.5rem',
-          background: 'linear-gradient(135deg, rgba(18, 22, 31, 0.95) 0%, rgba(28, 20, 15, 0.95) 100%)',
-          borderColor: 'var(--border-ginger)'
+          background: '#F8FAFC',
+          borderColor: 'var(--border-light)',
+          boxShadow: 'var(--shadow-md)'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
-            <Calculator color="#FF9E2C" size={24} />
-            <h3 style={{ fontSize: '1.6rem', color: '#FFF' }}>{content.calcTitle}</h3>
+            <Calculator color="var(--ginger-primary)" size={24} />
+            <h3 style={{ fontSize: '1.6rem', color: 'var(--text-main)' }}>{content.calcTitle}</h3>
           </div>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '2rem' }}>
             {content.calcSub}
@@ -245,12 +246,11 @@ export default function ServicesRates({ lang, onSelectPackage }) {
 
           <div className="grid-2" style={{ gap: '2.5rem', alignItems: 'center' }}>
             
-            {/* Deliverables Sliders & Switches */}
+            {/* Controls */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               
-              {/* Reels Slider */}
               <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.4rem', fontSize: '0.95rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.4rem', fontSize: '0.95rem', fontWeight: '600' }}>
                   <span>{content.reelsLabel}</span>
                   <span style={{ fontWeight: '800', color: 'var(--ginger-primary)' }}>{selectedDeliverables.reels} Reels</span>
                 </div>
@@ -262,9 +262,8 @@ export default function ServicesRates({ lang, onSelectPackage }) {
                 />
               </div>
 
-              {/* Stories Slider */}
               <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.4rem', fontSize: '0.95rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.4rem', fontSize: '0.95rem', fontWeight: '600' }}>
                   <span>{content.storiesLabel}</span>
                   <span style={{ fontWeight: '800', color: 'var(--gold-accent)' }}>{selectedDeliverables.stories} Historias</span>
                 </div>
@@ -276,11 +275,10 @@ export default function ServicesRates({ lang, onSelectPackage }) {
                 />
               </div>
 
-              {/* Feed Slider */}
               <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.4rem', fontSize: '0.95rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.4rem', fontSize: '0.95rem', fontWeight: '600' }}>
                   <span>{content.feedLabel}</span>
-                  <span style={{ fontWeight: '800', color: '#8B5CF6' }}>{selectedDeliverables.feedPosts} Posts</span>
+                  <span style={{ fontWeight: '800', color: '#7C3AED' }}>{selectedDeliverables.feedPosts} Posts</span>
                 </div>
                 <input 
                   type="range" min="0" max="5" 
@@ -290,17 +288,18 @@ export default function ServicesRates({ lang, onSelectPackage }) {
                 />
               </div>
 
-              {/* Paid Ad Rights Checkbox */}
               <label style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.75rem',
                 cursor: 'pointer',
-                background: 'rgba(255, 255, 255, 0.04)',
+                background: '#FFFFFF',
                 padding: '0.8rem 1rem',
                 borderRadius: 'var(--radius-md)',
                 border: '1px solid var(--border-light)',
-                fontSize: '0.9rem'
+                fontSize: '0.9rem',
+                color: 'var(--text-main)',
+                fontWeight: '500'
               }}>
                 <input 
                   type="checkbox" 
@@ -315,27 +314,28 @@ export default function ServicesRates({ lang, onSelectPackage }) {
 
             {/* Live Calculation Output Display */}
             <div style={{
-              background: 'rgba(9, 11, 16, 0.8)',
+              background: '#FFFFFF',
               padding: '2rem',
               borderRadius: '20px',
-              border: '1px solid var(--border-ginger)',
+              border: '1px solid var(--border-light)',
               textAlign: 'center',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
-              gap: '1.2rem'
+              gap: '1.2rem',
+              boxShadow: 'var(--shadow-sm)'
             }}>
               <div>
-                <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: '700' }}>
                   {content.estViews}
                 </div>
-                <div style={{ fontSize: '2.5rem', fontWeight: '900', color: '#FFF' }}>
-                  ~{estimatedReach.toLocaleString()} visualizaciones
+                <div style={{ fontSize: '2.5rem', fontWeight: '900', color: 'var(--text-main)' }}>
+                  ~{estimatedReach.toLocaleString()} vistas
                 </div>
               </div>
 
               <div style={{ borderTop: '1px solid var(--border-light)', paddingTop: '1.2rem' }}>
-                <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: '700' }}>
                   {content.estBudget}
                 </div>
                 <div style={{ fontSize: '2.8rem', fontWeight: '900', color: 'var(--ginger-primary)' }}>
@@ -366,6 +366,6 @@ export default function ServicesRates({ lang, onSelectPackage }) {
 
 const sliderStyle = {
   width: '100%',
-  accentColor: '#FF5E36',
+  accentColor: '#E05328',
   cursor: 'pointer'
 };
