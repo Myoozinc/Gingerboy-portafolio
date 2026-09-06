@@ -1,34 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { Camera, Upload, Check, Maximize2, Sparkles } from 'lucide-react';
 
-const DEFAULT_PHOTOS = [
+const REAL_DEFAULT_PHOTOS = [
   {
     id: 1,
-    title: 'Campana / Sesión #1',
-    category: 'Travel & Lifestyle',
-    url: '/images/travel.jpg',
-    isSample: true
+    title: 'Ginger Boy en Arco del Triunfo (París)',
+    category: 'Travel & Fashion',
+    url: '/images/reel_1.jpg',
+    isSample: false
   },
   {
     id: 2,
-    title: 'Campana / Sesión #2',
-    category: 'Fashion & Outfits',
-    url: '/images/avatar.jpg',
-    isSample: true
+    title: 'Ginger Boy frente a la Torre Eiffel',
+    category: 'Lifestyle & Travel',
+    url: '/images/reel_4.jpg',
+    isSample: false
   },
   {
     id: 3,
-    title: 'Campana / Sesión #3',
-    category: 'Urban Discovery',
-    url: '/images/travel.jpg',
-    isSample: true
+    title: 'Rutas & Guía de Viaje Interactivo',
+    category: 'Guías de Viaje',
+    url: '/images/reel_2.jpg',
+    isSample: false
   },
   {
     id: 4,
-    title: 'Campana / Sesión #4',
-    category: 'Brand Showcase',
-    url: '/images/avatar.jpg',
-    isSample: true
+    title: 'Cultura & Experiencias Urbanas',
+    category: 'Entretenimiento & Cultura',
+    url: '/images/reel_3.jpg',
+    isSample: false
   }
 ];
 
@@ -36,9 +36,9 @@ export default function PhotoGallery({ lang }) {
   const [photos, setPhotos] = useState(() => {
     const saved = localStorage.getItem('ginger_gallery_photos');
     if (saved) {
-      try { return JSON.parse(saved); } catch (e) { return DEFAULT_PHOTOS; }
+      try { return JSON.parse(saved); } catch (e) { return REAL_DEFAULT_PHOTOS; }
     }
-    return DEFAULT_PHOTOS;
+    return REAL_DEFAULT_PHOTOS;
   });
 
   const [activeLightbox, setActiveLightbox] = useState(null);
@@ -66,30 +66,30 @@ export default function PhotoGallery({ lang }) {
   };
 
   const handleReset = () => {
-    setPhotos(DEFAULT_PHOTOS);
+    setPhotos(REAL_DEFAULT_PHOTOS);
     localStorage.removeItem('ginger_gallery_photos');
   };
 
   const content = {
     es: {
-      tag: 'GALERÍA DE FOTOS & CAMPANAS',
-      title: 'Galería Fotográfica Profesional',
-      subtitle: 'Espacio preparado para integrar las 4 fotos reales de tu campaña o sesión de contenido.',
-      uploadBtn: 'Subir Foto Real',
-      changeBtn: 'Reemplazar Foto',
-      resetBtn: 'Restablecer Muestra',
-      dropNotice: 'Haz clic en cualquier casilla para subir tus 4 fotos.',
-      customBadge: 'Foto de Campaña'
+      tag: 'GALERÍA DE FOTOS REALES DE GINGER BOY',
+      title: 'Galería Fotográfica Oficial',
+      subtitle: 'Fotos reales extraídas directamente de las publicaciones e historias de Ginger Boy.',
+      uploadBtn: 'Subir Nueva Foto',
+      changeBtn: 'Cambiar Foto',
+      resetBtn: 'Restablecer Fotos de Instagram',
+      dropNotice: 'Fotos extraídas de Instagram. Puedes cambiarlas por cualquier foto de tu equipo.',
+      customBadge: 'Instagram Real'
     },
     en: {
-      tag: 'PHOTO GALLERY & LOOKBOOK',
-      title: 'Commercial Photo Gallery',
-      subtitle: 'Slots ready to display the 4 campaign photos of Ginger Boy.',
-      uploadBtn: 'Upload Real Photo',
+      tag: 'GINGER BOY REAL PHOTO GALLERY',
+      title: 'Official Photo Gallery',
+      subtitle: 'Real photos extracted directly from Ginger Boy\'s Instagram posts and stories.',
+      uploadBtn: 'Upload New Photo',
       changeBtn: 'Replace Photo',
-      resetBtn: 'Reset Sample',
-      dropNotice: 'Click any slot to upload your custom 4 photos.',
-      customBadge: 'Campaign Photo'
+      resetBtn: 'Reset Instagram Photos',
+      dropNotice: 'Real Instagram photos. You can replace them anytime with your own files.',
+      customBadge: 'Real Instagram'
     }
   }[lang];
 
@@ -121,7 +121,7 @@ export default function PhotoGallery({ lang }) {
               padding: '0',
               overflow: 'hidden',
               borderRadius: '20px',
-              border: item.isSample ? '1px solid var(--border-light)' : '2px solid var(--ginger-primary)',
+              border: '1px solid var(--border-light)',
               background: '#FFFFFF',
               position: 'relative',
               display: 'flex',
@@ -152,7 +152,7 @@ export default function PhotoGallery({ lang }) {
                   position: 'absolute',
                   top: '0.8rem',
                   left: '0.8rem',
-                  background: item.isSample ? 'rgba(15, 23, 42, 0.8)' : 'var(--ginger-gradient)',
+                  background: 'var(--ginger-gradient)',
                   color: '#FFF',
                   padding: '0.3rem 0.75rem',
                   borderRadius: 'var(--radius-full)',
@@ -162,8 +162,8 @@ export default function PhotoGallery({ lang }) {
                   alignItems: 'center',
                   gap: '0.3rem'
                 }}>
-                  {item.isSample ? <Camera size={12} /> : <Check size={12} />}
-                  <span>{item.isSample ? `Casilla #${idx + 1}` : content.customBadge}</span>
+                  <Check size={12} />
+                  <span>{content.customBadge}</span>
                 </div>
 
                 {/* Lightbox Expand Button */}
@@ -209,8 +209,8 @@ export default function PhotoGallery({ lang }) {
                   justifyContent: 'center',
                   gap: '0.5rem',
                   padding: '0.65rem 1rem',
-                  background: item.isSample ? 'var(--ginger-light)' : '#F8FAFC',
-                  border: item.isSample ? '1px dashed var(--ginger-primary)' : '1px solid var(--border-light)',
+                  background: '#F8FAFC',
+                  border: '1px solid var(--border-light)',
                   borderRadius: 'var(--radius-md)',
                   color: 'var(--ginger-primary)',
                   fontSize: '0.85rem',
@@ -219,7 +219,7 @@ export default function PhotoGallery({ lang }) {
                   transition: 'var(--transition-smooth)'
                 }}>
                   <Upload size={14} color="var(--ginger-primary)" />
-                  <span>{item.isSample ? content.uploadBtn : content.changeBtn}</span>
+                  <span>{content.changeBtn}</span>
                   <input 
                     type="file" 
                     accept="image/*"

@@ -4,63 +4,63 @@ import { Play, Flame, MapPin, Eye, ExternalLink } from 'lucide-react';
 export default function FeaturedContent({ lang }) {
   const content = {
     es: {
-      tag: 'CONTENIDO DESTACADO SEGÚN VISUALIZACIONES',
-      title: 'Top Reels & Casos de Éxito',
-      subtitle: 'Videos de viajes y estilo de vida con mayor alcance e interacción de la cuenta.',
+      tag: 'CONTENIDO REAL DESTACADO SEGÚN VISUALIZACIONES',
+      title: 'Top Reels & Casos de Éxito Reales',
+      subtitle: 'Videos de viajes y estilo de vida extraídos de las publicaciones reales de la cuenta de Ginger Boy.',
       reels: [
         {
           title: 'Arco del Triunfo • París',
           views: '11,000',
           tag: 'Travel Lifestyle',
           location: 'París, Francia',
-          img: '/images/travel.jpg',
-          desc: 'Reel cinemático recorriendo la zona del Arco del Triunfo con alta tasa de guardados.'
+          img: '/images/reel_1.jpg',
+          desc: 'Reel cinemático en el Arco del Triunfo con alta tasa de guardados e interacción.'
         },
         {
           title: 'Ruta & Mapa de Recorrido',
           views: '9,100',
           tag: 'Guía de Viaje',
-          location: 'Europa UI/Map',
-          img: '/images/analytics_proof.png',
-          desc: 'Formato dinámico interactivo mostrando puntos clave de interés urbano.'
+          location: 'Mapa Interactivo',
+          img: '/images/reel_2.jpg',
+          desc: 'Formato dinámico interactivo mostrando puntos clave de interés urbano y rutas.'
         },
         {
           title: 'Máquina de Monedas Antiguas',
           views: '8,400',
           tag: 'Curiosidades & Cultura',
           location: 'Experiencia',
-          img: '/images/avatar.jpg',
-          desc: 'Video de entretenimiento mostrando hallazgos y experiencias únicas.'
+          img: '/images/reel_3.jpg',
+          desc: 'Video de entretenimiento mostrando hallazgos y experiencias únicas de viaje.'
         },
         {
           title: 'Torre Eiffel Sunset View',
           views: '7,600',
           tag: 'Aesthetic / Lifestyle',
           location: 'París, Francia',
-          img: '/images/travel.jpg',
+          img: '/images/reel_4.jpg',
           desc: 'Toma icónica durante el atardecer parisino con alta retención de audiencia.'
         }
       ]
     },
     en: {
-      tag: 'FEATURED CONTENT BY VIEWS',
-      title: 'Top Reels & Showcase',
-      subtitle: 'Travel & lifestyle video content with top audience playback and engagement rates.',
+      tag: 'REAL FEATURED CONTENT BY VIEWS',
+      title: 'Real Top Reels & Showcase',
+      subtitle: 'Travel & lifestyle video content extracted from Ginger Boy\'s real Instagram posts.',
       reels: [
         {
           title: 'Arc de Triomphe • Paris',
           views: '11,000',
           tag: 'Travel Lifestyle',
           location: 'Paris, France',
-          img: '/images/travel.jpg',
+          img: '/images/reel_1.jpg',
           desc: 'Cinematic reel around Arc de Triomphe with high save & share rate.'
         },
         {
           title: 'Travel Map & Route Guide',
           views: '9,100',
           tag: 'Travel Guide',
-          location: 'Europe Map',
-          img: '/images/analytics_proof.png',
+          location: 'Interactive Map',
+          img: '/images/reel_2.jpg',
           desc: 'Interactive map format highlighting key urban discovery spots.'
         },
         {
@@ -68,7 +68,7 @@ export default function FeaturedContent({ lang }) {
           views: '8,400',
           tag: 'Culture & Spotlights',
           location: 'Experience',
-          img: '/images/avatar.jpg',
+          img: '/images/reel_3.jpg',
           desc: 'Entertainment clip showcasing unique cultural discoveries.'
         },
         {
@@ -76,7 +76,7 @@ export default function FeaturedContent({ lang }) {
           views: '7,600',
           tag: 'Aesthetic / Lifestyle',
           location: 'Paris, France',
-          img: '/images/travel.jpg',
+          img: '/images/reel_4.jpg',
           desc: 'Iconic golden hour shot in Paris with strong viewer retention.'
         }
       ]
@@ -216,7 +216,7 @@ export default function FeaturedContent({ lang }) {
                 </div>
 
                 <div style={{ marginTop: '1rem', paddingTop: '0.8rem', borderTop: '1px solid var(--border-light)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: '0.78rem', color: '#10B981', fontWeight: '700' }}>Alto Engagement</span>
+                  <span style={{ fontSize: '0.78rem', color: '#10B981', fontWeight: '700' }}>Instagram Real Proof</span>
                   <ExternalLink size={14} color="var(--text-dim)" />
                 </div>
               </div>
