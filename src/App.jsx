@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
 import AnalyticsSection from './components/AnalyticsSection.jsx';
+import GGBBeatsSection from './components/GGBBeatsSection.jsx';
 import FeaturedContent from './components/FeaturedContent.jsx';
 import PhotoGallery from './components/PhotoGallery.jsx';
 import ServicesRates from './components/ServicesRates.jsx';
@@ -21,7 +22,7 @@ export default function App() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg-dark)' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg-main)' }}>
       {/* Header Bar */}
       <Header 
         lang={lang} 
@@ -34,6 +35,9 @@ export default function App() {
         <Hero lang={lang} />
         
         <AnalyticsSection lang={lang} />
+
+        {/* GGB Beats Section: Music & Sound Design */}
+        <GGBBeatsSection lang={lang} />
 
         <FeaturedContent lang={lang} />
 

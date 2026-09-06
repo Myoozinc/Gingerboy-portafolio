@@ -1,50 +1,71 @@
 import React, { useState, useEffect } from 'react';
-import { Camera, Upload, Check, Maximize2, Sparkles } from 'lucide-react';
+import { Camera, Upload, Check, Maximize2, Disc3, Sparkles, Filter } from 'lucide-react';
 
-const REAL_DEFAULT_PHOTOS = [
+const HIGH_RES_GALLERY = [
   {
     id: 1,
-    title: 'Ginger Boy en Arco del Triunfo (París)',
-    category: 'Travel & Fashion',
-    url: '/images/reel_1.jpg',
-    isSample: false
+    title: 'GGB Beats • Studio Production Suite',
+    category: 'GGB Beats & Studio',
+    tag: 'Music Production',
+    url: '/images/ggb_studio.jpg',
+    badge: 'GGB Beats Studio'
   },
   {
     id: 2,
-    title: 'Ginger Boy frente a la Torre Eiffel',
-    category: 'Lifestyle & Travel',
-    url: '/images/reel_4.jpg',
-    isSample: false
+    title: 'Urban Streetwear & Rooftop Editorial',
+    category: 'Urban Streetwear',
+    tag: 'Fashion & Outfits',
+    url: '/images/ggb_streetwear.jpg',
+    badge: 'Streetwear Lookbook'
   },
   {
     id: 3,
-    title: 'Rutas & Guía de Viaje Interactivo',
-    category: 'Guías de Viaje',
-    url: '/images/reel_2.jpg',
-    isSample: false
+    title: 'Live DJ Set & Sound Design Session',
+    category: 'GGB Beats & Studio',
+    tag: 'Sound Design',
+    url: '/images/ggb_beats_gear.jpg',
+    badge: 'Live Gear'
   },
   {
     id: 4,
-    title: 'Cultura & Experiencias Urbanas',
-    category: 'Entretenimiento & Cultura',
-    url: '/images/reel_3.jpg',
-    isSample: false
+    title: 'Ginger Boy • Arco del Triunfo (París)',
+    category: 'Travel & París',
+    tag: 'Travel Lifestyle',
+    url: '/images/reel_1.jpg',
+    badge: 'Travel Official'
+  },
+  {
+    id: 5,
+    title: 'Ginger Boy • Torre Eiffel Golden Hour',
+    category: 'Travel & París',
+    tag: 'Travel & Aesthetic',
+    url: '/images/reel_4.jpg',
+    badge: 'Travel Official'
+  },
+  {
+    id: 6,
+    title: 'Guía de Viajes & Ruta Urbana',
+    category: 'Travel & París',
+    tag: 'Interactive Guides',
+    url: '/images/reel_2.jpg',
+    badge: 'Editorial Guide'
   }
 ];
 
 export default function PhotoGallery({ lang }) {
   const [photos, setPhotos] = useState(() => {
-    const saved = localStorage.getItem('ginger_gallery_photos');
+    const saved = localStorage.getItem('ginger_gallery_photos_v2');
     if (saved) {
-      try { return JSON.parse(saved); } catch (e) { return REAL_DEFAULT_PHOTOS; }
+      try { return JSON.parse(saved); } catch (e) { return HIGH_RES_GALLERY; }
     }
-    return REAL_DEFAULT_PHOTOS;
+    return HIGH_RES_GALLERY;
   });
 
+  const [activeCategory, setActiveCategory] = useState('All');
   const [activeLightbox, setActiveLightbox] = useState(null);
 
   useEffect(() => {
-    localStorage.setItem('ginger_gallery_photos', JSON.stringify(photos));
+    localStorage.setItem('ginger_gallery_photos_v2', JSON.stringify(photos));
   }, [photos]);
 
   const handleImageUpload = (e, index) => {
@@ -56,8 +77,8 @@ export default function PhotoGallery({ lang }) {
         updated[index] = {
           ...updated[index],
           url: reader.result,
-          isSample: false,
-          title: file.name.replace(/\.[^/.]+$/, "") || `Foto de Campaña ${index + 1}`
+          title: file.name.replace(/\.[^/.]+$/, "") || `Foto Personalizada ${index + 1}`,
+          badge: 'Foto Personalizada'
         };
         setPhotos(updated);
       };
@@ -66,35 +87,43 @@ export default function PhotoGallery({ lang }) {
   };
 
   const handleReset = () => {
-    setPhotos(REAL_DEFAULT_PHOTOS);
-    localStorage.removeItem('ginger_gallery_photos');
+    setPhotos(HIGH_RES_GALLERY);
+    localStorage.removeItem('ginger_gallery_photos_v2');
   };
+
+  const filteredPhotos = activeCategory === 'All' 
+    ? photos 
+    : photos.filter(p => p.category === activeCategory);
 
   const content = {
     es: {
-      tag: 'GALERÍA DE FOTOS REALES DE GINGER BOY',
-      title: 'Galería Fotográfica Oficial',
-      subtitle: 'Fotos reales extraídas directamente de las publicaciones e historias de Ginger Boy.',
-      uploadBtn: 'Subir Nueva Foto',
-      changeBtn: 'Cambiar Foto',
-      resetBtn: 'Restablecer Fotos de Instagram',
-      dropNotice: 'Fotos extraídas de Instagram. Puedes cambiarlas por cualquier foto de tu equipo.',
-      customBadge: 'Instagram Real'
+      tag: 'LOOKBOOK FOTOGRÁFICO & BRANDING OFICIAL',
+      title: 'Galería de Estudio, Streetwear & GGB Beats',
+      subtitle: 'Contenido visual de alta resolución que refleja la versatilidad de Ginger Boy: sesiones de estudio musical, moda urbana y experiencias de viaje.',
+      filterAll: 'Todas las Fotos',
+      filterStudio: 'GGB Beats & Studio',
+      filterUrban: 'Urban Streetwear',
+      filterTravel: 'Travel & París',
+      uploadBtn: 'Subir Foto',
+      changeBtn: 'Cambiar',
+      resetBtn: 'Restablecer Galería Original'
     },
     en: {
-      tag: 'GINGER BOY REAL PHOTO GALLERY',
-      title: 'Official Photo Gallery',
-      subtitle: 'Real photos extracted directly from Ginger Boy\'s Instagram posts and stories.',
-      uploadBtn: 'Upload New Photo',
-      changeBtn: 'Replace Photo',
-      resetBtn: 'Reset Instagram Photos',
-      dropNotice: 'Real Instagram photos. You can replace them anytime with your own files.',
-      customBadge: 'Real Instagram'
+      tag: 'OFFICIAL LOOKBOOK & BRANDING GALLERY',
+      title: 'Studio, Streetwear & GGB Beats Gallery',
+      subtitle: 'High-resolution visual catalog highlighting Ginger Boy\'s creative depth: music studio sessions, streetwear lookbooks, and travel storytelling.',
+      filterAll: 'All Content',
+      filterStudio: 'GGB Beats & Studio',
+      filterUrban: 'Urban Streetwear',
+      filterTravel: 'Travel & Paris',
+      uploadBtn: 'Upload Photo',
+      changeBtn: 'Replace',
+      resetBtn: 'Reset to Original'
     }
   }[lang];
 
   return (
-    <section id="gallery" style={{ padding: '5.5rem 0', background: '#F8FAFC' }}>
+    <section id="gallery" style={{ padding: '6rem 0', background: '#F8FAFC' }}>
       <div className="container">
         
         {/* Section Header */}
@@ -109,33 +138,58 @@ export default function PhotoGallery({ lang }) {
           <p className="section-subtitle">
             {content.subtitle}
           </p>
-          <p style={{ fontSize: '0.88rem', color: 'var(--ginger-primary)', marginTop: '0.6rem', fontWeight: '700' }}>
-            ✨ {content.dropNotice}
-          </p>
         </div>
 
-        {/* Gallery Grid of 4 Photos */}
-        <div className="grid-4">
-          {photos.map((item, idx) => (
+        {/* Filter Categories */}
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '0.6rem', marginBottom: '3rem', flexWrap: 'wrap' }}>
+          {[
+            { id: 'All', label: content.filterAll },
+            { id: 'GGB Beats & Studio', label: content.filterStudio },
+            { id: 'Urban Streetwear', label: content.filterUrban },
+            { id: 'Travel & París', label: content.filterTravel }
+          ].map(cat => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
+              style={{
+                padding: '0.6rem 1.4rem',
+                borderRadius: 'var(--radius-full)',
+                border: activeCategory === cat.id ? '1px solid var(--ginger-primary)' : '1px solid var(--border-light)',
+                background: activeCategory === cat.id ? 'var(--ginger-gradient)' : '#FFFFFF',
+                color: activeCategory === cat.id ? '#FFFFFF' : 'var(--text-main)',
+                fontWeight: activeCategory === cat.id ? '700' : '600',
+                fontSize: '0.88rem',
+                cursor: 'pointer',
+                transition: 'var(--transition-smooth)',
+                boxShadow: activeCategory === cat.id ? 'var(--ginger-glow)' : 'var(--shadow-sm)'
+              }}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Gallery Grid (3 Columns) */}
+        <div className="grid-3" style={{ gap: '2rem' }}>
+          {filteredPhotos.map((item, idx) => (
             <div key={item.id} className="glass-card" style={{
               padding: '0',
               overflow: 'hidden',
               borderRadius: '20px',
               border: '1px solid var(--border-light)',
               background: '#FFFFFF',
-              position: 'relative',
               display: 'flex',
               flexDirection: 'column',
               boxShadow: 'var(--shadow-md)'
             }}>
               
-              {/* Photo Image Container */}
+              {/* Photo Container */}
               <div style={{
-                height: '310px',
+                height: '340px',
                 width: '100%',
                 position: 'relative',
                 overflow: 'hidden',
-                background: '#F1F5F9'
+                background: '#0F172A'
               }}>
                 <img 
                   src={item.url} 
@@ -147,34 +201,41 @@ export default function PhotoGallery({ lang }) {
                   }} 
                 />
 
-                {/* Overlaid Badge */}
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background: 'linear-gradient(to top, rgba(15, 23, 42, 0.75) 0%, transparent 60%)'
+                }} />
+
+                {/* Badge */}
                 <div style={{
                   position: 'absolute',
                   top: '0.8rem',
                   left: '0.8rem',
-                  background: 'var(--ginger-gradient)',
-                  color: '#FFF',
-                  padding: '0.3rem 0.75rem',
+                  background: 'rgba(255, 255, 255, 0.95)',
+                  color: 'var(--text-main)',
+                  padding: '0.35rem 0.8rem',
                   borderRadius: 'var(--radius-full)',
                   fontSize: '0.75rem',
                   fontWeight: '700',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.3rem'
+                  gap: '0.3rem',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
                 }}>
-                  <Check size={12} />
-                  <span>{content.customBadge}</span>
+                  <Sparkles size={12} color="var(--ginger-primary)" />
+                  <span>{item.badge}</span>
                 </div>
 
-                {/* Lightbox Expand Button */}
+                {/* Lightbox Expand */}
                 <button
                   onClick={() => setActiveLightbox(item.url)}
                   style={{
                     position: 'absolute',
                     top: '0.8rem',
                     right: '0.8rem',
-                    width: '34px',
-                    height: '34px',
+                    width: '36px',
+                    height: '36px',
                     borderRadius: '50%',
                     background: 'rgba(255, 255, 255, 0.9)',
                     border: '1px solid var(--border-light)',
@@ -187,38 +248,40 @@ export default function PhotoGallery({ lang }) {
                   }}
                   title="Ampliar Imagen"
                 >
-                  <Maximize2 size={14} />
+                  <Maximize2 size={15} />
                 </button>
               </div>
 
-              {/* Card Controls & Info */}
-              <div style={{ padding: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-                <div style={{ fontSize: '0.72rem', color: 'var(--gold-accent)', fontWeight: '800', textTransform: 'uppercase' }}>
-                  {item.category}
+              {/* Info & Upload Button */}
+              <div style={{ padding: '1.4rem', display: 'flex', flexDirection: 'column', gap: '0.6rem', flex: 1, justifyContent: 'space-between' }}>
+                <div>
+                  <div style={{ fontSize: '0.72rem', color: '#D97706', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                    {item.tag}
+                  </div>
+                  
+                  <h4 style={{ fontSize: '1.05rem', color: 'var(--text-main)', marginTop: '0.2rem' }}>
+                    {item.title}
+                  </h4>
                 </div>
-                
-                <h4 style={{ fontSize: '1rem', color: 'var(--text-main)' }}>
-                  {item.title}
-                </h4>
 
-                {/* File Upload Button */}
+                {/* Upload action */}
                 <label style={{
-                  marginTop: '0.4rem',
+                  marginTop: '0.8rem',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '0.5rem',
-                  padding: '0.65rem 1rem',
+                  gap: '0.4rem',
+                  padding: '0.6rem 1rem',
                   background: '#F8FAFC',
                   border: '1px solid var(--border-light)',
                   borderRadius: 'var(--radius-md)',
                   color: 'var(--ginger-primary)',
-                  fontSize: '0.85rem',
+                  fontSize: '0.82rem',
                   fontWeight: '700',
                   cursor: 'pointer',
                   transition: 'var(--transition-smooth)'
                 }}>
-                  <Upload size={14} color="var(--ginger-primary)" />
+                  <Upload size={13} color="var(--ginger-primary)" />
                   <span>{content.changeBtn}</span>
                   <input 
                     type="file" 
@@ -234,7 +297,7 @@ export default function PhotoGallery({ lang }) {
         </div>
 
         {/* Reset button */}
-        <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+        <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
           <button 
             onClick={handleReset}
             style={{
@@ -261,7 +324,7 @@ export default function PhotoGallery({ lang }) {
             position: 'fixed',
             inset: 0,
             zIndex: 9999,
-            background: 'rgba(15, 23, 42, 0.9)',
+            background: 'rgba(15, 23, 42, 0.92)',
             backdropFilter: 'blur(16px)',
             display: 'flex',
             alignItems: 'center',

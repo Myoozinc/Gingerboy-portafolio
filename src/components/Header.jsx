@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { Download, Globe, Menu, X, ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { Download, Globe, Menu, X, ArrowUpRight, CheckCircle2, Disc3 } from 'lucide-react';
 
 export default function Header({ lang, setLang, onOpenMediaKit }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const t = {
     es: {
-      nav: ['Inicio', 'Métricas', 'Contenido Top', 'Galería', 'Servicios', 'Contacto'],
+      nav: ['Inicio', 'Métricas', 'GGB Beats', 'Contenido Top', 'Galería', 'Servicios', 'Contacto'],
       mediaKit: 'Descargar Media Kit',
       contact: 'Colaborar',
     },
     en: {
-      nav: ['Home', 'Metrics', 'Top Content', 'Gallery', 'Services', 'Contact'],
+      nav: ['Home', 'Metrics', 'GGB Beats', 'Top Content', 'Gallery', 'Services', 'Contact'],
       mediaKit: 'Download Media Kit',
       contact: 'Collaborate',
     }
@@ -32,20 +32,20 @@ export default function Header({ lang, setLang, onOpenMediaKit }) {
       left: 0,
       right: 0,
       zIndex: 1000,
-      background: 'rgba(255, 255, 255, 0.92)',
+      background: 'rgba(255, 255, 255, 0.94)',
       backdropFilter: 'blur(16px)',
       WebkitBackdropFilter: 'blur(16px)',
       borderBottom: '1px solid var(--border-light)',
-      padding: '0.9rem 0',
+      padding: '0.85rem 0',
       boxShadow: '0 2px 15px rgba(0, 0, 0, 0.03)'
     }}>
       <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         
-        {/* Brand Logo */}
+        {/* Brand Logo with GGB Beats Accent */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }} onClick={() => scrollTo('hero')}>
           <div style={{
-            width: '40px',
-            height: '40px',
+            width: '42px',
+            height: '42px',
             borderRadius: '50%',
             background: 'var(--ginger-gradient)',
             display: 'flex',
@@ -62,19 +62,24 @@ export default function Header({ lang, setLang, onOpenMediaKit }) {
             <div style={{ fontWeight: '800', fontSize: '1.2rem', letterSpacing: '-0.02em', display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-main)' }}>
               Ginger Boy <CheckCircle2 size={16} color="var(--ginger-primary)" />
             </div>
-            <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: '600' }}>
-              Creator & Commercial Hub
+            <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+              <span>Creator & GGB Beats</span>
+              <span style={{ color: '#D97706' }}>• Studio</span>
             </div>
           </div>
         </div>
 
         {/* Desktop Nav */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: '1.8rem' }} className="desktop-nav">
+        <nav style={{ display: 'flex', alignItems: 'center', gap: '1.6rem' }} className="desktop-nav">
           <button onClick={() => scrollTo('metrics')} style={navBtnStyle}>{t.nav[1]}</button>
-          <button onClick={() => scrollTo('featured')} style={navBtnStyle}>{t.nav[2]}</button>
-          <button onClick={() => scrollTo('gallery')} style={navBtnStyle}>{t.nav[3]}</button>
-          <button onClick={() => scrollTo('services')} style={navBtnStyle}>{t.nav[4]}</button>
-          <button onClick={() => scrollTo('contact')} style={navBtnStyle}>{t.nav[5]}</button>
+          <button onClick={() => scrollTo('ggb-beats')} style={{ ...navBtnStyle, color: '#D97706', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+            <Disc3 size={15} />
+            <span>{t.nav[2]}</span>
+          </button>
+          <button onClick={() => scrollTo('featured')} style={navBtnStyle}>{t.nav[3]}</button>
+          <button onClick={() => scrollTo('gallery')} style={navBtnStyle}>{t.nav[4]}</button>
+          <button onClick={() => scrollTo('services')} style={navBtnStyle}>{t.nav[5]}</button>
+          <button onClick={() => scrollTo('contact')} style={navBtnStyle}>{t.nav[6]}</button>
         </nav>
 
         {/* Actions */}
@@ -139,7 +144,7 @@ export default function Header({ lang, setLang, onOpenMediaKit }) {
       </div>
 
       <style>{`
-        @media (max-width: 900px) {
+        @media (max-width: 960px) {
           .desktop-nav { display: none !important; }
           .mobile-menu-btn { display: block !important; }
           .hide-mobile { display: none; }

@@ -1,25 +1,26 @@
 import React, { useState } from 'react';
-import { Briefcase, Calculator, Check, ArrowRight } from 'lucide-react';
+import { Briefcase, Calculator, Check, ArrowRight, Disc3, Music2, Sparkles } from 'lucide-react';
 
 export default function ServicesRates({ lang, onSelectPackage }) {
   const [selectedDeliverables, setSelectedDeliverables] = useState({
     reels: 1,
     stories: 3,
     feedPosts: 1,
+    customBeat: false,
     rights: false
   });
 
   const content = {
     es: {
       tag: 'OPCIONES COMERCIALES DE COLABORACIÓN',
-      title: 'Paquetes de Patrocinio & Tarifas',
-      subtitle: 'Formatos diseñados para maximizar el retorno de inversión y el engagement orgánico.',
+      title: 'Paquetes de Patrocinio, Tarifas & GGB Beats',
+      subtitle: 'Formatos diseñados para maximizar el retorno de inversión, engagement y posicionamiento de marca con audio e imagen.',
       packages: [
         {
           id: 'reel_pack',
           title: 'Reel Patrocinado HD',
           tag: 'MÁS POPULAR',
-          desc: 'Creación de video cinemático enfocado en experiencia de producto/servicio.',
+          desc: 'Creación de video cinemático enfocado en experiencia de producto o servicio.',
           price: '$350 - $600 USD',
           features: [
             '1x Reel cinemático 4K (30-60 seg)',
@@ -29,6 +30,21 @@ export default function ServicesRates({ lang, onSelectPackage }) {
             'Alcance estimado: +10K a +320K vistas'
           ],
           highlight: true
+        },
+        {
+          id: 'ggb_audio_pack',
+          title: 'GGB Beats Audio Sync + Reel',
+          tag: 'SONIDO & IMAGEN',
+          desc: 'Composición de un beat original exclusivo para tu marca + producción de Reel viral.',
+          price: '$500 - $850 USD',
+          features: [
+            'Beat original exclusivo compuesto por GGB Beats',
+            '1x Reel viral utilizando el audio de tu marca',
+            'Licencia de uso comercial perpetua para tus redes',
+            'Audio disponible en Instagram/TikTok con nombre de marca',
+            'Máxima retención y recordación auditiva'
+          ],
+          highlight: false
         },
         {
           id: 'story_pack',
@@ -44,37 +60,23 @@ export default function ServicesRates({ lang, onSelectPackage }) {
             'Alcance estimado: +200K impresiones'
           ],
           highlight: false
-        },
-        {
-          id: 'ambassador',
-          title: 'Embajaduría Mensual',
-          tag: 'MÁXIMO IMPACTO',
-          desc: 'Alianza continua de marca con presencia constante y exclusividad.',
-          price: 'Cotización a Medida',
-          features: [
-            '2x Reels dedicados por mes',
-            '6x Historias estratégicas al mes',
-            'Derechos de uso publicitario en Meta Ads',
-            'Asistencia a eventos de marca o lanzamientos',
-            'Exclusividad en tu categoría de producto'
-          ],
-          highlight: false
         }
       ],
       calcTitle: 'Calculadora Personalizada de Inversión',
-      calcSub: 'Selecciona las entregas deseadas para estimar el alcance total y presupuesto sugerido.',
+      calcSub: 'Selecciona entregables y opciones de audio branding para estimar el alcance total y presupuesto sugerido.',
       reelsLabel: 'Número de Reels:',
       storiesLabel: 'Número de Historias:',
       feedLabel: 'Publicaciones en Feed:',
-      rightsLabel: 'Incluir Derechos de Uso en Publicidad Meta Ads (+25%)',
+      beatLabel: 'Incluir Beat Original Exclusivo de GGB Beats (+ $200 USD)',
+      rightsLabel: 'Incluir Derechos de Uso en Publicidad Meta Ads (+ 25%)',
       estViews: 'Alcance Estimado Total:',
       estBudget: 'Inversión Sugerida:',
       selectCta: 'Solicitar este Paquete'
     },
     en: {
       tag: 'COMMERCIAL COLLABORATION OPTIONS',
-      title: 'Sponsorship Packages & Rates',
-      subtitle: 'Custom formats tailored for maximum ROI, conversion and organic reach.',
+      title: 'Sponsorship Packages, Rates & GGB Beats',
+      subtitle: 'Custom formats tailored for maximum ROI, conversion and sonic brand recall.',
       packages: [
         {
           id: 'reel_pack',
@@ -92,6 +94,21 @@ export default function ServicesRates({ lang, onSelectPackage }) {
           highlight: true
         },
         {
+          id: 'ggb_audio_pack',
+          title: 'GGB Beats Audio Sync + Reel',
+          tag: 'AUDIO & VISUAL',
+          desc: 'Original bespoke beat composed for your campaign + viral Reel production.',
+          price: '$500 - $850 USD',
+          features: [
+            'Bespoke original beat produced by GGB Beats',
+            '1x Viral Reel showcasing the custom brand track',
+            'Perpetual commercial sync license for brand channels',
+            'Audio whitelisted on Instagram/TikTok with brand title',
+            'Unmatched sonic recall and audience retention'
+          ],
+          highlight: false
+        },
+        {
           id: 'story_pack',
           title: 'Interactive Stories Pack',
           tag: 'HIGH CONVERSION',
@@ -105,29 +122,15 @@ export default function ServicesRates({ lang, onSelectPackage }) {
             'Est. Reach: +200K impressions'
           ],
           highlight: false
-        },
-        {
-          id: 'ambassador',
-          title: 'Monthly Ambassador',
-          tag: 'MAXIMUM IMPACT',
-          desc: 'Ongoing monthly brand partnership with category exclusivity.',
-          price: 'Custom Quote',
-          features: [
-            '2x Dedicated monthly Reels',
-            '6x Strategic monthly Stories',
-            'Ad usage rights for Meta Ads',
-            'Brand event attendance & coverage',
-            'Niche category exclusivity'
-          ],
-          highlight: false
         }
       ],
       calcTitle: 'Custom Collaboration Estimator',
-      calcSub: 'Select deliverables to estimate total campaign reach and commercial budget.',
+      calcSub: 'Select deliverables and sonic branding options to estimate total reach and commercial budget.',
       reelsLabel: 'Number of Reels:',
       storiesLabel: 'Number of Stories:',
       feedLabel: 'Feed Carousel Posts:',
-      rightsLabel: 'Include Paid Meta Ads Usage Rights (+25%)',
+      beatLabel: 'Include Custom Original GGB Beat (+ $200 USD)',
+      rightsLabel: 'Include Paid Meta Ads Usage Rights (+ 25%)',
       estViews: 'Est. Total Reach:',
       estBudget: 'Suggested Investment:',
       selectCta: 'Request This Package'
@@ -136,11 +139,14 @@ export default function ServicesRates({ lang, onSelectPackage }) {
 
   // Dynamic Calculation
   const estimatedReach = (selectedDeliverables.reels * 45000) + (selectedDeliverables.stories * 25000) + (selectedDeliverables.feedPosts * 18000);
-  const baseBudget = (selectedDeliverables.reels * 300) + (selectedDeliverables.stories * 90) + (selectedDeliverables.feedPosts * 120);
+  let baseBudget = (selectedDeliverables.reels * 300) + (selectedDeliverables.stories * 90) + (selectedDeliverables.feedPosts * 120);
+  if (selectedDeliverables.customBeat) {
+    baseBudget += 200;
+  }
   const finalBudget = selectedDeliverables.rights ? Math.round(baseBudget * 1.25) : baseBudget;
 
   return (
-    <section id="services" style={{ padding: '5.5rem 0', background: '#FFFFFF' }}>
+    <section id="services" style={{ padding: '6rem 0', background: '#FFFFFF' }}>
       <div className="container">
         
         {/* Section Header */}
@@ -157,7 +163,7 @@ export default function ServicesRates({ lang, onSelectPackage }) {
           </p>
         </div>
 
-        {/* Packages Grid */}
+        {/* Packages Grid (3 Columns) */}
         <div className="grid-3" style={{ marginBottom: '4rem' }}>
           {content.packages.map((pkg) => (
             <div key={pkg.id} className="glass-card" style={{
@@ -188,11 +194,16 @@ export default function ServicesRates({ lang, onSelectPackage }) {
               )}
 
               <div>
-                <h3 style={{ fontSize: '1.4rem', color: 'var(--text-main)', marginBottom: '0.4rem', marginTop: pkg.highlight ? '0.5rem' : '0' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#D97706', fontSize: '0.78rem', fontWeight: '800', textTransform: 'uppercase', marginBottom: '0.2rem' }}>
+                  {pkg.id === 'ggb_audio_pack' && <Disc3 size={14} />}
+                  <span>{pkg.tag}</span>
+                </div>
+
+                <h3 style={{ fontSize: '1.35rem', color: 'var(--text-main)', marginBottom: '0.4rem' }}>
                   {pkg.title}
                 </h3>
 
-                <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginBottom: '1.5rem', minHeight: '40px' }}>
+                <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginBottom: '1.5rem', minHeight: '44px' }}>
                   {pkg.desc}
                 </p>
 
@@ -247,7 +258,7 @@ export default function ServicesRates({ lang, onSelectPackage }) {
           <div className="grid-2" style={{ gap: '2.5rem', alignItems: 'center' }}>
             
             {/* Controls */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.4rem' }}>
               
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.4rem', fontSize: '0.95rem', fontWeight: '600' }}>
@@ -288,6 +299,33 @@ export default function ServicesRates({ lang, onSelectPackage }) {
                 />
               </div>
 
+              {/* Custom GGB Beat Checkbox */}
+              <label style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                cursor: 'pointer',
+                background: '#FFFFFF',
+                padding: '0.8rem 1rem',
+                borderRadius: 'var(--radius-md)',
+                border: '1px solid var(--border-light)',
+                fontSize: '0.9rem',
+                color: 'var(--text-main)',
+                fontWeight: '600'
+              }}>
+                <input 
+                  type="checkbox" 
+                  checked={selectedDeliverables.customBeat} 
+                  onChange={(e) => setSelectedDeliverables({ ...selectedDeliverables, customBeat: e.target.checked })}
+                  style={{ width: '18px', height: '18px', accentColor: '#D97706' }}
+                />
+                <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <Disc3 size={15} color="#D97706" />
+                  {content.beatLabel}
+                </span>
+              </label>
+
+              {/* Meta Ad Rights Checkbox */}
               <label style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -341,6 +379,11 @@ export default function ServicesRates({ lang, onSelectPackage }) {
                 <div style={{ fontSize: '2.8rem', fontWeight: '900', color: 'var(--ginger-primary)' }}>
                   ${finalBudget} USD
                 </div>
+                {selectedDeliverables.customBeat && (
+                  <div style={{ fontSize: '0.75rem', color: '#D97706', fontWeight: '700', marginTop: '0.2rem' }}>
+                    ✓ Incluye Licencia de Audio GGB Beats
+                  </div>
+                )}
               </div>
 
               <button 
