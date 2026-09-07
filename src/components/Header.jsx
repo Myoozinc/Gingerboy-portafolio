@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
-import { Download, Globe, Menu, X, ArrowUpRight, CheckCircle2, Disc3 } from 'lucide-react';
+import { Download, Globe, Menu, X, ArrowUpRight, CheckCircle2, Disc3, ExternalLink } from 'lucide-react';
 
 export default function Header({ lang, setLang, onOpenMediaKit }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const t = {
     es: {
-      nav: ['Inicio', 'Métricas', 'GGB Beats', 'Contenido Top', 'Galería', 'Servicios', 'Contacto'],
+      nav: ['Inicio', 'Métricas', 'Redes IG', 'GGB Beats', 'Contenido Top', 'Galería', 'Tarifas', 'Contacto'],
       mediaKit: 'Descargar Media Kit',
       contact: 'Colaborar',
+      labelLink: 'MYOOZ InC Sello Oficial'
     },
     en: {
-      nav: ['Home', 'Metrics', 'GGB Beats', 'Top Content', 'Gallery', 'Services', 'Contact'],
+      nav: ['Home', 'Metrics', 'IG Network', 'GGB Beats', 'Top Content', 'Gallery', 'Rates', 'Contact'],
       mediaKit: 'Download Media Kit',
       contact: 'Collaborate',
+      labelLink: 'MYOOZ InC Official Label'
     }
   }[lang];
 
@@ -32,54 +34,70 @@ export default function Header({ lang, setLang, onOpenMediaKit }) {
       left: 0,
       right: 0,
       zIndex: 1000,
-      background: 'rgba(255, 255, 255, 0.94)',
+      background: 'rgba(255, 255, 255, 0.95)',
       backdropFilter: 'blur(16px)',
       WebkitBackdropFilter: 'blur(16px)',
       borderBottom: '1px solid var(--border-light)',
-      padding: '0.85rem 0',
+      padding: '0.75rem 0',
       boxShadow: '0 2px 15px rgba(0, 0, 0, 0.03)'
     }}>
       <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         
-        {/* Brand Logo with GGB Beats Accent */}
+        {/* Brand Logo with Official GGB Beats Circular Insignia */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }} onClick={() => scrollTo('hero')}>
           <div style={{
-            width: '42px',
-            height: '42px',
+            width: '44px',
+            height: '44px',
             borderRadius: '50%',
-            background: 'var(--ginger-gradient)',
+            overflow: 'hidden',
+            border: '2px solid var(--ginger-primary)',
+            boxShadow: 'var(--ginger-glow)',
+            background: '#0F172A',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
-            fontWeight: '800',
-            fontSize: '1.1rem',
-            color: '#FFF',
-            boxShadow: 'var(--ginger-glow)'
+            justifyContent: 'center'
           }}>
-            GB
+            <img 
+              src="/images/ggbbeats-logo-circle.png" 
+              alt="GGB Beats Logo" 
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              onError={(e) => {
+                e.target.style.display = 'none';
+              }}
+            />
           </div>
           <div>
-            <div style={{ fontWeight: '800', fontSize: '1.2rem', letterSpacing: '-0.02em', display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-main)' }}>
+            <div style={{ fontWeight: '800', fontSize: '1.18rem', letterSpacing: '-0.02em', display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-main)' }}>
               Ginger Boy <CheckCircle2 size={16} color="var(--ginger-primary)" />
             </div>
             <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-              <span>Creator & GGB Beats</span>
-              <span style={{ color: '#D97706' }}>• Studio</span>
+              <span>GGB Beats</span>
+              <span style={{ color: 'var(--text-dim)' }}>•</span>
+              <a 
+                href="https://myoozinc.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                style={{ color: '#D97706', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.2rem' }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                MYOOZ InC <ExternalLink size={10} />
+              </a>
             </div>
           </div>
         </div>
 
         {/* Desktop Nav */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: '1.6rem' }} className="desktop-nav">
+        <nav style={{ display: 'flex', alignItems: 'center', gap: '1.4rem' }} className="desktop-nav">
           <button onClick={() => scrollTo('metrics')} style={navBtnStyle}>{t.nav[1]}</button>
+          <button onClick={() => scrollTo('ecosystem')} style={navBtnStyle}>{t.nav[2]}</button>
           <button onClick={() => scrollTo('ggb-beats')} style={{ ...navBtnStyle, color: '#D97706', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
             <Disc3 size={15} />
-            <span>{t.nav[2]}</span>
+            <span>{t.nav[3]}</span>
           </button>
-          <button onClick={() => scrollTo('featured')} style={navBtnStyle}>{t.nav[3]}</button>
-          <button onClick={() => scrollTo('gallery')} style={navBtnStyle}>{t.nav[4]}</button>
-          <button onClick={() => scrollTo('services')} style={navBtnStyle}>{t.nav[5]}</button>
-          <button onClick={() => scrollTo('contact')} style={navBtnStyle}>{t.nav[6]}</button>
+          <button onClick={() => scrollTo('featured')} style={navBtnStyle}>{t.nav[4]}</button>
+          <button onClick={() => scrollTo('gallery')} style={navBtnStyle}>{t.nav[5]}</button>
+          <button onClick={() => scrollTo('services')} style={navBtnStyle}>{t.nav[6]}</button>
+          <button onClick={() => scrollTo('contact')} style={navBtnStyle}>{t.nav[7]}</button>
         </nav>
 
         {/* Actions */}
@@ -144,7 +162,7 @@ export default function Header({ lang, setLang, onOpenMediaKit }) {
       </div>
 
       <style>{`
-        @media (max-width: 960px) {
+        @media (max-width: 1024px) {
           .desktop-nav { display: none !important; }
           .mobile-menu-btn { display: block !important; }
           .hide-mobile { display: none; }
@@ -158,7 +176,7 @@ const navBtnStyle = {
   background: 'none',
   border: 'none',
   color: 'var(--text-muted)',
-  fontSize: '0.92rem',
+  fontSize: '0.9rem',
   fontWeight: '600',
   cursor: 'pointer',
   transition: 'var(--transition-smooth)'

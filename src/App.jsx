@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
 import AnalyticsSection from './components/AnalyticsSection.jsx';
+import InstagramAccountsSection from './components/InstagramAccountsSection.jsx';
 import GGBBeatsSection from './components/GGBBeatsSection.jsx';
 import FeaturedContent from './components/FeaturedContent.jsx';
 import PhotoGallery from './components/PhotoGallery.jsx';
@@ -30,25 +31,33 @@ export default function App() {
         onOpenMediaKit={() => setIsMediaKitOpen(true)} 
       />
 
-      {/* Main Sections */}
+      {/* Main Content Sections */}
       <main>
         <Hero lang={lang} />
         
+        {/* Verified 90-Day Analytics & Growth */}
         <AnalyticsSection lang={lang} />
 
-        {/* GGB Beats Section: Music & Sound Design */}
+        {/* Official 4 Instagram Accounts Network */}
+        <InstagramAccountsSection lang={lang} />
+
+        {/* GGB Beats: Spotify Player, YouTube Releases & Beat Licensing */}
         <GGBBeatsSection lang={lang} />
 
+        {/* Top Reels Performance */}
         <FeaturedContent lang={lang} />
 
+        {/* Official Photography Lookbook */}
         <PhotoGallery lang={lang} />
 
+        {/* Collaboration Packages & Calculator */}
         <ServicesRates lang={lang} onSelectPackage={handleSelectPackage} />
 
+        {/* Direct Commercial Booking & Inquiry Form */}
         <ContactSection lang={lang} preselectedPkg={preselectedPkg} />
       </main>
 
-      {/* Footer */}
+      {/* Footer with Label & Social Links */}
       <Footer lang={lang} />
 
       {/* Media Kit PDF Download Modal */}
