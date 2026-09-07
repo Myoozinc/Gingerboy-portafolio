@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
-import { Download, Globe, Menu, X, ArrowUpRight, CheckCircle2, Disc3, ExternalLink } from 'lucide-react';
+import { Download, Globe, Menu, X, ArrowUpRight, CheckCircle2, Disc3, ExternalLink, Sparkles, Briefcase } from 'lucide-react';
 
 export default function Header({ lang, setLang, onOpenMediaKit }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const t = {
     es: {
-      nav: ['Inicio', 'Métricas', 'Pilares', 'Redes IG', 'GGB Beats', 'Contenido Top', 'Galería', 'Tarifas', 'Contacto'],
-      mediaKit: 'Descargar Media Kit',
-      contact: 'Colaborar',
+      nav: ['Inicio', 'Métricas', 'Pilares', 'Redes IG', 'Trinidad Sonora', 'Sello MYOOZ', 'Carruseles', 'Lookbook', 'Servicios'],
+      mediaKit: 'Media Kit PDF',
+      contact: 'Contratar / Servicios',
       labelLink: 'MYOOZ InC Sello Oficial'
     },
     en: {
-      nav: ['Home', 'Metrics', 'Pillars', 'IG Network', 'GGB Beats', 'Top Content', 'Gallery', 'Rates', 'Contact'],
-      mediaKit: 'Download Media Kit',
-      contact: 'Collaborate',
+      nav: ['Home', 'Metrics', 'Pillars', 'IG Network', 'Sonic Trinity', 'MYOOZ Label', 'Carousels', 'Lookbook', 'Services Hub'],
+      mediaKit: 'Media Kit PDF',
+      contact: 'Hire / Services',
       labelLink: 'MYOOZ InC Official Label'
     }
   }[lang];
@@ -87,18 +87,22 @@ export default function Header({ lang, setLang, onOpenMediaKit }) {
         </div>
 
         {/* Desktop Nav */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: '1.4rem' }} className="desktop-nav">
+        <nav style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }} className="desktop-nav">
           <button onClick={() => scrollTo('metrics')} style={navBtnStyle}>{t.nav[1]}</button>
           <button onClick={() => scrollTo('pillars')} style={navBtnStyle}>{t.nav[2]}</button>
           <button onClick={() => scrollTo('ecosystem')} style={navBtnStyle}>{t.nav[3]}</button>
-          <button onClick={() => scrollTo('ggb-beats')} style={{ ...navBtnStyle, color: '#D97706', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
+          <button onClick={() => scrollTo('ggb-trinity')} style={{ ...navBtnStyle, color: '#E05328', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
             <Disc3 size={15} />
             <span>{t.nav[4]}</span>
           </button>
-          <button onClick={() => scrollTo('featured')} style={navBtnStyle}>{t.nav[5]}</button>
-          <button onClick={() => scrollTo('gallery')} style={navBtnStyle}>{t.nav[6]}</button>
-          <button onClick={() => scrollTo('services')} style={navBtnStyle}>{t.nav[7]}</button>
-          <button onClick={() => scrollTo('contact')} style={navBtnStyle}>{t.nav[8]}</button>
+          <button onClick={() => scrollTo('record-label')} style={{ ...navBtnStyle, color: 'var(--text-main)', fontWeight: '700' }}>
+            {t.nav[5]}
+          </button>
+          <button onClick={() => scrollTo('featured')} style={navBtnStyle}>{t.nav[6]}</button>
+          <button onClick={() => scrollTo('gallery')} style={navBtnStyle}>{t.nav[7]}</button>
+          <button onClick={() => scrollTo('services-hub')} style={{ ...navBtnStyle, color: '#D97706', fontWeight: '800' }}>
+            {t.nav[8]}
+          </button>
         </nav>
 
         {/* Actions */}
@@ -137,7 +141,7 @@ export default function Header({ lang, setLang, onOpenMediaKit }) {
 
           {/* Direct CTA */}
           <button 
-            onClick={() => scrollTo('contact')}
+            onClick={() => scrollTo('services-hub')}
             className="btn-primary"
             style={{ padding: '0.5rem 1.25rem', fontSize: '0.85rem' }}
           >
@@ -176,16 +180,16 @@ export default function Header({ lang, setLang, onOpenMediaKit }) {
           <button onClick={() => scrollTo('metrics')} style={{ ...navBtnStyle, textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[1]}</button>
           <button onClick={() => scrollTo('pillars')} style={{ ...navBtnStyle, textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[2]}</button>
           <button onClick={() => scrollTo('ecosystem')} style={{ ...navBtnStyle, textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[3]}</button>
-          <button onClick={() => scrollTo('ggb-beats')} style={{ ...navBtnStyle, color: '#D97706', fontWeight: '700', textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[4]}</button>
-          <button onClick={() => scrollTo('featured')} style={{ ...navBtnStyle, textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[5]}</button>
-          <button onClick={() => scrollTo('gallery')} style={{ ...navBtnStyle, textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[6]}</button>
-          <button onClick={() => scrollTo('services')} style={{ ...navBtnStyle, textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[7]}</button>
-          <button onClick={() => scrollTo('contact')} style={{ ...navBtnStyle, textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[8]}</button>
+          <button onClick={() => scrollTo('ggb-trinity')} style={{ ...navBtnStyle, color: '#E05328', fontWeight: '800', textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[4]}</button>
+          <button onClick={() => scrollTo('record-label')} style={{ ...navBtnStyle, textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[5]}</button>
+          <button onClick={() => scrollTo('featured')} style={{ ...navBtnStyle, textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[6]}</button>
+          <button onClick={() => scrollTo('gallery')} style={{ ...navBtnStyle, textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[7]}</button>
+          <button onClick={() => scrollTo('services-hub')} style={{ ...navBtnStyle, color: '#D97706', fontWeight: '800', textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[8]}</button>
         </div>
       )}
 
       <style>{`
-        @media (max-width: 1024px) {
+        @media (max-width: 1080px) {
           .desktop-nav { display: none !important; }
           .mobile-menu-btn { display: block !important; }
           .hide-mobile { display: none; }
@@ -199,7 +203,7 @@ const navBtnStyle = {
   background: 'none',
   border: 'none',
   color: 'var(--text-muted)',
-  fontSize: '0.9rem',
+  fontSize: '0.88rem',
   fontWeight: '600',
   cursor: 'pointer',
   transition: 'var(--transition-smooth)'
