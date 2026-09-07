@@ -88,7 +88,7 @@ export default function MediaKitPDFModal({ isOpen, onClose, lang }) {
                 Ginger Boy
               </h1>
               <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>
-                Lifestyle, Travel & Experiences Content Creator • @gingerboy
+                Creador, Figura Pública & Tech Innovator • @gingerboyofficial | GGB Beats (@gingerboybeats) en MYOOZ InC
               </p>
             </div>
 
@@ -229,7 +229,7 @@ export default function MediaKitPDFModal({ isOpen, onClose, lang }) {
               <div style={{ fontSize: '0.85rem', opacity: 0.9 }}>Contacto directo para propuestas de marca</div>
             </div>
             <div style={{ fontSize: '0.9rem', fontWeight: '700' }}>
-              contacto@gingerboy.com
+              myooz.inc@gmail.com
             </div>
           </div>
 

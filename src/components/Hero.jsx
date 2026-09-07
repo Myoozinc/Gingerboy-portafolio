@@ -1,39 +1,35 @@
-import React, { useState } from 'react';
-import { Eye, Film, Sparkles, TrendingUp, Users, ArrowRight, ShieldCheck, MapPin, MousePointer, HeartHandshake, Disc3, Headphones } from 'lucide-react';
+import React from 'react';
+import { Eye, Film, Sparkles, TrendingUp, Users, ArrowRight, ShieldCheck, MapPin, MousePointer, HeartHandshake, Disc3, ExternalLink } from 'lucide-react';
 
 export default function Hero({ lang }) {
-  const [activePersona, setActivePersona] = useState('creator'); // 'creator' | 'producer'
-
   const content = {
     es: {
-      tag: 'PORTAFOLIO OFICIAL & MEDIA KIT COMERCIAL',
+      tag: 'PORTAFOLIO COMERCIAL OFICIAL & MEDIA KIT',
       title: 'Ginger Boy',
-      role: 'Content Creator & Music Producer',
-      brandSubtitle: 'Creador de contenido urbano y de estilo de vida, complementado con la producción musical de GGB Beats. Formatos dinámicos, alta retención y 658K+ visualizaciones.',
+      role: 'Creador, Figura Pública & Tech Innovator',
+      producerNote: 'Productor Musical & Beatmaker en MYOOZ InC (GGB Beats)',
+      brandSubtitle: 'Portafolio comercial oficial de Ginger Boy (@gingerboyofficial): creador de contenido de viajes y estilo de vida, desarrollador de proyectos tecnológicos con impacto social, e impulsor del sistema musical GGB Beats (@gingerboybeats).',
       ctaPrimary: 'Explorar Métricas',
-      ctaSecondary: 'GGB Beats Audio Sync',
-      personaCreator: 'Lifestyle & Urban Creator',
-      personaProducer: 'GGB Beats Studio Producer',
+      ctaSecondary: 'GGB Beats Music Wing',
       badges: [
         { label: 'Seguidores Activos', val: '23,250', icon: Users, color: '#E05328', note: '+6.3% en 90 días' },
         { label: 'Visualizaciones Totales', val: '658,848', icon: Eye, color: '#D97706', note: '52.2% no seguidores (viral)' },
-        { label: 'Audiencia Femenina', val: '69.4%', icon: HeartHandshake, color: '#E11D48', note: 'Moda, Estilo & Cultura' },
+        { label: 'Audiencia Femenina', val: '69.4%', icon: HeartHandshake, color: '#E11D48', note: 'Moda, Cultura & Lifestyle' },
         { label: 'Visitas al Perfil', val: '54,770', icon: MousePointer, color: '#7C3AED', note: '1,169 clics en web/link' }
       ]
     },
     en: {
       tag: 'OFFICIAL COMMERCIAL PORTFOLIO & MEDIA KIT',
       title: 'Ginger Boy',
-      role: 'Content Creator & Music Producer',
-      brandSubtitle: 'Urban lifestyle content creator and music producer behind GGB Beats. Dynamic formats, high engagement, and 658K+ total impressions.',
+      role: 'Creator, Public Figure & Tech Innovator',
+      producerNote: 'Music Producer & Beatmaker at MYOOZ InC (GGB Beats)',
+      brandSubtitle: 'Official commercial media kit for Ginger Boy (@gingerboyofficial): lifestyle & travel creator, humanitarian tech developer, and producer behind the GGB Beats sonic system (@gingerboybeats).',
       ctaPrimary: 'Explore Metrics',
-      ctaSecondary: 'GGB Beats Audio Sync',
-      personaCreator: 'Lifestyle & Urban Creator',
-      personaProducer: 'GGB Beats Studio Producer',
+      ctaSecondary: 'GGB Beats Music Wing',
       badges: [
         { label: 'Total Followers', val: '23,250', icon: Users, color: '#E05328', note: '+6.3% in 90 days' },
         { label: 'Total Impressions', val: '658,848', icon: Eye, color: '#D97706', note: '52.2% viral discovery' },
-        { label: 'Female Audience', val: '69.4%', icon: HeartHandshake, color: '#E11D48', note: 'Fashion, Lifestyle & Arts' },
+        { label: 'Female Audience', val: '69.4%', icon: HeartHandshake, color: '#E11D48', note: 'Fashion, Lifestyle & Culture' },
         { label: 'Profile Visits', val: '54,770', icon: MousePointer, color: '#7C3AED', note: '1,169 bio link clicks' }
       ]
     }
@@ -55,12 +51,12 @@ export default function Hero({ lang }) {
       <div className="container">
         <div style={{
           display: 'grid',
-          gridTemplateColumns: '1.1fr 0.9fr',
+          gridTemplateColumns: '1.15fr 0.85fr',
           gap: '3.5rem',
           alignItems: 'center'
         }} className="hero-grid">
 
-          {/* Left Column */}
+          {/* Left Column: Text & Hierarchy */}
           <div>
             <div className="section-tag">
               <Sparkles size={14} />
@@ -79,7 +75,7 @@ export default function Hero({ lang }) {
               <span className="gradient-text">{content.role}</span>
             </h1>
 
-            {/* Dual Brand Tags */}
+            {/* Facets Badges */}
             <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', margin: '1rem 0 1.5rem 0' }}>
               <span style={{
                 background: '#F1F5F9',
@@ -90,7 +86,7 @@ export default function Hero({ lang }) {
                 fontWeight: '700',
                 border: '1px solid var(--border-light)'
               }}>
-                📸 Urban & Travel Creator
+                @gingerboyofficial • Figura Pública
               </span>
               <span style={{
                 background: 'rgba(217, 119, 6, 0.1)',
@@ -105,7 +101,7 @@ export default function Hero({ lang }) {
                 gap: '0.3rem'
               }}>
                 <Disc3 size={13} />
-                GGB Beats Music Studio
+                GGB Beats (@gingerboybeats) • MYOOZ InC
               </span>
             </div>
 
@@ -127,7 +123,7 @@ export default function Hero({ lang }) {
                 <ArrowRight size={18} />
               </button>
               <button onClick={() => scrollTo('ggb-beats')} className="btn-secondary" style={{ borderColor: '#D97706', color: '#D97706' }}>
-                <Headphones size={16} />
+                <Disc3 size={16} />
                 <span>{content.ctaSecondary}</span>
               </button>
             </div>
@@ -150,127 +146,89 @@ export default function Hero({ lang }) {
             </div>
           </div>
 
-          {/* Right Column: Interactive Persona Card Switcher */}
+          {/* Right Column: High Resolution Official Brand Emblem Card */}
           <div style={{ position: 'relative' }}>
             
-            {/* Persona Toggle Bar */}
-            <div style={{
-              display: 'flex',
-              background: '#F1F5F9',
-              padding: '0.35rem',
-              borderRadius: 'var(--radius-full)',
-              marginBottom: '1rem',
-              border: '1px solid var(--border-light)'
-            }}>
-              <button
-                onClick={() => setActivePersona('creator')}
-                style={{
-                  flex: 1,
-                  padding: '0.5rem 1rem',
-                  border: 'none',
-                  borderRadius: 'var(--radius-full)',
-                  background: activePersona === 'creator' ? '#FFFFFF' : 'transparent',
-                  color: activePersona === 'creator' ? 'var(--ginger-primary)' : 'var(--text-muted)',
-                  fontWeight: '700',
-                  fontSize: '0.82rem',
-                  cursor: 'pointer',
-                  boxShadow: activePersona === 'creator' ? 'var(--shadow-sm)' : 'none',
-                  transition: 'var(--transition-smooth)'
-                }}
-              >
-                {content.personaCreator}
-              </button>
-              <button
-                onClick={() => setActivePersona('producer')}
-                style={{
-                  flex: 1,
-                  padding: '0.5rem 1rem',
-                  border: 'none',
-                  borderRadius: 'var(--radius-full)',
-                  background: activePersona === 'producer' ? '#FFFFFF' : 'transparent',
-                  color: activePersona === 'producer' ? '#D97706' : 'var(--text-muted)',
-                  fontWeight: '700',
-                  fontSize: '0.82rem',
-                  cursor: 'pointer',
-                  boxShadow: activePersona === 'producer' ? 'var(--shadow-sm)' : 'none',
-                  transition: 'var(--transition-smooth)'
-                }}
-              >
-                {content.personaProducer}
-              </button>
-            </div>
-
-            {/* Profile Card */}
             <div className="glass-card" style={{
-              padding: '0.9rem',
-              borderRadius: '24px',
+              padding: '2.5rem 2rem',
+              borderRadius: '28px',
               border: '1px solid var(--border-light)',
               boxShadow: 'var(--shadow-lg)',
               background: '#FFFFFF',
-              position: 'relative'
+              position: 'relative',
+              textAlign: 'center'
             }}>
+              
+              {/* High Resolution Official GGB Beats Circular Emblem (1080x1080) */}
               <div style={{
-                width: '100%',
-                height: '420px',
-                borderRadius: '18px',
+                width: '170px',
+                height: '170px',
+                margin: '0 auto 1.5rem auto',
+                borderRadius: '50%',
                 overflow: 'hidden',
-                position: 'relative',
-                background: '#0F172A'
+                background: '#0F172A',
+                border: '4px solid var(--ginger-primary)',
+                boxShadow: 'var(--ginger-glow)',
+                position: 'relative'
               }}>
                 <img 
-                  src={activePersona === 'creator' ? '/images/ggb_streetwear.jpg' : '/images/ggb_studio.jpg'} 
-                  alt="Ginger Boy & GGB Beats"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    objectPosition: 'center top',
-                    transition: 'all 0.5s ease'
-                  }} 
+                  src="/images/ggbbeats-logo-circle.png" 
+                  alt="GGB Beats & Ginger Boy Emblem" 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
-                
-                <div style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background: 'linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, transparent 60%)'
-                }} />
+              </div>
 
-                <div style={{
-                  position: 'absolute',
-                  bottom: '1.2rem',
-                  left: '1.2rem',
-                  right: '1.2rem'
-                }}>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <div>
-                      <h3 style={{ fontSize: '1.35rem', color: '#FFF' }}>
-                        {activePersona === 'creator' ? 'Ginger Boy' : 'GGB Beats'}
-                      </h3>
-                      <p style={{ fontSize: '0.85rem', color: activePersona === 'creator' ? 'var(--ginger-primary)' : '#F59E0B', fontWeight: '600' }}>
-                        {activePersona === 'creator' ? '@gingerboy • 23.2K Followers' : 'Studio Music Producer • Sound Design'}
-                      </p>
-                    </div>
-                    <span style={{
-                      background: 'rgba(255, 255, 255, 0.15)',
-                      color: '#FFF',
-                      padding: '0.35rem 0.85rem',
-                      borderRadius: 'var(--radius-full)',
-                      fontSize: '0.75rem',
-                      fontWeight: '800',
-                      backdropFilter: 'blur(8px)',
-                      border: '1px solid rgba(255, 255, 255, 0.3)'
-                    }}>
-                      OPEN FOR BRANDS
-                    </span>
-                  </div>
+              <div style={{
+                display: 'inline-block',
+                background: 'rgba(224, 83, 40, 0.1)',
+                color: 'var(--ginger-primary)',
+                padding: '0.25rem 0.8rem',
+                borderRadius: 'var(--radius-full)',
+                fontSize: '0.75rem',
+                fontWeight: '800',
+                letterSpacing: '0.08em',
+                marginBottom: '0.6rem'
+              }}>
+                MYOOZ INC TALENT ROSTER
+              </div>
+
+              <h2 style={{ fontSize: '1.8rem', color: 'var(--text-main)', marginBottom: '0.3rem' }}>
+                Ginger Boy
+              </h2>
+
+              <p style={{ fontSize: '0.95rem', color: '#D97706', fontWeight: '700', marginBottom: '1rem' }}>
+                @gingerboyofficial • @gingerboybeats
+              </p>
+
+              <div style={{
+                background: '#F8FAFC',
+                borderRadius: '16px',
+                padding: '1rem',
+                border: '1px solid var(--border-light)',
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: '0.8rem',
+                textAlign: 'left',
+                fontSize: '0.82rem'
+              }}>
+                <div>
+                  <span style={{ color: 'var(--text-muted)', display: 'block' }}>Sello Discográfico:</span>
+                  <a href="https://myoozinc.com" target="_blank" rel="noopener noreferrer" style={{ fontWeight: '700', color: 'var(--text-main)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
+                    MYOOZ InC <ExternalLink size={11} />
+                  </a>
+                </div>
+                <div>
+                  <span style={{ color: 'var(--text-muted)', display: 'block' }}>Audiencia Core:</span>
+                  <strong style={{ color: 'var(--ginger-primary)' }}>69.4% Femenina</strong>
                 </div>
               </div>
+
             </div>
 
-            {/* Pill Badge 1 */}
+            {/* Pill Badge 1: Followers */}
             <div style={{
               position: 'absolute',
-              top: '3.5rem',
+              top: '-1.2rem',
               right: '-1.2rem',
               background: '#FFFFFF',
               border: '1px solid var(--border-light)',
@@ -296,7 +254,7 @@ export default function Hero({ lang }) {
               </div>
             </div>
 
-            {/* Pill Badge 2 */}
+            {/* Pill Badge 2: Total Impressions */}
             <div style={{
               position: 'absolute',
               bottom: '-1rem',
@@ -317,11 +275,11 @@ export default function Hero({ lang }) {
                 borderRadius: '50%',
                 color: 'var(--gold-accent)'
               }}>
-                <Disc3 size={18} />
+                <Eye size={18} />
               </div>
               <div>
-                <div style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-main)' }}>GGB Beats</div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: '600' }}>Music & Beatmaker</div>
+                <div style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-main)' }}>658,848</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: '600' }}>Vistas Totales</div>
               </div>
             </div>
 

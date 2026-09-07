@@ -6,13 +6,13 @@ export default function Header({ lang, setLang, onOpenMediaKit }) {
 
   const t = {
     es: {
-      nav: ['Inicio', 'Métricas', 'Redes IG', 'GGB Beats', 'Contenido Top', 'Galería', 'Tarifas', 'Contacto'],
+      nav: ['Inicio', 'Métricas', 'Pilares', 'Redes IG', 'GGB Beats', 'Contenido Top', 'Galería', 'Tarifas', 'Contacto'],
       mediaKit: 'Descargar Media Kit',
       contact: 'Colaborar',
       labelLink: 'MYOOZ InC Sello Oficial'
     },
     en: {
-      nav: ['Home', 'Metrics', 'IG Network', 'GGB Beats', 'Top Content', 'Gallery', 'Rates', 'Contact'],
+      nav: ['Home', 'Metrics', 'Pillars', 'IG Network', 'GGB Beats', 'Top Content', 'Gallery', 'Rates', 'Contact'],
       mediaKit: 'Download Media Kit',
       contact: 'Collaborate',
       labelLink: 'MYOOZ InC Official Label'
@@ -89,15 +89,16 @@ export default function Header({ lang, setLang, onOpenMediaKit }) {
         {/* Desktop Nav */}
         <nav style={{ display: 'flex', alignItems: 'center', gap: '1.4rem' }} className="desktop-nav">
           <button onClick={() => scrollTo('metrics')} style={navBtnStyle}>{t.nav[1]}</button>
-          <button onClick={() => scrollTo('ecosystem')} style={navBtnStyle}>{t.nav[2]}</button>
+          <button onClick={() => scrollTo('pillars')} style={navBtnStyle}>{t.nav[2]}</button>
+          <button onClick={() => scrollTo('ecosystem')} style={navBtnStyle}>{t.nav[3]}</button>
           <button onClick={() => scrollTo('ggb-beats')} style={{ ...navBtnStyle, color: '#D97706', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
             <Disc3 size={15} />
-            <span>{t.nav[3]}</span>
+            <span>{t.nav[4]}</span>
           </button>
-          <button onClick={() => scrollTo('featured')} style={navBtnStyle}>{t.nav[4]}</button>
-          <button onClick={() => scrollTo('gallery')} style={navBtnStyle}>{t.nav[5]}</button>
-          <button onClick={() => scrollTo('services')} style={navBtnStyle}>{t.nav[6]}</button>
-          <button onClick={() => scrollTo('contact')} style={navBtnStyle}>{t.nav[7]}</button>
+          <button onClick={() => scrollTo('featured')} style={navBtnStyle}>{t.nav[5]}</button>
+          <button onClick={() => scrollTo('gallery')} style={navBtnStyle}>{t.nav[6]}</button>
+          <button onClick={() => scrollTo('services')} style={navBtnStyle}>{t.nav[7]}</button>
+          <button onClick={() => scrollTo('contact')} style={navBtnStyle}>{t.nav[8]}</button>
         </nav>
 
         {/* Actions */}
@@ -160,6 +161,28 @@ export default function Header({ lang, setLang, onOpenMediaKit }) {
           </button>
         </div>
       </div>
+
+      {/* Mobile Drawer Menu */}
+      {mobileMenuOpen && (
+        <div style={{
+          background: '#FFFFFF',
+          borderTop: '1px solid var(--border-light)',
+          padding: '1.2rem 1.5rem',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '1rem',
+          boxShadow: 'var(--shadow-md)'
+        }}>
+          <button onClick={() => scrollTo('metrics')} style={{ ...navBtnStyle, textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[1]}</button>
+          <button onClick={() => scrollTo('pillars')} style={{ ...navBtnStyle, textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[2]}</button>
+          <button onClick={() => scrollTo('ecosystem')} style={{ ...navBtnStyle, textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[3]}</button>
+          <button onClick={() => scrollTo('ggb-beats')} style={{ ...navBtnStyle, color: '#D97706', fontWeight: '700', textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[4]}</button>
+          <button onClick={() => scrollTo('featured')} style={{ ...navBtnStyle, textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[5]}</button>
+          <button onClick={() => scrollTo('gallery')} style={{ ...navBtnStyle, textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[6]}</button>
+          <button onClick={() => scrollTo('services')} style={{ ...navBtnStyle, textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[7]}</button>
+          <button onClick={() => scrollTo('contact')} style={{ ...navBtnStyle, textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[8]}</button>
+        </div>
+      )}
 
       <style>{`
         @media (max-width: 1024px) {

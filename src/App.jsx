@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
 import AnalyticsSection from './components/AnalyticsSection.jsx';
+import ContentPillarsSection from './components/ContentPillarsSection.jsx';
 import InstagramAccountsSection from './components/InstagramAccountsSection.jsx';
 import GGBBeatsSection from './components/GGBBeatsSection.jsx';
 import FeaturedContent from './components/FeaturedContent.jsx';
@@ -37,6 +38,9 @@ export default function App() {
         
         {/* Verified 90-Day Analytics & Growth */}
         <AnalyticsSection lang={lang} />
+
+        {/* The 4 Core Content Pillars of Ginger Boy */}
+        <ContentPillarsSection lang={lang} />
 
         {/* Official 4 Instagram Accounts Network */}
         <InstagramAccountsSection lang={lang} />
