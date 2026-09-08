@@ -1,30 +1,34 @@
 import React, { useState } from 'react';
-import { Download, Globe, Menu, X, ArrowUpRight, CheckCircle2, Disc3, ExternalLink, Sparkles, Briefcase } from 'lucide-react';
+import { Download, Globe, Menu, X, ArrowUpRight, CheckCircle2, Disc3, ExternalLink, Sparkles, Briefcase, Home, Layers, Compass } from 'lucide-react';
 
-export default function Header({ lang, setLang, onOpenMediaKit }) {
+export default function Header({ lang, setLang, onOpenMediaKit, currentUniverse, onSelectUniverse }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const t = {
     es: {
-      nav: ['Inicio', 'Métricas', 'Pilares', 'Redes IG', 'Trinidad Sonora', 'Sello MYOOZ', 'Carruseles', 'Lookbook', 'Servicios'],
-      mediaKit: 'Media Kit PDF',
-      contact: 'Contratar / Servicios',
-      labelLink: 'MYOOZ InC Sello Oficial'
+      lobby: 'Lobby',
+      gingerboy: 'Ginger Boy',
+      ggbbeats: 'GGB Beats',
+      label: 'MYOOZ InC',
+      services: 'Servicios & Booking',
+      all: 'Ver Todo',
+      mediaKit: 'Media Kit PDF'
     },
     en: {
-      nav: ['Home', 'Metrics', 'Pillars', 'IG Network', 'Sonic Trinity', 'MYOOZ Label', 'Carousels', 'Lookbook', 'Services Hub'],
-      mediaKit: 'Media Kit PDF',
-      contact: 'Hire / Services',
-      labelLink: 'MYOOZ InC Official Label'
+      lobby: 'Lobby',
+      gingerboy: 'Ginger Boy',
+      ggbbeats: 'GGB Beats',
+      label: 'MYOOZ InC',
+      services: 'Services & Booking',
+      all: 'View All',
+      mediaKit: 'Media Kit PDF'
     }
   }[lang];
 
-  const scrollTo = (id) => {
+  const handleNavClick = (universeId) => {
     setMobileMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    onSelectUniverse(universeId);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -34,20 +38,24 @@ export default function Header({ lang, setLang, onOpenMediaKit }) {
       left: 0,
       right: 0,
       zIndex: 1000,
-      background: 'rgba(255, 255, 255, 0.95)',
-      backdropFilter: 'blur(16px)',
-      WebkitBackdropFilter: 'blur(16px)',
+      background: 'rgba(255, 255, 255, 0.94)',
+      backdropFilter: 'blur(20px)',
+      WebkitBackdropFilter: 'blur(20px)',
       borderBottom: '1px solid var(--border-light)',
-      padding: '0.75rem 0',
+      padding: '0.65rem 0',
       boxShadow: '0 2px 15px rgba(0, 0, 0, 0.03)'
     }}>
       <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         
-        {/* Brand Logo with Official GGB Beats Circular Insignia */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }} onClick={() => scrollTo('hero')}>
+        {/* Return to Lobby Brand Button */}
+        <div 
+          style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }} 
+          onClick={() => handleNavClick('lobby')}
+          title="Regresar al Lobby Principal"
+        >
           <div style={{
-            width: '44px',
-            height: '44px',
+            width: '38px',
+            height: '38px',
             borderRadius: '50%',
             overflow: 'hidden',
             border: '2px solid var(--ginger-primary)',
@@ -55,58 +63,77 @@ export default function Header({ lang, setLang, onOpenMediaKit }) {
             background: '#0F172A',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            flexShrink: 0
           }}>
             <img 
               src="/images/ggbbeats-logo-circle.png" 
               alt="GGB Beats Logo" 
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              onError={(e) => {
-                e.target.style.display = 'none';
-              }}
             />
           </div>
+
           <div>
-            <div style={{ fontWeight: '800', fontSize: '1.18rem', letterSpacing: '-0.02em', display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-main)' }}>
-              Ginger Boy <CheckCircle2 size={16} color="var(--ginger-primary)" />
-            </div>
-            <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-              <span>GGB Beats</span>
-              <span style={{ color: 'var(--text-dim)' }}>•</span>
-              <a 
-                href="https://myoozinc.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                style={{ color: '#D97706', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.2rem' }}
-                onClick={(e) => e.stopPropagation()}
-              >
-                MYOOZ InC <ExternalLink size={10} />
-              </a>
+            <div style={{ fontWeight: '800', fontSize: '1.05rem', letterSpacing: '-0.02em', display: 'flex', alignItems: 'center', gap: '0.3rem', color: 'var(--text-main)' }}>
+              <span>Ginger Boy</span>
+              <span style={{ fontSize: '0.72rem', color: '#E05328', background: 'rgba(224, 83, 40, 0.1)', padding: '0.1rem 0.4rem', borderRadius: '6px', fontWeight: '800' }}>LOBBY</span>
             </div>
           </div>
         </div>
 
-        {/* Desktop Nav */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }} className="desktop-nav">
-          <button onClick={() => scrollTo('metrics')} style={navBtnStyle}>{t.nav[1]}</button>
-          <button onClick={() => scrollTo('pillars')} style={navBtnStyle}>{t.nav[2]}</button>
-          <button onClick={() => scrollTo('ecosystem')} style={navBtnStyle}>{t.nav[3]}</button>
-          <button onClick={() => scrollTo('ggb-trinity')} style={{ ...navBtnStyle, color: '#E05328', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-            <Disc3 size={15} />
-            <span>{t.nav[4]}</span>
+        {/* Minimalist Floating Universe Switcher Tabs */}
+        <nav style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.3rem',
+          background: '#F1F5F9',
+          padding: '0.3rem',
+          borderRadius: 'var(--radius-full)',
+          border: '1px solid var(--border-light)'
+        }} className="desktop-dock">
+          
+          <button
+            onClick={() => handleNavClick('gingerboy')}
+            style={getDockTabStyle(currentUniverse === 'gingerboy', '#E05328')}
+          >
+            <Compass size={14} />
+            <span>{t.gingerboy}</span>
           </button>
-          <button onClick={() => scrollTo('record-label')} style={{ ...navBtnStyle, color: 'var(--text-main)', fontWeight: '700' }}>
-            {t.nav[5]}
+
+          <button
+            onClick={() => handleNavClick('ggbbeats')}
+            style={getDockTabStyle(currentUniverse === 'ggbbeats', '#D97706')}
+          >
+            <Disc3 size={14} />
+            <span>{t.ggbbeats}</span>
           </button>
-          <button onClick={() => scrollTo('featured')} style={navBtnStyle}>{t.nav[6]}</button>
-          <button onClick={() => scrollTo('gallery')} style={navBtnStyle}>{t.nav[7]}</button>
-          <button onClick={() => scrollTo('services-hub')} style={{ ...navBtnStyle, color: '#D97706', fontWeight: '800' }}>
-            {t.nav[8]}
+
+          <button
+            onClick={() => handleNavClick('label')}
+            style={getDockTabStyle(currentUniverse === 'label', '#0F172A')}
+          >
+            <Layers size={14} />
+            <span>{t.label}</span>
+          </button>
+
+          <button
+            onClick={() => handleNavClick('services')}
+            style={getDockTabStyle(currentUniverse === 'services', '#059669')}
+          >
+            <Briefcase size={14} />
+            <span>{t.services}</span>
+          </button>
+
+          <button
+            onClick={() => handleNavClick('all')}
+            style={getDockTabStyle(currentUniverse === 'all', 'var(--text-main)')}
+          >
+            <span>{t.all}</span>
           </button>
         </nav>
 
-        {/* Actions */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+        {/* Actions: Lang & Media Kit */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
           
           {/* Lang Toggle */}
           <button 
@@ -115,38 +142,28 @@ export default function Header({ lang, setLang, onOpenMediaKit }) {
               background: '#F1F5F9',
               border: '1px solid var(--border-light)',
               color: 'var(--text-main)',
-              padding: '0.45rem 0.8rem',
+              padding: '0.4rem 0.75rem',
               borderRadius: 'var(--radius-full)',
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: '0.4rem',
-              fontSize: '0.85rem',
-              fontWeight: '600'
+              gap: '0.3rem',
+              fontSize: '0.82rem',
+              fontWeight: '700'
             }}
           >
-            <Globe size={14} color="var(--ginger-primary)" />
+            <Globe size={13} color="var(--ginger-primary)" />
             {lang.toUpperCase()}
           </button>
 
-          {/* Media Kit PDF trigger */}
+          {/* Media Kit PDF */}
           <button 
             onClick={onOpenMediaKit}
             className="btn-secondary"
-            style={{ padding: '0.5rem 1.1rem', fontSize: '0.85rem' }}
+            style={{ padding: '0.45rem 1rem', fontSize: '0.82rem' }}
           >
-            <Download size={14} />
+            <Download size={13} />
             <span className="hide-mobile">{t.mediaKit}</span>
-          </button>
-
-          {/* Direct CTA */}
-          <button 
-            onClick={() => scrollTo('services-hub')}
-            className="btn-primary"
-            style={{ padding: '0.5rem 1.25rem', fontSize: '0.85rem' }}
-          >
-            <span>{t.contact}</span>
-            <ArrowUpRight size={14} />
           </button>
 
           {/* Mobile Menu Icon */}
@@ -164,9 +181,10 @@ export default function Header({ lang, setLang, onOpenMediaKit }) {
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
+
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
         <div style={{
           background: '#FFFFFF',
@@ -174,23 +192,38 @@ export default function Header({ lang, setLang, onOpenMediaKit }) {
           padding: '1.2rem 1.5rem',
           display: 'flex',
           flexDirection: 'column',
-          gap: '1rem',
+          gap: '0.8rem',
           boxShadow: 'var(--shadow-md)'
         }}>
-          <button onClick={() => scrollTo('metrics')} style={{ ...navBtnStyle, textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[1]}</button>
-          <button onClick={() => scrollTo('pillars')} style={{ ...navBtnStyle, textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[2]}</button>
-          <button onClick={() => scrollTo('ecosystem')} style={{ ...navBtnStyle, textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[3]}</button>
-          <button onClick={() => scrollTo('ggb-trinity')} style={{ ...navBtnStyle, color: '#E05328', fontWeight: '800', textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[4]}</button>
-          <button onClick={() => scrollTo('record-label')} style={{ ...navBtnStyle, textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[5]}</button>
-          <button onClick={() => scrollTo('featured')} style={{ ...navBtnStyle, textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[6]}</button>
-          <button onClick={() => scrollTo('gallery')} style={{ ...navBtnStyle, textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[7]}</button>
-          <button onClick={() => scrollTo('services-hub')} style={{ ...navBtnStyle, color: '#D97706', fontWeight: '800', textAlign: 'left', padding: '0.5rem 0' }}>{t.nav[8]}</button>
+          <button onClick={() => handleNavClick('lobby')} style={mobileBtnStyle}>
+            <Home size={16} />
+            <span>{t.lobby} Principal</span>
+          </button>
+          <button onClick={() => handleNavClick('gingerboy')} style={mobileBtnStyle}>
+            <Compass size={16} color="#E05328" />
+            <span>{t.gingerboy} (Figura Pública & Tech)</span>
+          </button>
+          <button onClick={() => handleNavClick('ggbbeats')} style={mobileBtnStyle}>
+            <Disc3 size={16} color="#D97706" />
+            <span>{t.ggbbeats} (Trinidad Sonora)</span>
+          </button>
+          <button onClick={() => handleNavClick('label')} style={mobileBtnStyle}>
+            <Layers size={16} />
+            <span>{t.label} (Sello Discográfico)</span>
+          </button>
+          <button onClick={() => handleNavClick('services')} style={mobileBtnStyle}>
+            <Briefcase size={16} color="#059669" />
+            <span>{t.services} (Calculadora & Tarifas)</span>
+          </button>
+          <button onClick={() => handleNavClick('all')} style={mobileBtnStyle}>
+            <span>{t.all} (Ecosistema Continuo)</span>
+          </button>
         </div>
       )}
 
       <style>{`
-        @media (max-width: 1080px) {
-          .desktop-nav { display: none !important; }
+        @media (max-width: 1040px) {
+          .desktop-dock { display: none !important; }
           .mobile-menu-btn { display: block !important; }
           .hide-mobile { display: none; }
         }
@@ -199,12 +232,33 @@ export default function Header({ lang, setLang, onOpenMediaKit }) {
   );
 }
 
-const navBtnStyle = {
-  background: 'none',
+const getDockTabStyle = (isActive, activeColor) => ({
+  background: isActive ? '#FFFFFF' : 'transparent',
+  color: isActive ? activeColor : 'var(--text-muted)',
   border: 'none',
-  color: 'var(--text-muted)',
-  fontSize: '0.88rem',
-  fontWeight: '600',
+  padding: '0.45rem 1rem',
+  borderRadius: 'var(--radius-full)',
+  fontSize: '0.82rem',
+  fontWeight: isActive ? '800' : '600',
   cursor: 'pointer',
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '0.35rem',
+  boxShadow: isActive ? '0 2px 8px rgba(0,0,0,0.06)' : 'none',
   transition: 'var(--transition-smooth)'
+});
+
+const mobileBtnStyle = {
+  background: '#F8FAFC',
+  border: '1px solid var(--border-light)',
+  padding: '0.75rem 1rem',
+  borderRadius: '12px',
+  color: 'var(--text-main)',
+  fontSize: '0.9rem',
+  fontWeight: '700',
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.6rem',
+  cursor: 'pointer',
+  textAlign: 'left'
 };

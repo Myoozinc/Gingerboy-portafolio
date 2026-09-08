@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import LobbyGate from './components/LobbyGate.jsx';
 import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
 import AnalyticsSection from './components/AnalyticsSection.jsx';
@@ -15,61 +16,85 @@ import MediaKitPDFModal from './components/MediaKitPDFModal.jsx';
 
 export default function App() {
   const [lang, setLang] = useState('es');
-  const [isMediaKitOpen, setIsMediaKitOpen] = useState(false);
+  const [currentUniverse, setCurrentUniverse] = useState('lobby'); // 'lobby', 'gingerboy', 'ggbbeats', 'label', 'services', 'all'
   const [activeFacet, setActiveFacet] = useState('ggbbeats'); // 'ggbbeats', 'dance', 'chill'
+  const [isMediaKitOpen, setIsMediaKitOpen] = useState(false);
   const [preselectedPkg, setPreselectedPkg] = useState(null);
 
-  const handleSelectPackage = (pkg) => {
-    setPreselectedPkg(pkg);
-    const el = document.getElementById('services-hub');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
+  // If in Lobby, show only the ultra-minimalist animated emblem gate
+  if (currentUniverse === 'lobby') {
+    return (
+      <div style={{ minHeight: '100vh', background: '#FFFFFF' }}>
+        <LobbyGate 
+          onSelectUniverse={(universeId) => {
+            setCurrentUniverse(universeId);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          lang={lang} 
+        />
+        <MediaKitPDFModal 
+          isOpen={isMediaKitOpen} 
+          onClose={() => setIsMediaKitOpen(false)} 
+          lang={lang} 
+        />
+      </div>
+    );
+  }
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg-main)' }}>
       
-      {/* Header Bar */}
+      {/* Top Universe Dock & Navigation */}
       <Header 
         lang={lang} 
         setLang={setLang} 
         onOpenMediaKit={() => setIsMediaKitOpen(true)} 
+        currentUniverse={currentUniverse}
+        onSelectUniverse={setCurrentUniverse}
       />
 
-      {/* Main Content Sections */}
-      <main>
-        {/* 1. Hero: Ginger Boy - Public Figure & Tech Innovator */}
-        <Hero lang={lang} />
+      <main style={{ paddingTop: '4rem' }}>
         
-        {/* 2. Verified 90-Day Analytics & Growth */}
-        <AnalyticsSection lang={lang} />
+        {/* UNIVERSE 1: GINGER BOY (Public Figure, Tech & Travel) */}
+        {(currentUniverse === 'gingerboy' || currentUniverse === 'all') && (
+          <div>
+            <Hero lang={lang} />
+            <AnalyticsSection lang={lang} />
+            <ContentPillarsSection lang={lang} />
+            <PhotoGallery lang={lang} />
+          </div>
+        )}
 
-        {/* 3. The 4 Core Content Pillars of Ginger Boy (Lifestyle, Travel, Apps, Brand) */}
-        <ContentPillarsSection lang={lang} />
+        {/* UNIVERSE 2: GGB BEATS (Sonic Trinity & Production) */}
+        {(currentUniverse === 'ggbbeats' || currentUniverse === 'all') && (
+          <div>
+            <GGBBeatsTrinity 
+              activeFacet={activeFacet} 
+              setActiveFacet={setActiveFacet} 
+              lang={lang} 
+            />
+            <FeaturedContent lang={lang} />
+          </div>
+        )}
 
-        {/* 4. Official 4 Instagram Accounts Network */}
-        <InstagramAccountsSection lang={lang} />
+        {/* UNIVERSE 3: MYOOZ INC RECORD LABEL */}
+        {(currentUniverse === 'label' || currentUniverse === 'all') && (
+          <div>
+            <MYOOZRecordLabelSection lang={lang} />
+            <InstagramAccountsSection lang={lang} />
+          </div>
+        )}
 
-        {/* 5. GGB Beats Trinity: 3 Identical Logos with Light Beams on Infinite White Canvas */}
-        <GGBBeatsTrinity 
-          activeFacet={activeFacet} 
-          setActiveFacet={setActiveFacet} 
-          lang={lang} 
-        />
+        {/* UNIVERSE 4: SERVICES & BOOKING ("¿Quieres trabajar conmigo?") */}
+        {(currentUniverse === 'services' || currentUniverse === 'all') && (
+          <div>
+            <ServicesHub 
+              lang={lang} 
+              preselectedPkg={preselectedPkg} 
+            />
+          </div>
+        )}
 
-        {/* 6. MYOOZ InC Record Label Section: Artists Roster (Rasta Mia, JOSS, etc.) & Merch */}
-        <MYOOZRecordLabelSection lang={lang} />
-
-        {/* 7. Interactive Multi-Slide Instagram Carousel & Top Reels Performance */}
-        <FeaturedContent lang={lang} />
-
-        {/* 8. Official Photography & Streetwear Lookbook */}
-        <PhotoGallery lang={lang} />
-
-        {/* 9. Reserved Business Space: "¿Quieres trabajar conmigo? / ¿Necesitas un servicio?" */}
-        <ServicesHub 
-          lang={lang} 
-          preselectedPkg={preselectedPkg} 
-        />
       </main>
 
       {/* Footer with Label & Social Links */}
