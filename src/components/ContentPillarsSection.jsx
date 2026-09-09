@@ -28,7 +28,7 @@ export default function ContentPillarsSection({ lang }) {
       icon: Laptop,
       color: '#059669',
       desc: 'Faceta como desarrollador de aplicaciones de impacto comunitario como "Centro de Acopio", creando mapas interactivos y herramientas digitales solidarias.',
-      image: '/images/acopio_banner.jpg',
+      image: '/images/acopio_donaciones.jpg',
       highlights: ['App solidaria "Centro de Acopio"', 'Mapas interactivos comunitarios', 'Tecnología con propósito real']
     },
     {

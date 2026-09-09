@@ -24,12 +24,12 @@ const HIGH_RES_GALLERY = [
   },
   {
     id: 3,
-    title: 'Centro de Acopio • Mapeo Solidario (1376x768)',
+    title: 'Centro de Acopio • Campaña de Donaciones Oficial',
     category: 'Apps & Ayuda Humanitaria',
     tag: 'Impacto Social & Tech',
-    url: '/images/acopio_banner.jpg',
-    badge: 'Humanitarian App',
-    fit: 'cover',
+    url: '/images/acopio_donaciones.jpg',
+    badge: 'Humanitarian Project',
+    fit: 'contain',
     bg: '#0F172A'
   },
   {
@@ -54,11 +54,11 @@ const HIGH_RES_GALLERY = [
   },
   {
     id: 6,
-    title: 'GGB Beats • Studio Production Suite',
+    title: 'GGB Beats • Lanzamiento Instrumental Oficial',
     category: 'GGB Beats & Studio',
     tag: 'Music Production',
-    url: '/images/ggb_studio.jpg',
-    badge: 'Beatmaking Suite',
+    url: '/images/yt_beat_1.jpg',
+    badge: 'Beat Release',
     fit: 'cover',
     bg: '#0F172A'
   },
@@ -84,22 +84,45 @@ const HIGH_RES_GALLERY = [
   },
   {
     id: 9,
-    title: 'Sound Design & Live Session Setup',
-    category: 'GGB Beats & Studio',
-    tag: 'Live Hardware',
-    url: '/images/ggb_beats_gear.jpg',
-    badge: 'Live Gear',
-    fit: 'cover',
-    bg: '#0F172A'
+    title: 'GGB Beats • Jersey Urbano Oficial',
+    category: 'Streetwear & Merch',
+    tag: 'Colección Oficial',
+    url: '/images/merch/ggbbeats-blackjersey.png',
+    badge: 'Official Jersey',
+    fit: 'contain',
+    bg: '#F8FAFC'
+  },
+  {
+    id: 10,
+    title: 'Centro de Acopio • Plataforma & Logo Oficial',
+    category: 'Apps & Ayuda Humanitaria',
+    tag: 'Impacto Social & Tech',
+    url: '/images/acopio_logo.jpg',
+    badge: 'Official Tech Logo',
+    fit: 'contain',
+    bg: '#FFFFFF'
   }
 ];
 
 export default function PhotoGallery({ lang }) {
   const [photos, setPhotos] = useState(() => {
-    const saved = localStorage.getItem('ginger_gallery_photos_v3');
-    if (saved) {
-      try { return JSON.parse(saved); } catch (e) { return HIGH_RES_GALLERY; }
-    }
+    // Purge any legacy cached versions containing old/generic placeholders
+    ['ginger_gallery_photos', 'ginger_gallery_photos_v2', 'ginger_gallery_photos_v3', 'ginger_gallery_photos_v4'].forEach(k => {
+      try { localStorage.removeItem(k); } catch (e) {}
+    });
+    try {
+      const saved = localStorage.getItem('ginger_gallery_photos_v5');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        const hasLegacy = parsed.some(p => 
+          p.url?.includes('studio') || 
+          p.url?.includes('gear') || 
+          p.url?.includes('streetwear') || 
+          p.url?.includes('banner')
+        );
+        if (!hasLegacy && parsed.length > 0) return parsed;
+      }
+    } catch (e) {}
     return HIGH_RES_GALLERY;
   });
 
@@ -107,7 +130,9 @@ export default function PhotoGallery({ lang }) {
   const [activeLightbox, setActiveLightbox] = useState(null);
 
   useEffect(() => {
-    localStorage.setItem('ginger_gallery_photos_v3', JSON.stringify(photos));
+    try {
+      localStorage.setItem('ginger_gallery_photos_v5', JSON.stringify(photos));
+    } catch (e) {}
   }, [photos]);
 
   const handleImageUpload = (e, index) => {
@@ -131,7 +156,9 @@ export default function PhotoGallery({ lang }) {
 
   const handleReset = () => {
     setPhotos(HIGH_RES_GALLERY);
-    localStorage.removeItem('ginger_gallery_photos_v3');
+    ['ginger_gallery_photos', 'ginger_gallery_photos_v2', 'ginger_gallery_photos_v3', 'ginger_gallery_photos_v4', 'ginger_gallery_photos_v5'].forEach(k => {
+      try { localStorage.removeItem(k); } catch (e) {}
+    });
   };
 
   const filteredPhotos = activeCategory === 'All' 

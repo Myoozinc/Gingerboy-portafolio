@@ -23,8 +23,8 @@ export default function FeaturedContent({ lang }) {
       badge: 'IMPACTO SOCIAL & TECH',
       title: 'Centro de Acopio • Mapeo Solidario & Ayuda Humanitaria',
       subtitle: 'Iniciativa y aplicación comunitaria creada por Ginger Boy para coordinar donaciones y suministros en emergencias.',
-      image: '/images/acopio_banner.jpg',
-      imageFit: 'cover',
+      image: '/images/acopio_donaciones.jpg',
+      imageFit: 'contain',
       tag: 'Humanitarian Tech',
       accountTag: '@gingerboyofficial • Tech for Good',
       likes: '9.1K',
@@ -88,7 +88,7 @@ export default function FeaturedContent({ lang }) {
       category: 'Tech & Ayuda Humanitaria',
       location: 'Impacto Comunitario',
       badge: 'Social Impact',
-      image: '/images/acopio_banner.jpg',
+      image: '/images/acopio_donaciones.jpg',
       desc: 'Video presentando la plataforma de mapas solidarios y centros de distribución humanitaria.'
     },
     {
