@@ -261,6 +261,100 @@ export default function MYOOZRecordLabelSection({ lang }) {
             </p>
           </div>
 
+          {/* Urban Editorial Lookbook Spotlight */}
+          <div style={{
+            background: 'linear-gradient(135deg, rgba(230, 81, 0, 0.18) 0%, rgba(15, 23, 42, 0.85) 60%)',
+            border: '1px solid rgba(230, 81, 0, 0.35)',
+            borderRadius: '24px',
+            padding: '2rem',
+            marginBottom: '3rem',
+            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4), 0 0 35px rgba(230, 81, 0, 0.15)',
+            display: 'grid',
+            gridTemplateColumns: '0.9fr 1.1fr',
+            gap: '2.5rem',
+            alignItems: 'center'
+          }} className="lookbook-banner">
+            
+            {/* Visual Lookbook Dual Grid */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div style={{
+                borderRadius: '16px',
+                overflow: 'hidden',
+                height: '240px',
+                background: '#E65100',
+                boxShadow: '0 10px 25px rgba(0,0,0,0.35)',
+                border: '1px solid rgba(255,255,255,0.1)'
+              }}>
+                <img 
+                  src="/images/ggb_orange_look_1.jpg" 
+                  alt="Ginger Boy GGB Beats Cap Look" 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 10%' }}
+                />
+              </div>
+
+              <div style={{
+                borderRadius: '16px',
+                overflow: 'hidden',
+                height: '240px',
+                background: '#D84315',
+                boxShadow: '0 10px 25px rgba(0,0,0,0.35)',
+                border: '1px solid rgba(255,255,255,0.1)'
+              }}>
+                <img 
+                  src="/images/ggb_orange_closeup.jpg" 
+                  alt="GGB Beats Corduroy Cap Close-Up" 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </div>
+            </div>
+
+            {/* Editorial Lookbook Details */}
+            <div>
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                background: 'rgba(230, 81, 0, 0.2)',
+                border: '1px solid rgba(230, 81, 0, 0.4)',
+                color: '#FCD34D',
+                padding: '0.25rem 0.8rem',
+                borderRadius: 'var(--radius-full)',
+                fontSize: '0.74rem',
+                fontWeight: '800',
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
+                marginBottom: '0.8rem'
+              }}>
+                <Sparkles size={13} />
+                <span>LOOKBOOK EDITORIAL • SET NARANJA OFICIAL</span>
+              </div>
+
+              <h4 style={{ fontSize: '1.6rem', color: '#FFFFFF', fontWeight: '800', marginBottom: '0.6rem', lineHeight: '1.2' }}>
+                Gorra Corduroy GGB Beats & Estética Urbana
+              </h4>
+
+              <p style={{ fontSize: '0.88rem', color: '#CBD5E1', lineHeight: '1.6', marginBottom: '1.4rem' }}>
+                Sesión fotográfica oficial de estudio capturada sobre el icónico fondo naranja de Ginger Boy: bordado frontal en relieve del emblema GGB Beats, confección en pana negra de alta densidad y corte estructurado para productores musicales y creadores.
+              </p>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.84rem', color: '#E2E8F0' }}>
+                  <ShieldCheck size={16} color="#F59E0B" style={{ flexShrink: 0 }} />
+                  <span>Emblema GGB Beats bordado en hilo premium naranja y blanco</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.84rem', color: '#E2E8F0' }}>
+                  <ShieldCheck size={16} color="#F59E0B" style={{ flexShrink: 0 }} />
+                  <span>Tejido de pana acordonada (corduroy) de alta durabilidad y estilo vintage</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.84rem', color: '#E2E8F0' }}>
+                  <ShieldCheck size={16} color="#F59E0B" style={{ flexShrink: 0 }} />
+                  <span>Diseñado por MYOOZ InC y testeado en estudio de grabación</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
           <div className="grid-4" style={{ gap: '1.8rem' }}>
             {merchItems.map((item, i) => (
               <div

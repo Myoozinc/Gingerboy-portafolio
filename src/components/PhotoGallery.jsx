@@ -4,6 +4,36 @@ import { Camera, Upload, Check, Maximize2, Disc3, Sparkles, Filter, ShieldCheck 
 const HIGH_RES_GALLERY = [
   {
     id: 1,
+    title: 'Ginger Boy • Sesión GGB Beats Cap (Set Naranja)',
+    category: 'Streetwear & Merch',
+    tag: 'Lookbook Oficial',
+    url: '/images/ggb_orange_look_1.jpg',
+    badge: 'Sesión Estudio Oficial',
+    fit: 'cover',
+    bg: '#E65100'
+  },
+  {
+    id: 2,
+    title: 'GGB Beats Corduroy Cap • Detalle Bordado en Relieve',
+    category: 'Streetwear & Merch',
+    tag: 'Prenda Oficial',
+    url: '/images/ggb_orange_closeup.jpg',
+    badge: 'Detalle de Marca',
+    fit: 'cover',
+    bg: '#D84315'
+  },
+  {
+    id: 3,
+    title: 'Ginger Boy • Perspectiva Urbana GGB Beats',
+    category: 'GGB Beats & Studio',
+    tag: 'Estilo & Beatmaking',
+    url: '/images/ggb_orange_angle_2.jpg',
+    badge: 'Productor en Set',
+    fit: 'cover',
+    bg: '#E65100'
+  },
+  {
+    id: 4,
     title: 'GGB Beats • Emblema Oficial (1080x1080)',
     category: 'GGB Beats & Studio',
     tag: 'Sonic Identity',
@@ -13,7 +43,7 @@ const HIGH_RES_GALLERY = [
     bg: '#0F172A'
   },
   {
-    id: 2,
+    id: 5,
     title: 'GGB Beats x Adidas • Gorra Oficial',
     category: 'Streetwear & Merch',
     tag: 'Brand Collaboration',
@@ -23,7 +53,7 @@ const HIGH_RES_GALLERY = [
     bg: '#F8FAFC'
   },
   {
-    id: 3,
+    id: 6,
     title: 'Centro de Acopio • Campaña de Donaciones Oficial',
     category: 'Apps & Ayuda Humanitaria',
     tag: 'Impacto Social & Tech',
@@ -33,7 +63,7 @@ const HIGH_RES_GALLERY = [
     bg: '#0F172A'
   },
   {
-    id: 4,
+    id: 7,
     title: 'GGB Beats Last Urban X • Hoodie Negro',
     category: 'Streetwear & Merch',
     tag: 'Colección Urbana',
@@ -43,7 +73,7 @@ const HIGH_RES_GALLERY = [
     bg: '#F8FAFC'
   },
   {
-    id: 5,
+    id: 8,
     title: 'MYOOZ InC Record Label • Jersey Oficial',
     category: 'Streetwear & Merch',
     tag: 'Sello Discográfico',
@@ -53,7 +83,7 @@ const HIGH_RES_GALLERY = [
     bg: '#F8FAFC'
   },
   {
-    id: 6,
+    id: 9,
     title: 'GGB Beats • Lanzamiento Instrumental Oficial',
     category: 'GGB Beats & Studio',
     tag: 'Music Production',
@@ -63,7 +93,7 @@ const HIGH_RES_GALLERY = [
     bg: '#0F172A'
   },
   {
-    id: 7,
+    id: 10,
     title: 'GGB Beats Premium • Hoodie Beige',
     category: 'Streetwear & Merch',
     tag: 'Signature Apparel',
@@ -73,7 +103,7 @@ const HIGH_RES_GALLERY = [
     bg: '#F8FAFC'
   },
   {
-    id: 8,
+    id: 11,
     title: 'GGB Beats GG-Pad • Sudadera Urbana',
     category: 'Streetwear & Merch',
     tag: 'Producer Wear',
@@ -83,7 +113,7 @@ const HIGH_RES_GALLERY = [
     bg: '#F8FAFC'
   },
   {
-    id: 9,
+    id: 12,
     title: 'GGB Beats • Jersey Urbano Oficial',
     category: 'Streetwear & Merch',
     tag: 'Colección Oficial',
@@ -93,7 +123,7 @@ const HIGH_RES_GALLERY = [
     bg: '#F8FAFC'
   },
   {
-    id: 10,
+    id: 13,
     title: 'Centro de Acopio • Plataforma & Logo Oficial',
     category: 'Apps & Ayuda Humanitaria',
     tag: 'Impacto Social & Tech',
@@ -107,20 +137,14 @@ const HIGH_RES_GALLERY = [
 export default function PhotoGallery({ lang }) {
   const [photos, setPhotos] = useState(() => {
     // Purge any legacy cached versions containing old/generic placeholders
-    ['ginger_gallery_photos', 'ginger_gallery_photos_v2', 'ginger_gallery_photos_v3', 'ginger_gallery_photos_v4'].forEach(k => {
+    ['ginger_gallery_photos', 'ginger_gallery_photos_v2', 'ginger_gallery_photos_v3', 'ginger_gallery_photos_v4', 'ginger_gallery_photos_v5'].forEach(k => {
       try { localStorage.removeItem(k); } catch (e) {}
     });
     try {
-      const saved = localStorage.getItem('ginger_gallery_photos_v5');
+      const saved = localStorage.getItem('ginger_gallery_photos_v6');
       if (saved) {
         const parsed = JSON.parse(saved);
-        const hasLegacy = parsed.some(p => 
-          p.url?.includes('studio') || 
-          p.url?.includes('gear') || 
-          p.url?.includes('streetwear') || 
-          p.url?.includes('banner')
-        );
-        if (!hasLegacy && parsed.length > 0) return parsed;
+        if (parsed.length > 0) return parsed;
       }
     } catch (e) {}
     return HIGH_RES_GALLERY;
@@ -131,7 +155,7 @@ export default function PhotoGallery({ lang }) {
 
   useEffect(() => {
     try {
-      localStorage.setItem('ginger_gallery_photos_v5', JSON.stringify(photos));
+      localStorage.setItem('ginger_gallery_photos_v6', JSON.stringify(photos));
     } catch (e) {}
   }, [photos]);
 
@@ -156,7 +180,7 @@ export default function PhotoGallery({ lang }) {
 
   const handleReset = () => {
     setPhotos(HIGH_RES_GALLERY);
-    ['ginger_gallery_photos', 'ginger_gallery_photos_v2', 'ginger_gallery_photos_v3', 'ginger_gallery_photos_v4', 'ginger_gallery_photos_v5'].forEach(k => {
+    ['ginger_gallery_photos', 'ginger_gallery_photos_v2', 'ginger_gallery_photos_v3', 'ginger_gallery_photos_v4', 'ginger_gallery_photos_v5', 'ginger_gallery_photos_v6'].forEach(k => {
       try { localStorage.removeItem(k); } catch (e) {}
     });
   };

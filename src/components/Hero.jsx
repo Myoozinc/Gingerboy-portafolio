@@ -46,7 +46,7 @@ export default function Hero({ lang }) {
       paddingBottom: '4.5rem',
       position: 'relative',
       overflow: 'hidden',
-      background: 'linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%)'
+      background: 'radial-gradient(circle at 82% 35%, rgba(230, 81, 0, 0.12) 0%, rgba(216, 67, 21, 0.04) 40%, transparent 65%), linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%)'
     }}>
       <div className="container">
         <div style={{
@@ -146,64 +146,130 @@ export default function Hero({ lang }) {
             </div>
           </div>
 
-          {/* Right Column: High Resolution Official Brand Emblem Card */}
+          {/* Right Column: High Resolution Official Brand & Urban Streetwear Showcase */}
           <div style={{ position: 'relative' }}>
             
             <div className="glass-card" style={{
-              padding: '2.5rem 2rem',
+              padding: '1.5rem',
               borderRadius: '28px',
-              border: '1px solid var(--border-light)',
-              boxShadow: 'var(--shadow-lg)',
+              border: '1px solid rgba(230, 81, 0, 0.25)',
+              boxShadow: '0 20px 45px rgba(230, 81, 0, 0.12), var(--shadow-lg)',
               background: '#FFFFFF',
               position: 'relative',
-              textAlign: 'center'
+              textAlign: 'center',
+              overflow: 'hidden'
             }}>
               
-              {/* High Resolution Official GGB Beats Circular Emblem (1080x1080) */}
+              {/* Urban Editorial Photo Container */}
               <div style={{
-                width: '170px',
-                height: '170px',
-                margin: '0 auto 1.5rem auto',
-                borderRadius: '50%',
+                width: '100%',
+                height: '360px',
+                borderRadius: '20px',
                 overflow: 'hidden',
-                background: '#0F172A',
-                border: '4px solid var(--ginger-primary)',
-                boxShadow: 'var(--ginger-glow)',
-                position: 'relative'
+                position: 'relative',
+                background: 'linear-gradient(180deg, #E65100 0%, #D84315 100%)',
+                boxShadow: '0 12px 30px rgba(230, 81, 0, 0.25)',
+                marginBottom: '1.2rem'
               }}>
                 <img 
-                  src="/images/ggbbeats-logo-circle.png" 
-                  alt="GGB Beats & Ginger Boy Emblem" 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  src="/images/ggb_orange_look_1.jpg" 
+                  alt="Ginger Boy • GGB Beats Streetwear Look Oficial" 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%' }}
                 />
+
+                {/* Overlaid Gradient for Contrast */}
+                <div style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  height: '120px',
+                  background: 'linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.4) 60%, transparent 100%)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'flex-end',
+                  padding: '1.2rem',
+                  textAlign: 'left'
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#FCD34D', fontSize: '0.72rem', fontWeight: '800', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                    <Sparkles size={13} />
+                    <span>GGB BEATS • STREETWEAR LOOK OFICIAL</span>
+                  </div>
+                  <div style={{ color: '#FFFFFF', fontSize: '1.15rem', fontWeight: '800' }}>
+                    Gorra Pana GGB Beats & Estudio
+                  </div>
+                  <div style={{ color: '#CBD5E1', fontSize: '0.78rem', marginTop: '0.15rem' }}>
+                    Fotografía original en set naranja • MYOOZ InC
+                  </div>
+                </div>
+
+                {/* Floating GGB Beats Circular Emblem Badge */}
+                <div style={{
+                  position: 'absolute',
+                  top: '1rem',
+                  left: '1rem',
+                  width: '46px',
+                  height: '46px',
+                  borderRadius: '50%',
+                  overflow: 'hidden',
+                  background: '#0F172A',
+                  border: '2px solid #FFFFFF',
+                  boxShadow: '0 4px 15px rgba(0,0,0,0.35)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}>
+                  <img 
+                    src="/images/ggbbeats-logo-circle.png" 
+                    alt="GGB Beats Official" 
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                </div>
+
+                {/* Micro Tag Top Right */}
+                <div style={{
+                  position: 'absolute',
+                  top: '1rem',
+                  right: '1rem',
+                  background: 'rgba(15, 23, 42, 0.85)',
+                  backdropFilter: 'blur(8px)',
+                  color: '#FFF',
+                  fontSize: '0.68rem',
+                  fontWeight: '800',
+                  padding: '0.25rem 0.65rem',
+                  borderRadius: 'var(--radius-full)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)'
+                }}>
+                  SET NARANJA OFICIAL
+                </div>
               </div>
 
               <div style={{
                 display: 'inline-block',
-                background: 'rgba(224, 83, 40, 0.1)',
-                color: 'var(--ginger-primary)',
-                padding: '0.25rem 0.8rem',
+                background: 'rgba(230, 81, 0, 0.1)',
+                color: '#E65100',
+                padding: '0.25rem 0.85rem',
                 borderRadius: 'var(--radius-full)',
-                fontSize: '0.75rem',
+                fontSize: '0.74rem',
                 fontWeight: '800',
                 letterSpacing: '0.08em',
-                marginBottom: '0.6rem'
+                marginBottom: '0.4rem'
               }}>
-                MYOOZ INC TALENT ROSTER
+                FIGURA PÚBLICA & PRODUCTOR MUSICAL
               </div>
 
-              <h2 style={{ fontSize: '1.8rem', color: 'var(--text-main)', marginBottom: '0.3rem' }}>
+              <h2 style={{ fontSize: '1.6rem', color: 'var(--text-main)', marginBottom: '0.2rem' }}>
                 Ginger Boy
               </h2>
 
-              <p style={{ fontSize: '0.95rem', color: '#D97706', fontWeight: '700', marginBottom: '1rem' }}>
+              <p style={{ fontSize: '0.9rem', color: '#D97706', fontWeight: '700', marginBottom: '1rem' }}>
                 @gingerboyofficial • @gingerboybeats
               </p>
 
               <div style={{
                 background: '#F8FAFC',
                 borderRadius: '16px',
-                padding: '1rem',
+                padding: '0.9rem 1rem',
                 border: '1px solid var(--border-light)',
                 display: 'grid',
                 gridTemplateColumns: '1fr 1fr',
@@ -219,7 +285,7 @@ export default function Hero({ lang }) {
                 </div>
                 <div>
                   <span style={{ color: 'var(--text-muted)', display: 'block' }}>Audiencia Core:</span>
-                  <strong style={{ color: 'var(--ginger-primary)' }}>69.4% Femenina</strong>
+                  <strong style={{ color: '#E65100' }}>69.4% Femenina</strong>
                 </div>
               </div>
 

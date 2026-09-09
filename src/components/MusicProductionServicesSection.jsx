@@ -414,6 +414,23 @@ export default function MusicProductionServicesSection({ lang }) {
           }}
         >
           <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+            <div style={{
+              width: '76px',
+              height: '76px',
+              borderRadius: '50%',
+              overflow: 'hidden',
+              margin: '0 auto 1.2rem auto',
+              border: '3px solid #E65100',
+              boxShadow: '0 8px 25px rgba(230, 81, 0, 0.45)',
+              background: '#D84315'
+            }}>
+              <img 
+                src="/images/ggb_orange_closeup.jpg" 
+                alt="GGB Beats Producer" 
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </div>
+
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#F59E0B', fontSize: '0.78rem', fontWeight: '800', textTransform: 'uppercase', marginBottom: '0.4rem' }}>
               <Headphones size={15} />
               <span>GGB BEATS STUDIO BOOKING</span>
