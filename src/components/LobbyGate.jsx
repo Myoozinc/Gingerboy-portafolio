@@ -102,29 +102,6 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
         pointerEvents: 'none'
       }} />
 
-      {/* Static Background Model: Ginger Boy in Studio Look */}
-      <div style={{
-        position: 'absolute',
-        bottom: 0,
-        left: '50%',
-        transform: 'translateX(-50%)',
-        height: isUnfolded ? '540px' : '660px',
-        opacity: isUnfolded ? 0.2 : 0.42,
-        pointerEvents: 'none',
-        zIndex: 1,
-        transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
-        filter: 'drop-shadow(0 0 50px rgba(0, 0, 0, 0.6))',
-        display: 'flex',
-        alignItems: 'flex-end',
-        justifyContent: 'center'
-      }}>
-        <img 
-          src="/images/gingerboy_model_standing.png" 
-          alt="Ginger Boy Background Model" 
-          style={{ height: '100%', width: 'auto', objectFit: 'contain' }}
-        />
-      </div>
-
       {/* Top Minimal Brand Stamp */}
       <div style={{
         position: 'absolute',
