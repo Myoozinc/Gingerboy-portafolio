@@ -9,17 +9,17 @@ import GGBBeatsTrinity from './components/GGBBeatsTrinity.jsx';
 import MYOOZRecordLabelSection from './components/MYOOZRecordLabelSection.jsx';
 import FeaturedContent from './components/FeaturedContent.jsx';
 import PhotoGallery from './components/PhotoGallery.jsx';
-import ServicesHub from './components/ServicesHub.jsx';
+import MusicProductionServicesSection from './components/MusicProductionServicesSection.jsx';
+import BrandAdvertisingServicesSection from './components/BrandAdvertisingServicesSection.jsx';
 import Footer from './components/Footer.jsx';
 import AudioAtmospherePlayer from './components/AudioAtmospherePlayer.jsx';
 import MediaKitPDFModal from './components/MediaKitPDFModal.jsx';
 
 export default function App() {
   const [lang, setLang] = useState('es');
-  const [currentUniverse, setCurrentUniverse] = useState('lobby'); // 'lobby', 'gingerboy', 'ggbbeats', 'label', 'services', 'all'
+  const [currentUniverse, setCurrentUniverse] = useState('lobby'); // 'lobby', 'gingerboy', 'ggbbeats', 'label', 'prod_services', 'brand_services', 'all'
   const [activeFacet, setActiveFacet] = useState('ggbbeats'); // 'ggbbeats', 'dance', 'chill'
   const [isMediaKitOpen, setIsMediaKitOpen] = useState(false);
-  const [preselectedPkg, setPreselectedPkg] = useState(null);
 
   // If in Lobby, show only the ultra-minimalist animated emblem gate
   if (currentUniverse === 'lobby') {
@@ -85,12 +85,19 @@ export default function App() {
           </div>
         )}
 
-        {/* UNIVERSE 4: SERVICES & BOOKING ("¿Quieres trabajar conmigo?") */}
-        {(currentUniverse === 'services' || currentUniverse === 'all') && (
+        {/* UNIVERSE 4: SERVICIOS DE PRODUCCIÓN MUSICAL (GGB Beats & MYOOZ InC) */}
+        {(currentUniverse === 'prod_services' || currentUniverse === 'services' || currentUniverse === 'all' || currentUniverse === 'ggbbeats') && (
           <div>
-            <ServicesHub 
+            <MusicProductionServicesSection lang={lang} />
+          </div>
+        )}
+
+        {/* UNIVERSE 5: SERVICIOS DE PUBLICIDAD & ALIANZAS DE MARCA (Ginger Boy) */}
+        {(currentUniverse === 'brand_services' || currentUniverse === 'services' || currentUniverse === 'all' || currentUniverse === 'gingerboy') && (
+          <div>
+            <BrandAdvertisingServicesSection 
               lang={lang} 
-              preselectedPkg={preselectedPkg} 
+              onOpenMediaKit={() => setIsMediaKitOpen(true)} 
             />
           </div>
         )}

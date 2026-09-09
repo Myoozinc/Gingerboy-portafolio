@@ -10,7 +10,8 @@ export default function Header({ lang, setLang, onOpenMediaKit, currentUniverse,
       gingerboy: 'Ginger Boy',
       ggbbeats: 'GGB Beats',
       label: 'MYOOZ InC',
-      services: 'Servicios & Booking',
+      prod_services: 'Producción Musical',
+      brand_services: 'Publicidad & Marcas',
       all: 'Ver Todo',
       mediaKit: 'Media Kit PDF'
     },
@@ -19,7 +20,8 @@ export default function Header({ lang, setLang, onOpenMediaKit, currentUniverse,
       gingerboy: 'Ginger Boy',
       ggbbeats: 'GGB Beats',
       label: 'MYOOZ InC',
-      services: 'Services & Booking',
+      prod_services: 'Music Production',
+      brand_services: 'Brand Advertising',
       all: 'View All',
       mediaKit: 'Media Kit PDF'
     }
@@ -85,7 +87,7 @@ export default function Header({ lang, setLang, onOpenMediaKit, currentUniverse,
         <nav style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '0.3rem',
+          gap: '0.25rem',
           background: '#F1F5F9',
           padding: '0.3rem',
           borderRadius: 'var(--radius-full)',
@@ -117,11 +119,19 @@ export default function Header({ lang, setLang, onOpenMediaKit, currentUniverse,
           </button>
 
           <button
-            onClick={() => handleNavClick('services')}
-            style={getDockTabStyle(currentUniverse === 'services', '#059669')}
+            onClick={() => handleNavClick('prod_services')}
+            style={getDockTabStyle(currentUniverse === 'prod_services', '#D97706')}
           >
-            <Briefcase size={14} />
-            <span>{t.services}</span>
+            <Disc3 size={14} />
+            <span>{t.prod_services}</span>
+          </button>
+
+          <button
+            onClick={() => handleNavClick('brand_services')}
+            style={getDockTabStyle(currentUniverse === 'brand_services', 'var(--ginger-primary)')}
+          >
+            <Sparkles size={14} />
+            <span>{t.brand_services}</span>
           </button>
 
           <button
@@ -211,9 +221,13 @@ export default function Header({ lang, setLang, onOpenMediaKit, currentUniverse,
             <Layers size={16} />
             <span>{t.label} (Sello Discográfico)</span>
           </button>
-          <button onClick={() => handleNavClick('services')} style={mobileBtnStyle}>
-            <Briefcase size={16} color="#059669" />
-            <span>{t.services} (Calculadora & Tarifas)</span>
+          <button onClick={() => handleNavClick('prod_services')} style={mobileBtnStyle}>
+            <Disc3 size={16} color="#D97706" />
+            <span>{t.prod_services} (GGB Beats Studio & Licencias)</span>
+          </button>
+          <button onClick={() => handleNavClick('brand_services')} style={mobileBtnStyle}>
+            <Sparkles size={16} color="#E05328" />
+            <span>{t.brand_services} (Ginger Boy Patrocinios)</span>
           </button>
           <button onClick={() => handleNavClick('all')} style={mobileBtnStyle}>
             <span>{t.all} (Ecosistema Continuo)</span>

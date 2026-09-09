@@ -33,13 +33,22 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
       desc: 'La casa discográfica oficial: colaboraciones con Rasta Mia, JOSS, co-producciones de estudio y catálogo oficial de indumentaria streetwear.'
     },
     {
-      id: 'services',
-      title: 'Servicios & Booking',
-      handle: '¿Trabajamos juntos?',
-      tag: 'CONTRATACIÓN COMERCIAL',
-      color: '#059669',
-      icon: Briefcase,
-      desc: 'Licencias de beats ($100 WAV Lease / $200+ Exclusiva), patrocinios de marca, calculadora interactiva de inversión y contacto directo.'
+      id: 'prod_services',
+      title: 'Producción Musical',
+      handle: 'GGB Beats Studio',
+      tag: 'BEATS & MEZCLA',
+      color: '#D97706',
+      icon: Disc3,
+      desc: 'Licencias oficiales ($100 WAV Lease / $200+ Exclusiva), composición a medida, sound design y sync licensing para audiovisuales.'
+    },
+    {
+      id: 'brand_services',
+      title: 'Publicidad & Marcas',
+      handle: 'Ginger Boy Media',
+      tag: 'PATROCINIOS & REELS',
+      color: '#E05328',
+      icon: Sparkles,
+      desc: 'Reels cinemáticos 4K, packs de historias interactivas, simulador de alcance e inversión y descarga del Media Kit oficial en PDF.'
     }
   ];
 
@@ -209,8 +218,8 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
         }}>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '1.4rem'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(215px, 1fr))',
+            gap: '1.2rem'
           }} className="universes-grid">
             
             {universes.map((u) => {
