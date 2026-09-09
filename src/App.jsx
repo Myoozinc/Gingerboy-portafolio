@@ -24,7 +24,7 @@ export default function App() {
   // If in Lobby, show only the ultra-minimalist animated emblem gate
   if (currentUniverse === 'lobby') {
     return (
-      <div style={{ minHeight: '100vh', background: '#FFFFFF' }}>
+      <div style={{ minHeight: '100vh', background: '#070403' }}>
         <LobbyGate 
           onSelectUniverse={(universeId) => {
             setCurrentUniverse(universeId);

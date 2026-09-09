@@ -217,7 +217,12 @@ export default function PhotoGallery({ lang }) {
   }[lang];
 
   return (
-    <section id="gallery" style={{ padding: '6rem 0', background: '#F8FAFC' }}>
+    <section id="gallery" style={{
+      padding: '6rem 0',
+      background: 'radial-gradient(ellipse at 50% 10%, rgba(255, 109, 0, 0.12) 0%, rgba(230, 81, 0, 0.04) 35%, #F8FAFC 70%)',
+      position: 'relative',
+      overflow: 'hidden'
+    }}>
       <div className="container">
         
         {/* Section Header */}

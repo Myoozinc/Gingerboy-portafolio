@@ -21,6 +21,15 @@
   --purple-accent: #7C3AED;
   --pink-accent: #E11D48;
   
+  /* Studio Orange Lighting & Cyclorama Tokens */
+  --studio-orange: #E65100;
+  --studio-orange-bright: #FF6D00;
+  --studio-orange-deep: #BF360C;
+  --studio-orange-shadow: #140502;
+  --studio-spotlight-dark: radial-gradient(ellipse at 50% 20%, #FF5722 0%, #E65100 24%, #BF360C 55%, #140502 100%);
+  --studio-spotlight-warm: radial-gradient(ellipse at 50% 18%, rgba(255, 109, 0, 0.35) 0%, rgba(230, 81, 0, 0.2) 32%, rgba(191, 54, 12, 0.1) 60%, rgba(248, 250, 252, 0) 80%);
+  --studio-glow: 0 0 45px rgba(230, 81, 0, 0.38);
+
   --border-light: #E2E8F0;
   --border-ginger: rgba(224, 83, 40, 0.3);
   
@@ -220,4 +229,34 @@ h1, h2, h3, h4, h5, h6 {
   .section-title {
     font-size: 2rem;
   }
+}
+
+/* Studio Lighting & Static Model Utility Classes */
+.studio-orange-cyclorama {
+  background: var(--studio-spotlight-dark);
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+}
+
+.studio-orange-warm {
+  background: var(--studio-spotlight-warm), #FFFFFF;
+  position: relative;
+}
+
+.studio-spotlight-beam {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(80px);
+  background: radial-gradient(circle, rgba(255, 109, 0, 0.45) 0%, rgba(230, 81, 0, 0.22) 45%, transparent 75%);
+}
+
+.static-model-element {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 0 40px rgba(230, 81, 0, 0.45));
+  image-rendering: -webkit-optimize-contrast;
+  transition: opacity 0.5s ease;
 }

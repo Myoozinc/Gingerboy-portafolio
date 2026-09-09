@@ -199,20 +199,41 @@ export default function MusicProductionServicesSection({ lang }) {
   };
 
   return (
-    <section id="music-production-services" style={{ padding: '6.5rem 0', background: '#0B0F17', color: '#F8FAFC', position: 'relative', overflow: 'hidden' }}>
-      {/* Background Studio Glow Elements */}
+    <section id="music-production-services" style={{ padding: '6.5rem 0', background: 'radial-gradient(ellipse at 50% 12%, rgba(255, 109, 0, 0.22) 0%, rgba(230, 81, 0, 0.12) 36%, #0B0604 75%, #060302 100%)', color: '#F8FAFC', position: 'relative', overflow: 'hidden' }}>
+      
+      {/* Studio Spotlight Lights Falloff Beam */}
       <div style={{
         position: 'absolute',
-        top: '10%',
+        top: '-15%',
         left: '50%',
         transform: 'translateX(-50%)',
-        width: '900px',
-        height: '450px',
+        width: '950px',
+        height: '550px',
         borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(217, 119, 6, 0.12) 0%, rgba(224, 83, 40, 0.05) 50%, transparent 75%)',
-        filter: 'blur(90px)',
+        background: 'radial-gradient(ellipse at 50% 30%, rgba(255, 109, 0, 0.28) 0%, rgba(230, 81, 0, 0.15) 40%, transparent 75%)',
+        filter: 'blur(85px)',
         pointerEvents: 'none'
       }} />
+
+      {/* Static Background Model: Ginger Boy Standing in Studio Look */}
+      <div style={{
+        position: 'absolute',
+        right: '3%',
+        bottom: '5%',
+        height: '680px',
+        opacity: 0.18,
+        pointerEvents: 'none',
+        zIndex: 1,
+        filter: 'drop-shadow(0 0 40px rgba(230, 81, 0, 0.35))',
+        display: 'flex',
+        alignItems: 'flex-end'
+      }}>
+        <img 
+          src="/images/gingerboy_model_standing.png" 
+          alt="Ginger Boy Music Producer Model" 
+          style={{ height: '100%', width: 'auto', objectFit: 'contain' }}
+        />
+      </div>
 
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         
@@ -222,8 +243,8 @@ export default function MusicProductionServicesSection({ lang }) {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '0.5rem',
-            background: 'rgba(217, 119, 6, 0.15)',
-            border: '1px solid rgba(217, 119, 6, 0.35)',
+            background: 'rgba(230, 81, 0, 0.18)',
+            border: '1px solid rgba(230, 81, 0, 0.4)',
             color: '#F59E0B',
             padding: '0.4rem 1.1rem',
             borderRadius: 'var(--radius-full)',
@@ -248,13 +269,13 @@ export default function MusicProductionServicesSection({ lang }) {
 
         {/* 3 Sonics Facets Bar */}
         <div style={{
-          background: 'rgba(15, 23, 42, 0.75)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
+          background: 'rgba(22, 12, 7, 0.85)',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
           borderRadius: '20px',
           padding: '1.6rem 2rem',
           marginBottom: '4rem',
-          boxShadow: '0 10px 30px rgba(0, 0, 0, 0.35)',
-          backdropFilter: 'blur(12px)'
+          boxShadow: '0 10px 30px rgba(0, 0, 0, 0.45)',
+          backdropFilter: 'blur(14px)'
         }}>
           <div style={{
             fontSize: '0.82rem',
@@ -315,15 +336,16 @@ export default function MusicProductionServicesSection({ lang }) {
               <div
                 key={tier.id}
                 style={{
-                  background: tier.highlight ? 'rgba(30, 41, 59, 0.9)' : 'rgba(15, 23, 42, 0.7)',
-                  border: tier.highlight ? '2px solid #D97706' : '1px solid rgba(255, 255, 255, 0.08)',
+                  background: tier.highlight ? 'linear-gradient(145deg, rgba(38, 18, 9, 0.95) 0%, rgba(22, 11, 6, 0.95) 100%)' : 'rgba(20, 10, 6, 0.8)',
+                  border: tier.highlight ? '2px solid #FF6D00' : '1px solid rgba(255, 255, 255, 0.1)',
                   borderRadius: '24px',
                   padding: '2.5rem 2rem',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
                   position: 'relative',
-                  boxShadow: tier.highlight ? '0 15px 35px rgba(217, 119, 6, 0.2)' : '0 10px 25px rgba(0, 0, 0, 0.3)',
+                  boxShadow: tier.highlight ? '0 20px 45px rgba(230, 81, 0, 0.35)' : '0 10px 25px rgba(0, 0, 0, 0.4)',
+                  backdropFilter: 'blur(12px)',
                   transition: 'transform 0.3s ease'
                 }}
               >
@@ -333,13 +355,14 @@ export default function MusicProductionServicesSection({ lang }) {
                     top: '-13px',
                     left: '50%',
                     transform: 'translateX(-50%)',
-                    background: 'linear-gradient(135deg, #D97706 0%, #E05328 100%)',
+                    background: 'linear-gradient(135deg, #FF6D00 0%, #E65100 100%)',
                     color: '#FFF',
                     fontSize: '0.72rem',
                     fontWeight: '800',
                     padding: '0.3rem 1.1rem',
                     borderRadius: 'var(--radius-full)',
-                    letterSpacing: '0.05em'
+                    letterSpacing: '0.05em',
+                    boxShadow: '0 4px 15px rgba(255, 109, 0, 0.4)'
                   }}>
                     {tier.tag}
                   </div>
@@ -347,7 +370,7 @@ export default function MusicProductionServicesSection({ lang }) {
 
                 <div>
                   {!tier.highlight && (
-                    <span style={{ fontSize: '0.72rem', fontWeight: '800', color: '#D97706', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                    <span style={{ fontSize: '0.72rem', fontWeight: '800', color: '#F59E0B', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
                       {tier.tag}
                     </span>
                   )}
@@ -382,13 +405,14 @@ export default function MusicProductionServicesSection({ lang }) {
                       fontSize: '0.92rem',
                       cursor: 'pointer',
                       border: tier.highlight ? 'none' : '1px solid rgba(255, 255, 255, 0.2)',
-                      background: tier.highlight ? 'linear-gradient(135deg, #D97706 0%, #E05328 100%)' : 'rgba(255, 255, 255, 0.05)',
+                      background: tier.highlight ? 'linear-gradient(135deg, #FF6D00 0%, #E65100 100%)' : 'rgba(255, 255, 255, 0.05)',
                       color: '#FFFFFF',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       gap: '0.5rem',
-                      transition: 'all 0.3s ease'
+                      transition: 'all 0.3s ease',
+                      boxShadow: tier.highlight ? '0 8px 25px rgba(255, 109, 0, 0.4)' : 'none'
                     }}
                   >
                     <span>{tier.cta}</span>
@@ -404,13 +428,14 @@ export default function MusicProductionServicesSection({ lang }) {
         <div 
           id="music-inquiry-form"
           style={{
-            background: 'rgba(15, 23, 42, 0.9)',
-            border: '1px solid rgba(217, 119, 6, 0.3)',
+            background: 'rgba(20, 10, 6, 0.94)',
+            border: '1px solid rgba(230, 81, 0, 0.4)',
             borderRadius: '28px',
             padding: '3rem 2.5rem',
             maxWidth: '860px',
             margin: '0 auto',
-            boxShadow: '0 20px 50px rgba(0, 0, 0, 0.45)'
+            boxShadow: '0 25px 60px rgba(0, 0, 0, 0.6), 0 0 35px rgba(230, 81, 0, 0.15)',
+            backdropFilter: 'blur(16px)'
           }}
         >
           <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>

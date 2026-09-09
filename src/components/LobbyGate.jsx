@@ -77,7 +77,7 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
     <div style={{
       minHeight: '100vh',
       width: '100%',
-      background: '#FFFFFF',
+      background: 'radial-gradient(ellipse at 50% 30%, #FF5722 0%, #E65100 28%, #BF360C 60%, #150502 100%)',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -85,25 +85,45 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
       position: 'relative',
       overflow: 'hidden',
       padding: '2rem 1.5rem',
-      fontFamily: 'var(--font-main)'
+      fontFamily: 'var(--font-main)',
+      color: '#FFFFFF'
     }}>
       
-      {/* Delicate Infinite White Radial Breathing Aura */}
+      {/* Studio Spotlight Lights Falloff Beam */}
       <div style={{
         position: 'absolute',
-        top: '50%',
+        top: 0,
         left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: isUnfolded ? '950px' : '550px',
-        height: isUnfolded ? '950px' : '550px',
-        borderRadius: '50%',
-        background: isUnfolded 
-          ? 'radial-gradient(circle, rgba(224, 83, 40, 0.12) 0%, rgba(217, 119, 6, 0.05) 50%, rgba(255, 255, 255, 0) 75%)'
-          : 'radial-gradient(circle, rgba(224, 83, 40, 0.08) 0%, rgba(255, 255, 255, 0) 70%)',
+        transform: 'translateX(-50%)',
+        width: '1000px',
+        height: '600px',
+        background: 'radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.45) 0%, rgba(255, 109, 0, 0.25) 45%, transparent 75%)',
         filter: 'blur(70px)',
-        pointerEvents: 'none',
-        transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)'
+        pointerEvents: 'none'
       }} />
+
+      {/* Static Background Model: Ginger Boy in Studio Look */}
+      <div style={{
+        position: 'absolute',
+        bottom: 0,
+        left: '50%',
+        transform: 'translateX(-50%)',
+        height: isUnfolded ? '540px' : '660px',
+        opacity: isUnfolded ? 0.2 : 0.42,
+        pointerEvents: 'none',
+        zIndex: 1,
+        transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
+        filter: 'drop-shadow(0 0 50px rgba(0, 0, 0, 0.6))',
+        display: 'flex',
+        alignItems: 'flex-end',
+        justifyContent: 'center'
+      }}>
+        <img 
+          src="/images/gingerboy_model_standing.png" 
+          alt="Ginger Boy Background Model" 
+          style={{ height: '100%', width: 'auto', objectFit: 'contain' }}
+        />
+      </div>
 
       {/* Top Minimal Brand Stamp */}
       <div style={{
@@ -113,19 +133,20 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
         zIndex: 10
       }}>
         <div style={{
-          fontSize: '0.78rem',
-          fontWeight: '800',
-          letterSpacing: '0.22em',
-          color: 'var(--text-main)',
-          textTransform: 'uppercase'
+          fontSize: '0.8rem',
+          fontWeight: '900',
+          letterSpacing: '0.24em',
+          color: '#FFFFFF',
+          textTransform: 'uppercase',
+          textShadow: '0 2px 10px rgba(0,0,0,0.5)'
         }}>
           {content.brand}
         </div>
         <div style={{
-          fontSize: '0.68rem',
-          fontWeight: '600',
-          letterSpacing: '0.12em',
-          color: 'var(--text-dim)',
+          fontSize: '0.7rem',
+          fontWeight: '700',
+          letterSpacing: '0.14em',
+          color: '#FCD34D',
           marginTop: '0.25rem',
           textTransform: 'uppercase'
         }}>
@@ -191,15 +212,21 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
           fontSize: '0.74rem',
           fontWeight: '800',
           letterSpacing: '0.14em',
-          color: isUnfolded ? 'var(--text-muted)' : 'var(--ginger-primary)',
+          color: isUnfolded ? '#FCD34D' : '#FFFFFF',
+          background: 'rgba(0, 0, 0, 0.35)',
+          padding: '0.35rem 0.9rem',
+          borderRadius: 'var(--radius-full)',
+          border: '1px solid rgba(255, 255, 255, 0.2)',
+          boxShadow: '0 4px 15px rgba(0,0,0,0.3)',
           cursor: 'pointer',
           transition: 'all 0.4s ease'
         }} onClick={handleLogoClick}>
           <div style={{
-            width: '6px',
-            height: '6px',
+            width: '7px',
+            height: '7px',
             borderRadius: '50%',
-            background: 'var(--ginger-primary)',
+            background: '#FF6D00',
+            boxShadow: '0 0 10px #FF6D00',
             animation: 'pulseDot 1.5s infinite'
           }} />
           <span>{isUnfolded ? content.instructionUnfolded : content.instruction}</span>
@@ -229,11 +256,13 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
                   key={u.id}
                   onClick={() => onSelectUniverse(u.id)}
                   style={{
-                    background: '#FFFFFF',
+                    background: 'rgba(14, 8, 4, 0.88)',
+                    backdropFilter: 'blur(20px)',
+                    WebkitBackdropFilter: 'blur(20px)',
                     borderRadius: '24px',
-                    border: '1px solid var(--border-light)',
+                    border: '1px solid rgba(255, 255, 255, 0.14)',
                     padding: '2rem 1.4rem',
-                    boxShadow: '0 12px 30px rgba(0, 0, 0, 0.04)',
+                    boxShadow: '0 20px 50px rgba(0, 0, 0, 0.5)',
                     cursor: 'pointer',
                     display: 'flex',
                     flexDirection: 'column',
@@ -245,12 +274,12 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-6px)';
                     e.currentTarget.style.borderColor = u.color;
-                    e.currentTarget.style.boxShadow = `0 20px 40px rgba(0, 0, 0, 0.08), 0 0 25px ${u.color}20`;
+                    e.currentTarget.style.boxShadow = `0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px ${u.color}40`;
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.borderColor = 'var(--border-light)';
-                    e.currentTarget.style.boxShadow = '0 12px 30px rgba(0, 0, 0, 0.04)';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.14)';
+                    e.currentTarget.style.boxShadow = '0 20px 50px rgba(0, 0, 0, 0.5)';
                   }}
                 >
                   {/* Top Category Tag */}
@@ -265,7 +294,7 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
                         width: '42px',
                         height: '42px',
                         borderRadius: '12px',
-                        background: `${u.color}15`,
+                        background: `${u.color}25`,
                         color: u.color,
                         display: 'flex',
                         alignItems: 'center',
@@ -278,16 +307,17 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
                         fontSize: '0.64rem',
                         fontWeight: '800',
                         color: u.color,
-                        background: `${u.color}10`,
+                        background: `${u.color}20`,
                         padding: '0.2rem 0.6rem',
                         borderRadius: 'var(--radius-full)',
-                        letterSpacing: '0.04em'
+                        letterSpacing: '0.04em',
+                        border: `1px solid ${u.color}40`
                       }}>
                         {u.tag}
                       </span>
                     </div>
 
-                    <h3 style={{ fontSize: '1.35rem', fontWeight: '800', color: 'var(--text-main)', marginBottom: '0.3rem' }}>
+                    <h3 style={{ fontSize: '1.35rem', fontWeight: '800', color: '#FFFFFF', marginBottom: '0.3rem' }}>
                       {u.title}
                     </h3>
 
@@ -295,7 +325,7 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
                       {u.handle}
                     </div>
 
-                    <p style={{ fontSize: '0.84rem', color: 'var(--text-muted)', lineHeight: '1.5', margin: 0 }}>
+                    <p style={{ fontSize: '0.84rem', color: '#CBD5E1', lineHeight: '1.5', margin: 0 }}>
                       {u.desc}
                     </p>
                   </div>
@@ -304,13 +334,13 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
                   <div style={{
                     marginTop: '1.6rem',
                     paddingTop: '1rem',
-                    borderTop: '1px solid var(--border-light)',
+                    borderTop: '1px solid rgba(255, 255, 255, 0.1)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     fontSize: '0.82rem',
                     fontWeight: '800',
-                    color: u.color
+                    color: '#FCD34D'
                   }}>
                     <span>Ingresar</span>
                     <ArrowRight size={15} />
@@ -327,21 +357,28 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
             <button
               onClick={() => onSelectUniverse('all')}
               style={{
-                background: 'none',
-                border: 'none',
-                color: 'var(--text-muted)',
+                background: 'rgba(0, 0, 0, 0.45)',
+                border: '1px solid rgba(255, 255, 255, 0.25)',
+                color: '#FFFFFF',
                 fontSize: '0.88rem',
-                fontWeight: '600',
+                fontWeight: '700',
                 cursor: 'pointer',
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.4rem',
-                padding: '0.5rem 1rem',
+                padding: '0.6rem 1.4rem',
                 borderRadius: 'var(--radius-full)',
+                boxShadow: '0 4px 15px rgba(0,0,0,0.3)',
                 transition: 'var(--transition-smooth)'
               }}
-              onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-main)'}
-              onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(230, 81, 0, 0.4)';
+                e.currentTarget.style.borderColor = '#FF6D00';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(0, 0, 0, 0.45)';
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.25)';
+              }}
             >
               <span>{content.viewAll}</span>
               <ArrowRight size={14} />

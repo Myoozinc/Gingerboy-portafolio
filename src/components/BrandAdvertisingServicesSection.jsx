@@ -225,7 +225,13 @@ export default function BrandAdvertisingServicesSection({ lang, onOpenMediaKit }
   };
 
   return (
-    <section id="brand-advertising-services" style={{ padding: '6.5rem 0', background: '#F8FAFC', color: 'var(--text-main)', position: 'relative' }}>
+    <section id="brand-advertising-services" style={{
+      padding: '6.5rem 0',
+      background: 'radial-gradient(ellipse at 85% 15%, rgba(255, 109, 0, 0.14) 0%, rgba(230, 81, 0, 0.05) 35%, #F8FAFC 70%)',
+      color: 'var(--text-main)',
+      position: 'relative',
+      overflow: 'hidden'
+    }}>
       <div className="container">
         
         {/* Section Header */}
@@ -618,6 +624,23 @@ export default function BrandAdvertisingServicesSection({ lang, onOpenMediaKit }
           }}
         >
           <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+            <div style={{
+              width: '76px',
+              height: '76px',
+              borderRadius: '50%',
+              overflow: 'hidden',
+              margin: '0 auto 1.2rem auto',
+              border: '3px solid #E05328',
+              boxShadow: '0 8px 25px rgba(224, 83, 40, 0.35)',
+              background: '#E05328'
+            }}>
+              <img 
+                src="/images/ggb_orange_look_1.jpg" 
+                alt="Ginger Boy Brand Ambassador" 
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            </div>
+
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: 'var(--ginger-primary)', fontSize: '0.78rem', fontWeight: '800', textTransform: 'uppercase', marginBottom: '0.4rem' }}>
               <HeartHandshake size={15} />
               <span>GINGER BOY BRAND MANAGEMENT</span>

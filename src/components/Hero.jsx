@@ -46,14 +46,52 @@ export default function Hero({ lang }) {
       paddingBottom: '4.5rem',
       position: 'relative',
       overflow: 'hidden',
-      background: 'radial-gradient(circle at 82% 35%, rgba(230, 81, 0, 0.12) 0%, rgba(216, 67, 21, 0.04) 40%, transparent 65%), linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%)'
+      background: 'radial-gradient(ellipse at 78% 28%, rgba(255, 109, 0, 0.36) 0%, rgba(230, 81, 0, 0.2) 32%, rgba(191, 54, 12, 0.08) 65%, #FFF7F0 88%, #FFFFFF 100%)'
     }}>
-      <div className="container">
+
+      {/* Photography Studio Spotlight Ambient Beam */}
+      <div style={{
+        position: 'absolute',
+        top: '-15%',
+        right: '12%',
+        width: '650px',
+        height: '650px',
+        borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(255, 109, 0, 0.35) 0%, rgba(230, 81, 0, 0.16) 45%, transparent 70%)',
+        filter: 'blur(75px)',
+        pointerEvents: 'none'
+      }} />
+
+      {/* Static Background Model: Ginger Boy Standing in Studio Look */}
+      <div className="hero-static-model" style={{
+        position: 'absolute',
+        right: '4%',
+        bottom: 0,
+        height: '92%',
+        maxHeight: '620px',
+        zIndex: 1,
+        pointerEvents: 'none',
+        display: 'flex',
+        alignItems: 'flex-end',
+        opacity: 0.94,
+        filter: 'drop-shadow(0 0 45px rgba(230, 81, 0, 0.45))',
+        transition: 'all 0.5s ease'
+      }}>
+        <img 
+          src="/images/gingerboy_model_standing.png" 
+          alt="Ginger Boy Static Background Model" 
+          style={{ height: '100%', width: 'auto', objectFit: 'contain' }}
+        />
+      </div>
+
+      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         <div style={{
           display: 'grid',
           gridTemplateColumns: '1.15fr 0.85fr',
           gap: '3.5rem',
-          alignItems: 'center'
+          alignItems: 'center',
+          position: 'relative',
+          zIndex: 2
         }} className="hero-grid">
 
           {/* Left Column: Text & Hierarchy */}
@@ -400,6 +438,12 @@ export default function Hero({ lang }) {
       <style>{`
         @media (max-width: 960px) {
           .hero-grid { grid-template-columns: 1fr !important; }
+          .hero-static-model {
+            opacity: 0.2 !important;
+            right: 50% !important;
+            transform: translateX(50%) !important;
+            max-height: 480px !important;
+          }
         }
       `}</style>
     </section>
