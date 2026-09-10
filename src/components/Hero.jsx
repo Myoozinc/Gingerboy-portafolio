@@ -304,6 +304,64 @@ export default function Hero({ lang }) {
                 @gingerboyofficial • @gingerboybeats
               </p>
 
+              {/* Highlight Stats Row (Clean In-Flow Grid, Zero Overlapping) */}
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: '0.75rem',
+                margin: '0.6rem 0 1rem 0'
+              }}>
+                <div style={{
+                  background: 'rgba(224, 83, 40, 0.07)',
+                  border: '1px solid rgba(224, 83, 40, 0.2)',
+                  borderRadius: '16px',
+                  padding: '0.75rem 0.85rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.65rem',
+                  textAlign: 'left'
+                }}>
+                  <div style={{
+                    background: '#FFFFFF',
+                    padding: '0.45rem',
+                    borderRadius: '50%',
+                    color: 'var(--ginger-primary)',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.06)'
+                  }}>
+                    <Users size={17} />
+                  </div>
+                  <div>
+                    <div style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-main)', lineHeight: 1.1 }}>23.2K</div>
+                    <div style={{ fontSize: '0.7rem', color: '#10B981', fontWeight: '700' }}>+6.3% Crecimiento</div>
+                  </div>
+                </div>
+
+                <div style={{
+                  background: 'rgba(217, 119, 6, 0.08)',
+                  border: '1px solid rgba(217, 119, 6, 0.2)',
+                  borderRadius: '16px',
+                  padding: '0.75rem 0.85rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.65rem',
+                  textAlign: 'left'
+                }}>
+                  <div style={{
+                    background: '#FFFFFF',
+                    padding: '0.45rem',
+                    borderRadius: '50%',
+                    color: 'var(--gold-accent)',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.06)'
+                  }}>
+                    <Eye size={17} />
+                  </div>
+                  <div>
+                    <div style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-main)', lineHeight: 1.1 }}>658,848</div>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: '600' }}>Vistas Totales</div>
+                  </div>
+                </div>
+              </div>
+
               <div style={{
                 background: '#F8FAFC',
                 borderRadius: '16px',
@@ -327,64 +385,6 @@ export default function Hero({ lang }) {
                 </div>
               </div>
 
-            </div>
-
-            {/* Pill Badge 1: Followers */}
-            <div style={{
-              position: 'absolute',
-              top: '-1.2rem',
-              right: '-1.2rem',
-              background: '#FFFFFF',
-              border: '1px solid var(--border-light)',
-              borderRadius: 'var(--radius-md)',
-              padding: '0.75rem 1.1rem',
-              boxShadow: 'var(--shadow-md)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.75rem',
-              zIndex: 2
-            }}>
-              <div style={{
-                background: 'var(--ginger-light)',
-                padding: '0.5rem',
-                borderRadius: '50%',
-                color: 'var(--ginger-primary)'
-              }}>
-                <Users size={18} />
-              </div>
-              <div>
-                <div style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-main)' }}>23.2K</div>
-                <div style={{ fontSize: '0.72rem', color: '#10B981', fontWeight: '700' }}>+6.3% Crecimiento</div>
-              </div>
-            </div>
-
-            {/* Pill Badge 2: Total Impressions */}
-            <div style={{
-              position: 'absolute',
-              bottom: '-1rem',
-              left: '-1.2rem',
-              background: '#FFFFFF',
-              border: '1px solid var(--border-light)',
-              borderRadius: 'var(--radius-md)',
-              padding: '0.75rem 1.1rem',
-              boxShadow: 'var(--shadow-md)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.75rem',
-              zIndex: 2
-            }}>
-              <div style={{
-                background: 'rgba(217, 119, 6, 0.12)',
-                padding: '0.5rem',
-                borderRadius: '50%',
-                color: 'var(--gold-accent)'
-              }}>
-                <Eye size={18} />
-              </div>
-              <div>
-                <div style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-main)' }}>658,848</div>
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: '600' }}>Vistas Totales</div>
-              </div>
             </div>
 
           </div>

@@ -295,28 +295,27 @@ export default function ServicesHub({ lang, preselectedPkg }) {
                     position: 'relative'
                   }}
                 >
-                  {tier.highlight && (
-                    <div style={{
-                      position: 'absolute',
-                      top: '-12px',
-                      left: '50%',
-                      transform: 'translateX(-50%)',
-                      background: '#D97706',
-                      color: '#FFF',
-                      fontSize: '0.72rem',
-                      fontWeight: '800',
-                      padding: '0.2rem 1rem',
-                      borderRadius: 'var(--radius-full)'
-                    }}>
-                      MÁS SOLICITADA
-                    </div>
-                  )}
-
                   <div>
-                    <span style={{ fontSize: '0.74rem', fontWeight: '800', color: '#D97706', letterSpacing: '0.05em' }}>
-                      {tier.tag}
-                    </span>
-                    <h4 style={{ fontSize: '1.5rem', color: 'var(--text-main)', margin: '0.3rem 0' }}>
+                    {tier.highlight ? (
+                      <div style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        background: '#D97706',
+                        color: '#FFF',
+                        fontSize: '0.72rem',
+                        fontWeight: '800',
+                        padding: '0.25rem 0.9rem',
+                        borderRadius: 'var(--radius-full)',
+                        marginBottom: '0.6rem'
+                      }}>
+                        MÁS SOLICITADA
+                      </div>
+                    ) : (
+                      <span style={{ display: 'inline-block', fontSize: '0.74rem', fontWeight: '800', color: '#D97706', letterSpacing: '0.05em', marginBottom: '0.6rem' }}>
+                        {tier.tag}
+                      </span>
+                    )}
+                    <h4 style={{ fontSize: '1.5rem', color: 'var(--text-main)', margin: '0 0 0.3rem 0', lineHeight: 1.3 }}>
                       {tier.name}
                     </h4>
                     <div style={{ fontSize: '2.2rem', fontWeight: '900', color: 'var(--text-main)', margin: '0.5rem 0 1rem 0' }}>
@@ -386,28 +385,28 @@ export default function ServicesHub({ lang, preselectedPkg }) {
                     position: 'relative'
                   }}
                 >
-                  {pkg.highlight && (
-                    <div style={{
-                      position: 'absolute',
-                      top: '-12px',
-                      left: '50%',
-                      transform: 'translateX(-50%)',
-                      background: 'var(--ginger-gradient)',
-                      color: '#FFF',
-                      fontSize: '0.72rem',
-                      fontWeight: '800',
-                      padding: '0.2rem 1rem',
-                      borderRadius: 'var(--radius-full)'
-                    }}>
-                      MÁS POPULAR
-                    </div>
-                  )}
-
                   <div>
-                    <span style={{ fontSize: '0.72rem', fontWeight: '800', color: 'var(--ginger-primary)', letterSpacing: '0.05em' }}>
-                      {pkg.tag}
-                    </span>
-                    <h4 style={{ fontSize: '1.35rem', color: 'var(--text-main)', margin: '0.3rem 0' }}>
+                    {pkg.highlight ? (
+                      <div style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        background: 'var(--ginger-gradient)',
+                        color: '#FFF',
+                        fontSize: '0.72rem',
+                        fontWeight: '800',
+                        padding: '0.25rem 0.9rem',
+                        borderRadius: 'var(--radius-full)',
+                        marginBottom: '0.6rem',
+                        boxShadow: '0 4px 15px rgba(224, 83, 40, 0.35)'
+                      }}>
+                        MÁS POPULAR
+                      </div>
+                    ) : (
+                      <span style={{ display: 'inline-block', fontSize: '0.72rem', fontWeight: '800', color: 'var(--ginger-primary)', letterSpacing: '0.05em', marginBottom: '0.6rem' }}>
+                        {pkg.tag}
+                      </span>
+                    )}
+                    <h4 style={{ fontSize: '1.35rem', color: 'var(--text-main)', margin: '0 0 0.3rem 0', lineHeight: 1.3 }}>
                       {pkg.name}
                     </h4>
                     <div style={{ fontSize: '2rem', fontWeight: '900', color: 'var(--text-main)', margin: '0.4rem 0 1rem 0' }}>

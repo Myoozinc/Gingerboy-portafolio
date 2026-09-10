@@ -340,31 +340,29 @@ export default function BrandAdvertisingServicesSection({ lang, onOpenMediaKit }
                   transition: 'transform 0.3s ease'
                 }}
               >
-                {pkg.highlight && (
-                  <div style={{
-                    position: 'absolute',
-                    top: '-13px',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    background: 'var(--ginger-gradient)',
-                    color: '#FFF',
-                    fontSize: '0.72rem',
-                    fontWeight: '800',
-                    padding: '0.3rem 1.1rem',
-                    borderRadius: 'var(--radius-full)',
-                    letterSpacing: '0.05em'
-                  }}>
-                    {pkg.tag}
-                  </div>
-                )}
-
                 <div>
-                  {!pkg.highlight && (
-                    <span style={{ fontSize: '0.72rem', fontWeight: '800', color: 'var(--ginger-primary)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                  {pkg.highlight ? (
+                    <div style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      background: 'var(--ginger-gradient)',
+                      color: '#FFF',
+                      fontSize: '0.72rem',
+                      fontWeight: '800',
+                      padding: '0.35rem 1.1rem',
+                      borderRadius: 'var(--radius-full)',
+                      letterSpacing: '0.05em',
+                      boxShadow: '0 4px 15px rgba(224, 83, 40, 0.35)',
+                      marginBottom: '0.9rem'
+                    }}>
+                      {pkg.tag}
+                    </div>
+                  ) : (
+                    <span style={{ display: 'inline-block', fontSize: '0.72rem', fontWeight: '800', color: 'var(--ginger-primary)', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '0.9rem' }}>
                       {pkg.tag}
                     </span>
                   )}
-                  <h4 style={{ fontSize: '1.45rem', fontWeight: '800', color: 'var(--text-main)', margin: '0.4rem 0 0.2rem 0' }}>
+                  <h4 style={{ fontSize: '1.45rem', fontWeight: '800', color: 'var(--text-main)', margin: '0 0 0.4rem 0', lineHeight: 1.3 }}>
                     {pkg.name}
                   </h4>
                   <div style={{ fontSize: '2.1rem', fontWeight: '900', color: 'var(--text-main)', margin: '0.6rem 0 1rem 0' }}>

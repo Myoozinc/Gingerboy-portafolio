@@ -349,32 +349,29 @@ export default function MusicProductionServicesSection({ lang }) {
                   transition: 'transform 0.3s ease'
                 }}
               >
-                {tier.highlight && (
-                  <div style={{
-                    position: 'absolute',
-                    top: '-13px',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    background: 'linear-gradient(135deg, #FF6D00 0%, #E65100 100%)',
-                    color: '#FFF',
-                    fontSize: '0.72rem',
-                    fontWeight: '800',
-                    padding: '0.3rem 1.1rem',
-                    borderRadius: 'var(--radius-full)',
-                    letterSpacing: '0.05em',
-                    boxShadow: '0 4px 15px rgba(255, 109, 0, 0.4)'
-                  }}>
-                    {tier.tag}
-                  </div>
-                )}
-
                 <div>
-                  {!tier.highlight && (
-                    <span style={{ fontSize: '0.72rem', fontWeight: '800', color: '#F59E0B', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                  {tier.highlight ? (
+                    <div style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      background: 'linear-gradient(135deg, #FF6D00 0%, #E65100 100%)',
+                      color: '#FFF',
+                      fontSize: '0.72rem',
+                      fontWeight: '800',
+                      padding: '0.35rem 1.1rem',
+                      borderRadius: 'var(--radius-full)',
+                      letterSpacing: '0.05em',
+                      boxShadow: '0 4px 15px rgba(255, 109, 0, 0.4)',
+                      marginBottom: '0.9rem'
+                    }}>
+                      {tier.tag}
+                    </div>
+                  ) : (
+                    <span style={{ display: 'inline-block', fontSize: '0.72rem', fontWeight: '800', color: '#F59E0B', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '0.9rem' }}>
                       {tier.tag}
                     </span>
                   )}
-                  <h4 style={{ fontSize: '1.45rem', fontWeight: '800', color: '#FFFFFF', margin: '0.4rem 0 0.2rem 0' }}>
+                  <h4 style={{ fontSize: '1.45rem', fontWeight: '800', color: '#FFFFFF', margin: '0 0 0.4rem 0', lineHeight: 1.3 }}>
                     {tier.name}
                   </h4>
                   <div style={{ fontSize: '2.1rem', fontWeight: '900', color: '#FCD34D', margin: '0.6rem 0 1rem 0' }}>

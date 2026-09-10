@@ -145,10 +145,11 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'space-between',
       position: 'relative',
-      overflow: 'hidden',
-      padding: '2rem 1.5rem',
+      overflowX: 'hidden',
+      overflowY: isUnfolded ? 'auto' : 'hidden',
+      padding: isUnfolded ? '2.5rem 1.5rem' : '2.5rem 1.5rem',
       fontFamily: 'var(--font-main)',
       color: '#FFFFFF'
     }}>
@@ -166,12 +167,12 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
         pointerEvents: 'none'
       }} />
 
-      {/* Top Minimal Brand Stamp (Clean & Urban without Yellow Subtitle) */}
-      <div style={{
-        position: 'absolute',
-        top: '2.5rem',
+      {/* Top Minimal Brand Stamp (In Natural Document Flow with Margin) */}
+      <header style={{
         textAlign: 'center',
-        zIndex: 10
+        zIndex: 10,
+        marginBottom: isUnfolded ? '1.5rem' : '1rem',
+        flexShrink: 0
       }}>
         <div style={{
           fontSize: '0.85rem',
@@ -183,7 +184,7 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
         }}>
           {content.brand}
         </div>
-      </div>
+      </header>
 
       {/* Centerpiece: Animated Logo that wakes up, tracks gaze, and unfolds */}
       <div style={{
@@ -192,7 +193,7 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
         alignItems: 'center',
         position: 'relative',
         zIndex: 2,
-        marginTop: isUnfolded ? '-1rem' : '0',
+        margin: isUnfolded ? '0.5rem 0' : 'auto 0',
         transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
       }}>
 
@@ -550,18 +551,18 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
         </div>
       )}
 
-      {/* Bottom Minimal Info */}
-      <div style={{
-        position: 'absolute',
-        bottom: '2rem',
+      {/* Bottom Minimal Info (In Natural Flow, Never Overlapping) */}
+      <footer style={{
         textAlign: 'center',
         zIndex: 10,
         fontSize: '0.72rem',
-        color: 'var(--text-dim)',
-        letterSpacing: '0.06em'
+        color: 'rgba(255, 255, 255, 0.45)',
+        letterSpacing: '0.06em',
+        marginTop: isUnfolded ? '3rem' : '1.5rem',
+        flexShrink: 0
       }}>
         MYOOZ INC • TALENT & PRODUCTION NETWORK • 2026
-      </div>
+      </footer>
 
       <style>{`
         @keyframes lobbyFloat {

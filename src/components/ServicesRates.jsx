@@ -175,31 +175,27 @@ export default function ServicesRates({ lang, onSelectPackage }) {
               boxShadow: pkg.highlight ? 'var(--ginger-glow)' : 'var(--shadow-md)',
               background: '#FFFFFF'
             }}>
-              {pkg.highlight && (
-                <div style={{
-                  position: 'absolute',
-                  top: '-14px',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  background: 'var(--ginger-gradient)',
-                  color: '#FFF',
-                  fontSize: '0.75rem',
-                  fontWeight: '800',
-                  padding: '0.25rem 1rem',
-                  borderRadius: 'var(--radius-full)',
-                  boxShadow: 'var(--ginger-glow)'
-                }}>
-                  {pkg.tag}
-                </div>
-              )}
-
               <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#D97706', fontSize: '0.78rem', fontWeight: '800', textTransform: 'uppercase', marginBottom: '0.2rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#D97706', fontSize: '0.78rem', fontWeight: '800', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
                   {pkg.id === 'ggb_audio_pack' && <Disc3 size={14} />}
-                  <span>{pkg.tag}</span>
+                  {pkg.highlight ? (
+                    <span style={{
+                      background: 'var(--ginger-gradient)',
+                      color: '#FFF',
+                      fontSize: '0.72rem',
+                      fontWeight: '800',
+                      padding: '0.25rem 0.85rem',
+                      borderRadius: 'var(--radius-full)',
+                      boxShadow: 'var(--ginger-glow)'
+                    }}>
+                      {pkg.tag}
+                    </span>
+                  ) : (
+                    <span>{pkg.tag}</span>
+                  )}
                 </div>
 
-                <h3 style={{ fontSize: '1.35rem', color: 'var(--text-main)', marginBottom: '0.4rem' }}>
+                <h3 style={{ fontSize: '1.35rem', color: 'var(--text-main)', margin: '0 0 0.4rem 0', lineHeight: 1.3 }}>
                   {pkg.title}
                 </h3>
 
