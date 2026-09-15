@@ -16,41 +16,42 @@ export default function AnalyticsSection({ lang }) {
         { id: 'geography', label: 'Top Países (Mercados)' }
       ],
       ageData: [
-        { range: '25-34 años', pct: 43.8, highlight: true, note: 'Núcleo Comercial Principal' },
-        { range: '35-44 años', pct: 25.6, highlight: false },
-        { range: '18-24 años', pct: 16.5, highlight: false },
+        { range: '25-34 años', pct: 43.9, highlight: true, note: 'Núcleo Comercial Principal' },
+        { range: '35-44 años', pct: 25.7, highlight: false },
+        { range: '18-24 años', pct: 16.3, highlight: false },
         { range: '45-54 años', pct: 8.9, highlight: false },
         { range: '55-64 años', pct: 3.1, highlight: false },
         { range: '65+ años', pct: 1.2, highlight: false },
-        { range: '13-17 años', pct: 1.0, highlight: false },
+        { range: '13-17 años', pct: 0.9, highlight: false },
       ],
       genderData: {
         women: 69.4,
         men: 30.6
       },
       contentViews: [
-        { type: 'Reels', views: '321,000', pct: 100, color: '#E05328', desc: 'Formato de mayor viralidad y descubrimiento de marca' },
-        { type: 'Historias', views: '204,000', pct: 63.5, color: '#D97706', desc: 'Alta conversión e interacción directa mediante links & encuestas' },
-        { type: 'Publicaciones (Feed)', views: '125,000', pct: 38.9, color: '#7C3AED', desc: 'Posicionamiento visual permanente en el perfil' },
+        { type: 'Reels (Top 172K)', views: '172,000+', pct: 100, color: '#38BDF8', desc: 'Formato estrella de viralidad y alcance a no seguidores' },
+        { type: 'Historias (5.3K Int)', views: '204,000', pct: 63.5, color: '#10B981', desc: 'Alta conversión e interacción directa mediante stickers y links' },
+        { type: 'Publicaciones Feed (4.7K)', views: '125,000', pct: 38.9, color: '#F59E0B', desc: 'Posicionamiento visual permanente en el perfil de Instagram' },
       ],
       interactions: [
-        { type: 'Reels Interacciones', val: '8.4K', color: '#E05328', desc: 'Me gustas, comentarios y compartidos en Reels' },
-        { type: 'Historias Interacciones', val: '4.9K', color: '#D97706', desc: 'Respuestas y clics en stickers de Historia' },
-        { type: 'Publicaciones Interacciones', val: '3.3K', color: '#7C3AED', desc: 'Guardados y me gustas en carruseles del Feed' }
+        { type: 'Reels Interacciones', val: '13.0K', color: '#38BDF8', desc: 'Me gustas, comentarios y compartidos en Reels' },
+        { type: 'Historias Interacciones', val: '5.3K', color: '#10B981', desc: 'Respuestas, reacciones y toques en stickers' },
+        { type: 'Publicaciones Feed', val: '4.7K', color: '#F59E0B', desc: 'Guardados y me gustas en carruseles y fotos' },
+        { type: 'Videos en Vivo', val: '17', color: '#8B5CF6', desc: 'Interacción directa con la comunidad' }
       ],
       conversionMetrics: [
-        { title: 'Visitas al Perfil', val: '54,770', note: 'Alto interés en la marca personal', icon: Users, color: '#7C3AED' },
-        { title: 'Toques en Link de Bio', val: '1,169', note: 'Tráfico directo derivado a la web/tienda', icon: MousePointer, color: '#E05328' },
-        { title: 'Alcance No Seguidores', val: '52.2%', note: 'Viralidad constante a nuevos usuarios', icon: TrendingUp, color: '#10B981' },
-        { title: 'Seguidores Netos', val: '+1,371', note: 'Crecimiento orgánico continuo (+6.3%)', icon: Sparkles, color: '#D97706' }
+        { title: 'Visitas al Perfil', val: '42,302', note: 'Alto interés en la marca personal', icon: Users, color: '#38BDF8' },
+        { title: 'Toques en Link de Bio', val: '1,114', note: 'Tráfico directo derivado a webs y proyectos', icon: MousePointer, color: '#10B981' },
+        { title: 'Alcance No Seguidores', val: '52.2%', note: 'Viralidad constante a nuevos públicos', icon: TrendingUp, color: '#F59E0B' },
+        { title: 'Seguidores Activos', val: '23,250', note: 'Crecimiento orgánico continuo (+6.3%)', icon: Sparkles, color: '#EC4899' }
       ],
       geoData: [
-        { country: 'Venezuela', pct: 19.7, flag: '🇻🇪' },
-        { country: 'México', pct: 11.2, flag: '🇲🇽' },
-        { country: 'Estados Unidos', pct: 10.3, flag: '🇺🇸' },
-        { country: 'Argentina', pct: 9.4, flag: '🇦🇷' },
+        { country: 'Venezuela', pct: 19.6, flag: '🇻🇪' },
+        { country: 'México', pct: 11.0, flag: '🇲🇽' },
+        { country: 'Estados Unidos', pct: 10.2, flag: '🇺🇸' },
+        { country: 'Argentina', pct: 9.3, flag: '🇦🇷' },
         { country: 'Colombia', pct: 7.7, flag: '🇨🇴' },
-        { country: 'Otros (España & LATAM)', pct: 41.7, flag: '🌎' },
+        { country: 'Otros (España & Global)', pct: 42.2, flag: '🌎' },
       ]
     },
     en: {
@@ -64,41 +65,42 @@ export default function AnalyticsSection({ lang }) {
         { id: 'geography', label: 'Top Markets' }
       ],
       ageData: [
-        { range: '25-34 yrs', pct: 43.8, highlight: true, note: 'Primary Commercial Target' },
-        { range: '35-44 yrs', pct: 25.6, highlight: false },
-        { range: '18-24 yrs', pct: 16.5, highlight: false },
+        { range: '25-34 yrs', pct: 43.9, highlight: true, note: 'Primary Commercial Target' },
+        { range: '35-44 yrs', pct: 25.7, highlight: false },
+        { range: '18-24 yrs', pct: 16.3, highlight: false },
         { range: '45-54 yrs', pct: 8.9, highlight: false },
         { range: '55-64 yrs', pct: 3.1, highlight: false },
         { range: '65+ yrs', pct: 1.2, highlight: false },
-        { range: '13-17 yrs', pct: 1.0, highlight: false },
+        { range: '13-17 yrs', pct: 0.9, highlight: false },
       ],
       genderData: {
         women: 69.4,
         men: 30.6
       },
       contentViews: [
-        { type: 'Reels', views: '321,000', pct: 100, color: '#E05328', desc: 'Highest virality & brand discovery format' },
-        { type: 'Stories', views: '204,000', pct: 63.5, color: '#D97706', desc: 'High direct conversion & interactive stickers' },
-        { type: 'Feed Posts', views: '125,000', pct: 38.9, color: '#7C3AED', desc: 'Permanent visual positioning on feed grid' },
+        { type: 'Reels (Top 172K)', views: '172,000+', pct: 100, color: '#38BDF8', desc: 'Highest virality & discovery format for prospective clients' },
+        { type: 'Stories (5.3K Int)', views: '204,000', pct: 63.5, color: '#10B981', desc: 'High direct conversion & interactive stickers' },
+        { type: 'Feed Posts (4.7K)', views: '125,000', pct: 38.9, color: '#F59E0B', desc: 'Permanent visual positioning on feed grid' },
       ],
       interactions: [
-        { type: 'Reels Engagement', val: '8.4K', color: '#E05328', desc: 'Likes, comments & shares on Reels' },
-        { type: 'Stories Engagement', val: '4.9K', color: '#D97706', desc: 'Replies & sticker taps' },
-        { type: 'Posts Engagement', val: '3.3K', color: '#7C3AED', desc: 'Saves & likes on Feed carousels' }
+        { type: 'Reels Engagement', val: '13.0K', color: '#38BDF8', desc: 'Likes, comments & shares on Reels' },
+        { type: 'Stories Engagement', val: '5.3K', color: '#10B981', desc: 'Replies & sticker taps' },
+        { type: 'Posts Engagement', val: '4.7K', color: '#F59E0B', desc: 'Saves & likes on Feed carousels' },
+        { type: 'Live Videos', val: '17', color: '#8B5CF6', desc: 'Real-time community engagement' }
       ],
       conversionMetrics: [
-        { title: 'Profile Visits', val: '54,770', note: 'High brand interest', icon: Users, color: '#7C3AED' },
-        { title: 'Link in Bio Clicks', val: '1,169', note: 'Direct web traffic to brand links', icon: MousePointer, color: '#E05328' },
-        { title: 'Non-Follower Reach', val: '52.2%', note: 'Viral reach to new prospective clients', icon: TrendingUp, color: '#10B981' },
-        { title: 'Net New Followers', val: '+1,371', note: 'Continuous organic growth (+6.3%)', icon: Sparkles, color: '#D97706' }
+        { title: 'Profile Visits', val: '42,302', note: 'High brand personal interest', icon: Users, color: '#38BDF8' },
+        { title: 'Link in Bio Clicks', val: '1,114', note: 'Direct web traffic to brand links', icon: MousePointer, color: '#10B981' },
+        { title: 'Non-Follower Reach', val: '52.2%', note: 'Viral reach to prospective clients', icon: TrendingUp, color: '#F59E0B' },
+        { title: 'Active Followers', val: '23,250', note: 'Continuous organic growth (+6.3%)', icon: Sparkles, color: '#EC4899' }
       ],
       geoData: [
-        { country: 'Venezuela', pct: 19.7, flag: '🇻🇪' },
-        { country: 'Mexico', pct: 11.2, flag: '🇲🇽' },
-        { country: 'United States', pct: 10.3, flag: '🇺🇸' },
-        { country: 'Argentina', pct: 9.4, flag: '🇦🇷' },
+        { country: 'Venezuela', pct: 19.6, flag: '🇻🇪' },
+        { country: 'Mexico', pct: 11.0, flag: '🇲🇽' },
+        { country: 'United States', pct: 10.2, flag: '🇺🇸' },
+        { country: 'Argentina', pct: 9.3, flag: '🇦🇷' },
         { country: 'Colombia', pct: 7.7, flag: '🇨🇴' },
-        { country: 'Others (Spain & Rest of LATAM)', pct: 41.7, flag: '🌎' },
+        { country: 'Others (Spain & Global)', pct: 42.2, flag: '🌎' },
       ]
     }
   }[lang];

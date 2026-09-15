@@ -17,9 +17,10 @@ export default function ContentPillarsSection({ lang }) {
       title: 'Viajes & Experiencias Internacionales',
       tag: 'TRAVEL & CULTURE',
       icon: Compass,
-      color: '#D97706',
-      desc: 'Contenido cinematográfico recorriendo destinos emblemáticos como París y Europa, mostrando gastronomía, cultura urbana y descubrimientos locales.',
-      highlights: ['Reels con +11K reproducciones', 'Contenido estético en alta definición', 'Guías urbanas de viaje']
+      color: '#38BDF8',
+      desc: 'Contenido cinematográfico recorriendo destinos emblemáticos como los Pirineos, París y Europa, combinando estética alpina, moda streetwear y descubrimientos locales.',
+      image: '/images/gingerboy_pyrenees_hd.jpg',
+      highlights: ['Travesía en los Pirineos (Pyrenees)', 'Reels virales con hasta 172K+ vistas', 'Estética visual y fotografía HD']
     },
     {
       id: 'tech_humanitarian',
@@ -36,9 +37,9 @@ export default function ContentPillarsSection({ lang }) {
       title: 'Publicidad & Alianzas de Marca',
       tag: 'COLABORACIONES COMERCIALES',
       icon: HeartHandshake,
-      color: '#7C3AED',
+      color: '#8B5CF6',
       desc: 'Integración orgánica de productos, servicios y campañas comerciales en formatos de alto impacto (Reels, Historias, Enlaces en Bio).',
-      highlights: ['54.7K+ Visitas al perfil', '1,169 Clics en enlaces de bio', '52.2% Alcance a no seguidores']
+      highlights: ['42.3K Visitas al perfil (Meta Insights)', '1,114 Clics en enlaces de bio', '69.4% Audiencia femenina core']
     }
   ];
 

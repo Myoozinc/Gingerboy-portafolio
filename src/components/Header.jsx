@@ -96,7 +96,7 @@ export default function Header({ lang, setLang, onOpenMediaKit, currentUniverse,
           
           <button
             onClick={() => handleNavClick('gingerboy')}
-            style={getDockTabStyle(currentUniverse === 'gingerboy', '#E05328')}
+            style={getDockTabStyle(currentUniverse === 'gingerboy', '#0284C7')}
           >
             <Compass size={14} />
             <span>{t.gingerboy}</span>

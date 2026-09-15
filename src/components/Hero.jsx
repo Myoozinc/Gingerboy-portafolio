@@ -8,14 +8,14 @@ export default function Hero({ lang }) {
       title: 'Ginger Boy',
       role: 'Creador, Figura Pública & Tech Innovator',
       producerNote: 'Productor Musical & Beatmaker en MYOOZ InC (GGB Beats)',
-      brandSubtitle: 'Portafolio comercial oficial de Ginger Boy (@gingerboyofficial): creador de contenido de viajes y estilo de vida, desarrollador de proyectos tecnológicos con impacto social, e impulsor del sistema musical GGB Beats (@gingerboybeats).',
+      brandSubtitle: 'Portafolio comercial oficial de Ginger Boy (@gingerboyofficial): creador de contenido de viajes por Europa y estilo de vida urbano, desarrollador de proyectos tecnológicos con impacto humanitario (Centro de Acopio), e impulsor del sello y sistema musical GGB Beats (@gingerboybeats).',
       ctaPrimary: 'Explorar Métricas',
       ctaSecondary: 'GGB Beats Music Wing',
       badges: [
-        { label: 'Seguidores Activos', val: '23,250', icon: Users, color: '#E05328', note: '+6.3% en 90 días' },
-        { label: 'Visualizaciones Totales', val: '658,848', icon: Eye, color: '#D97706', note: '52.2% no seguidores (viral)' },
-        { label: 'Audiencia Femenina', val: '69.4%', icon: HeartHandshake, color: '#E11D48', note: 'Moda, Cultura & Lifestyle' },
-        { label: 'Visitas al Perfil', val: '54,770', icon: MousePointer, color: '#7C3AED', note: '1,169 clics en web/link' }
+        { label: 'Visitas al Perfil', val: '42,302', icon: Users, color: '#38BDF8', note: 'Meta Insights Oficial' },
+        { label: 'Toques en Bio Link', val: '1,114', icon: MousePointer, color: '#10B981', note: 'Tráfico web directo' },
+        { label: 'Audiencia Femenina', val: '69.4%', icon: HeartHandshake, color: '#F43F5E', note: 'Moda, Lifestyle & Cultura' },
+        { label: 'Reel Más Viral', val: '172,000+', icon: Film, color: '#F59E0B', note: 'Viral Discovery' }
       ]
     },
     en: {
@@ -23,14 +23,14 @@ export default function Hero({ lang }) {
       title: 'Ginger Boy',
       role: 'Creator, Public Figure & Tech Innovator',
       producerNote: 'Music Producer & Beatmaker at MYOOZ InC (GGB Beats)',
-      brandSubtitle: 'Official commercial media kit for Ginger Boy (@gingerboyofficial): lifestyle & travel creator, humanitarian tech developer, and producer behind the GGB Beats sonic system (@gingerboybeats).',
+      brandSubtitle: 'Official commercial media kit for Ginger Boy (@gingerboyofficial): European travel & urban lifestyle creator, humanitarian tech developer, and beatmaker behind GGB Beats (@gingerboybeats) and MYOOZ InC.',
       ctaPrimary: 'Explore Metrics',
       ctaSecondary: 'GGB Beats Music Wing',
       badges: [
-        { label: 'Total Followers', val: '23,250', icon: Users, color: '#E05328', note: '+6.3% in 90 days' },
-        { label: 'Total Impressions', val: '658,848', icon: Eye, color: '#D97706', note: '52.2% viral discovery' },
-        { label: 'Female Audience', val: '69.4%', icon: HeartHandshake, color: '#E11D48', note: 'Fashion, Lifestyle & Culture' },
-        { label: 'Profile Visits', val: '54,770', icon: MousePointer, color: '#7C3AED', note: '1,169 bio link clicks' }
+        { label: 'Profile Visits', val: '42,302', icon: Users, color: '#38BDF8', note: 'Official Meta Insights' },
+        { label: 'Bio Link Clicks', val: '1,114', icon: MousePointer, color: '#10B981', note: 'Direct web traffic' },
+        { label: 'Female Audience', val: '69.4%', icon: HeartHandshake, color: '#F43F5E', note: 'Fashion, Lifestyle & Culture' },
+        { label: 'Top Viral Reel', val: '172,000+', icon: Film, color: '#F59E0B', note: 'Viral Discovery' }
       ]
     }
   }[lang];
@@ -43,46 +43,35 @@ export default function Hero({ lang }) {
   return (
     <section id="hero" style={{
       paddingTop: '8.5rem',
-      paddingBottom: '4.5rem',
+      paddingBottom: '5rem',
       position: 'relative',
       overflow: 'hidden',
-      background: 'radial-gradient(ellipse at 78% 28%, rgba(255, 109, 0, 0.36) 0%, rgba(230, 81, 0, 0.2) 32%, rgba(191, 54, 12, 0.08) 65%, #FFF7F0 88%, #FFFFFF 100%)'
+      background: 'linear-gradient(90deg, #090D16 0%, rgba(9, 13, 22, 0.95) 42%, rgba(9, 13, 22, 0.68) 72%, rgba(9, 13, 22, 0.35) 100%), url("/images/gingerboy_pyrenees_hd.jpg") right 18% center / cover no-repeat',
+      color: '#FFFFFF'
     }}>
 
-      {/* Photography Studio Spotlight Ambient Beam */}
+      {/* Arctic Mountain Spotlight Ambient Beam */}
       <div style={{
         position: 'absolute',
-        top: '-15%',
-        right: '12%',
+        top: '-10%',
+        right: '15%',
         width: '650px',
         height: '650px',
         borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(255, 109, 0, 0.35) 0%, rgba(230, 81, 0, 0.16) 45%, transparent 70%)',
-        filter: 'blur(75px)',
+        background: 'radial-gradient(circle, rgba(56, 189, 248, 0.16) 0%, rgba(30, 58, 138, 0.08) 50%, transparent 75%)',
+        filter: 'blur(80px)',
         pointerEvents: 'none'
       }} />
 
-      {/* Static Background Model: Ginger Boy Standing in Studio Look */}
-      <div className="hero-static-model" style={{
+      {/* Subtle Cold Grid Overlay */}
+      <div style={{
         position: 'absolute',
-        right: '4%',
-        bottom: 0,
-        height: '92%',
-        maxHeight: '620px',
-        zIndex: 1,
+        inset: 0,
+        backgroundImage: 'radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px)',
+        backgroundSize: '32px 32px',
         pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'flex-end',
-        opacity: 0.94,
-        filter: 'drop-shadow(0 0 45px rgba(230, 81, 0, 0.45))',
-        transition: 'all 0.5s ease'
-      }}>
-        <img 
-          src="/images/gingerboy_model_standing.png" 
-          alt="Ginger Boy Static Background Model" 
-          style={{ height: '100%', width: 'auto', objectFit: 'contain' }}
-        />
-      </div>
+        opacity: 0.7
+      }} />
 
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
         <div style={{
@@ -94,125 +83,203 @@ export default function Hero({ lang }) {
           zIndex: 2
         }} className="hero-grid">
 
-          {/* Left Column: Text & Hierarchy */}
+          {/* Left Column: Urban Streetwear & Media Kit Hierarchy */}
           <div>
-            <div className="section-tag">
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              padding: '0.45rem 1.1rem',
+              background: 'rgba(56, 189, 248, 0.12)',
+              border: '1px solid rgba(56, 189, 248, 0.3)',
+              borderRadius: 'var(--radius-full)',
+              color: '#38BDF8',
+              fontSize: '0.8rem',
+              fontWeight: '800',
+              textTransform: 'uppercase',
+              letterSpacing: '0.08em',
+              marginBottom: '1.2rem',
+              backdropFilter: 'blur(10px)'
+            }}>
               <Sparkles size={14} />
-              {content.tag}
+              <span>{content.tag}</span>
             </div>
 
             <h1 style={{
-              fontSize: '3.4rem',
-              lineHeight: 1.1,
-              fontWeight: 800,
-              marginBottom: '0.4rem',
+              fontSize: '3.5rem',
+              lineHeight: 1.08,
+              fontWeight: 900,
+              marginBottom: '0.5rem',
               letterSpacing: '-0.03em',
-              color: 'var(--text-main)'
+              color: '#FFFFFF'
             }}>
               Ginger Boy <br />
-              <span className="gradient-text">{content.role}</span>
+              <span style={{
+                background: 'linear-gradient(135deg, #38BDF8 0%, #818CF8 50%, #F59E0B 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent'
+              }}>
+                {content.role}
+              </span>
             </h1>
 
             {/* Facets Badges */}
             <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', margin: '1rem 0 1.5rem 0' }}>
               <span style={{
-                background: '#F1F5F9',
-                color: 'var(--text-main)',
-                padding: '0.35rem 0.85rem',
+                background: 'rgba(255, 255, 255, 0.08)',
+                color: '#E2E8F0',
+                padding: '0.38rem 0.9rem',
                 borderRadius: 'var(--radius-full)',
                 fontSize: '0.82rem',
                 fontWeight: '700',
-                border: '1px solid var(--border-light)'
+                border: '1px solid rgba(255, 255, 255, 0.16)',
+                backdropFilter: 'blur(8px)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.4rem'
               }}>
+                <Users size={13} color="#38BDF8" />
                 @gingerboyofficial • Figura Pública
               </span>
               <span style={{
-                background: 'rgba(217, 119, 6, 0.1)',
-                color: '#D97706',
-                padding: '0.35rem 0.85rem',
+                background: 'rgba(56, 189, 248, 0.12)',
+                color: '#38BDF8',
+                padding: '0.38rem 0.9rem',
                 borderRadius: 'var(--radius-full)',
                 fontSize: '0.82rem',
                 fontWeight: '700',
-                border: '1px solid rgba(217, 119, 6, 0.25)',
+                border: '1px solid rgba(56, 189, 248, 0.3)',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.3rem'
+                gap: '0.35rem'
+              }}>
+                <MapPin size={13} />
+                Pyrenees, Europa • Viajes & Lifestyle
+              </span>
+              <span style={{
+                background: 'rgba(217, 119, 6, 0.15)',
+                color: '#FBBF24',
+                padding: '0.38rem 0.9rem',
+                borderRadius: 'var(--radius-full)',
+                fontSize: '0.82rem',
+                fontWeight: '700',
+                border: '1px solid rgba(217, 119, 6, 0.35)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.35rem'
               }}>
                 <Disc3 size={13} />
-                GGB Beats (@gingerboybeats) • MYOOZ InC
+                GGB Beats (@gingerboybeats) • Beatmaker
               </span>
             </div>
 
             <p style={{
-              fontSize: '1.15rem',
-              color: 'var(--text-muted)',
+              fontSize: '1.12rem',
+              color: '#94A3B8',
               marginBottom: '2rem',
               maxWidth: '560px',
               fontWeight: '400',
-              lineHeight: '1.6'
+              lineHeight: '1.65'
             }}>
               {content.brandSubtitle}
             </p>
 
             {/* CTAs */}
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '2.5rem' }}>
-              <button onClick={() => scrollTo('metrics')} className="btn-primary">
+              <button 
+                onClick={() => scrollTo('metrics')} 
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.6rem',
+                  background: 'linear-gradient(135deg, #0284C7 0%, #38BDF8 100%)',
+                  color: '#FFFFFF',
+                  fontWeight: '700',
+                  fontSize: '0.95rem',
+                  padding: '0.85rem 1.8rem',
+                  borderRadius: 'var(--radius-full)',
+                  border: 'none',
+                  cursor: 'pointer',
+                  boxShadow: '0 10px 25px rgba(2, 132, 199, 0.35)',
+                  transition: 'var(--transition-smooth)'
+                }}
+              >
                 <span>{content.ctaPrimary}</span>
                 <ArrowRight size={18} />
               </button>
-              <button onClick={() => scrollTo('ggb-beats')} className="btn-secondary" style={{ borderColor: '#D97706', color: '#D97706' }}>
+              <button 
+                onClick={() => scrollTo('ggb-beats')} 
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.6rem',
+                  background: 'rgba(15, 23, 42, 0.8)',
+                  color: '#FBBF24',
+                  fontWeight: '700',
+                  fontSize: '0.95rem',
+                  padding: '0.85rem 1.8rem',
+                  borderRadius: 'var(--radius-full)',
+                  border: '1px solid rgba(251, 191, 36, 0.35)',
+                  cursor: 'pointer',
+                  backdropFilter: 'blur(10px)',
+                  boxShadow: '0 4px 15px rgba(0,0,0,0.4)',
+                  transition: 'var(--transition-smooth)'
+                }}
+              >
                 <Disc3 size={16} />
                 <span>{content.ctaSecondary}</span>
               </button>
             </div>
 
-            {/* Trust Badge */}
+            {/* Trust Badge with Verified Meta Insights */}
             <div style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.6rem',
-              padding: '0.6rem 1.2rem',
-              background: '#FFFFFF',
-              border: '1px solid var(--border-light)',
+              padding: '0.65rem 1.3rem',
+              background: 'rgba(15, 23, 42, 0.75)',
+              border: '1px solid rgba(255, 255, 255, 0.12)',
               borderRadius: 'var(--radius-full)',
-              fontSize: '0.85rem',
-              color: 'var(--text-muted)',
-              boxShadow: 'var(--shadow-sm)'
+              fontSize: '0.84rem',
+              color: '#CBD5E1',
+              backdropFilter: 'blur(10px)',
+              boxShadow: '0 8px 25px rgba(0,0,0,0.3)'
             }}>
-              <ShieldCheck size={16} color="#10B981" />
-              <span>Estadísticas verificadas de los últimos 90 días (Meta Business Insights)</span>
+              <ShieldCheck size={16} color="#34D399" />
+              <span>Estadísticas verificadas oficiales (Meta Insights) • 42,302 Visitas | 1,114 Toques en Enlace</span>
             </div>
           </div>
 
-          {/* Right Column: High Resolution Official Brand & Urban Streetwear Showcase */}
+          {/* Right Column: High Resolution Urban & Travel Showcase (Pyrenees) */}
           <div style={{ position: 'relative' }}>
             
-            <div className="glass-card" style={{
+            <div style={{
               padding: '1.5rem',
               borderRadius: '28px',
-              border: '1px solid rgba(230, 81, 0, 0.25)',
-              boxShadow: '0 20px 45px rgba(230, 81, 0, 0.12), var(--shadow-lg)',
-              background: '#FFFFFF',
+              border: '1px solid rgba(56, 189, 248, 0.25)',
+              boxShadow: '0 25px 60px rgba(0, 0, 0, 0.65), 0 0 35px rgba(56, 189, 248, 0.1)',
+              background: 'rgba(15, 23, 42, 0.88)',
+              backdropFilter: 'blur(20px)',
               position: 'relative',
               textAlign: 'center',
               overflow: 'hidden'
             }}>
               
-              {/* Urban Editorial Photo Container */}
+              {/* Urban Travel Photo Container */}
               <div style={{
                 width: '100%',
-                height: '360px',
+                height: '380px',
                 borderRadius: '20px',
                 overflow: 'hidden',
                 position: 'relative',
-                background: 'linear-gradient(180deg, #E65100 0%, #D84315 100%)',
-                boxShadow: '0 12px 30px rgba(230, 81, 0, 0.25)',
+                background: '#0B1329',
+                boxShadow: '0 12px 30px rgba(0, 0, 0, 0.4)',
                 marginBottom: '1.2rem'
               }}>
                 <img 
-                  src="/images/ggb_orange_look_1.jpg" 
-                  alt="Ginger Boy • GGB Beats Streetwear Look Oficial" 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%' }}
+                  src="/images/gingerboy_pyrenees_hd.jpg" 
+                  alt="Ginger Boy • Travesía en los Pirineos" 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 30%' }}
                 />
 
                 {/* Overlaid Gradient for Contrast */}
@@ -221,90 +288,89 @@ export default function Hero({ lang }) {
                   bottom: 0,
                   left: 0,
                   right: 0,
-                  height: '120px',
-                  background: 'linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.4) 60%, transparent 100%)',
+                  height: '130px',
+                  background: 'linear-gradient(to top, rgba(9, 13, 22, 0.96) 0%, rgba(9, 13, 22, 0.4) 60%, transparent 100%)',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'flex-end',
                   padding: '1.2rem',
                   textAlign: 'left'
                 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#FCD34D', fontSize: '0.72rem', fontWeight: '800', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-                    <Sparkles size={13} />
-                    <span>GGB BEATS • STREETWEAR LOOK OFICIAL</span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#38BDF8', fontSize: '0.72rem', fontWeight: '800', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                    <MapPin size={13} />
+                    <span>PIRINEOS • LIFESTYLE & VIAJES OFICIAL</span>
                   </div>
-                  <div style={{ color: '#FFFFFF', fontSize: '1.15rem', fontWeight: '800' }}>
-                    Gorra Pana GGB Beats & Estudio
+                  <div style={{ color: '#FFFFFF', fontSize: '1.2rem', fontWeight: '800' }}>
+                    Ginger Boy en los Pirineos
                   </div>
-                  <div style={{ color: '#CBD5E1', fontSize: '0.78rem', marginTop: '0.15rem' }}>
-                    Fotografía original en set naranja • MYOOZ InC
+                  <div style={{ color: '#94A3B8', fontSize: '0.78rem', marginTop: '0.15rem' }}>
+                    Fotografía original en alta definición • @gingerboyofficial
                   </div>
                 </div>
 
-                {/* Floating GGB Beats Circular Emblem Badge */}
+                {/* Floating Location Badge */}
                 <div style={{
                   position: 'absolute',
                   top: '1rem',
                   left: '1rem',
-                  width: '46px',
-                  height: '46px',
-                  borderRadius: '50%',
-                  overflow: 'hidden',
-                  background: '#0F172A',
-                  border: '2px solid #FFFFFF',
-                  boxShadow: '0 4px 15px rgba(0,0,0,0.35)',
+                  background: 'rgba(9, 13, 22, 0.85)',
+                  backdropFilter: 'blur(8px)',
+                  color: '#38BDF8',
+                  fontSize: '0.7rem',
+                  fontWeight: '800',
+                  padding: '0.3rem 0.75rem',
+                  borderRadius: 'var(--radius-full)',
+                  border: '1px solid rgba(56, 189, 248, 0.35)',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center'
+                  gap: '0.3rem'
                 }}>
-                  <img 
-                    src="/images/ggbbeats-logo-circle.png" 
-                    alt="GGB Beats Official" 
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
+                  <MapPin size={12} />
+                  <span>Pyrenees, Europa</span>
                 </div>
 
-                {/* Micro Tag Top Right */}
+                {/* Verified Creator Badge Top Right */}
                 <div style={{
                   position: 'absolute',
                   top: '1rem',
                   right: '1rem',
-                  background: 'rgba(15, 23, 42, 0.85)',
+                  background: 'rgba(9, 13, 22, 0.85)',
                   backdropFilter: 'blur(8px)',
-                  color: '#FFF',
+                  color: '#FFFFFF',
                   fontSize: '0.68rem',
                   fontWeight: '800',
-                  padding: '0.25rem 0.65rem',
+                  padding: '0.3rem 0.7rem',
                   borderRadius: 'var(--radius-full)',
                   border: '1px solid rgba(255, 255, 255, 0.2)'
                 }}>
-                  SET NARANJA OFICIAL
+                  VERIFIED CREATOR
                 </div>
               </div>
 
               <div style={{
                 display: 'inline-block',
-                background: 'rgba(230, 81, 0, 0.1)',
-                color: '#E65100',
-                padding: '0.25rem 0.85rem',
+                background: 'rgba(56, 189, 248, 0.12)',
+                color: '#38BDF8',
+                padding: '0.3rem 0.95rem',
                 borderRadius: 'var(--radius-full)',
                 fontSize: '0.74rem',
                 fontWeight: '800',
                 letterSpacing: '0.08em',
-                marginBottom: '0.4rem'
+                marginBottom: '0.4rem',
+                border: '1px solid rgba(56, 189, 248, 0.25)'
               }}>
-                FIGURA PÚBLICA & PRODUCTOR MUSICAL
+                FIGURA PÚBLICA & TECH INNOVATOR
               </div>
 
-              <h2 style={{ fontSize: '1.6rem', color: 'var(--text-main)', marginBottom: '0.2rem' }}>
+              <h2 style={{ fontSize: '1.65rem', color: '#FFFFFF', marginBottom: '0.2rem', fontWeight: '800' }}>
                 Ginger Boy
               </h2>
 
-              <p style={{ fontSize: '0.9rem', color: '#D97706', fontWeight: '700', marginBottom: '1rem' }}>
-                @gingerboyofficial • @gingerboybeats
+              <p style={{ fontSize: '0.9rem', color: '#38BDF8', fontWeight: '700', marginBottom: '1rem' }}>
+                @gingerboyofficial • Pyrenees
               </p>
 
-              {/* Highlight Stats Row (Clean In-Flow Grid, Zero Overlapping) */}
+              {/* Highlight Stats Row (Verified Insights) */}
               <div style={{
                 display: 'grid',
                 gridTemplateColumns: '1fr 1fr',
@@ -312,61 +378,60 @@ export default function Hero({ lang }) {
                 margin: '0.6rem 0 1rem 0'
               }}>
                 <div style={{
-                  background: 'rgba(224, 83, 40, 0.07)',
-                  border: '1px solid rgba(224, 83, 40, 0.2)',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
                   borderRadius: '16px',
-                  padding: '0.75rem 0.85rem',
+                  padding: '0.8rem 0.85rem',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.65rem',
                   textAlign: 'left'
                 }}>
                   <div style={{
-                    background: '#FFFFFF',
-                    padding: '0.45rem',
+                    background: 'rgba(56, 189, 248, 0.15)',
+                    padding: '0.5rem',
                     borderRadius: '50%',
-                    color: 'var(--ginger-primary)',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.06)'
+                    color: '#38BDF8'
                   }}>
                     <Users size={17} />
                   </div>
                   <div>
-                    <div style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-main)', lineHeight: 1.1 }}>23.2K</div>
-                    <div style={{ fontSize: '0.7rem', color: '#10B981', fontWeight: '700' }}>+6.3% Crecimiento</div>
+                    <div style={{ fontSize: '1.1rem', fontWeight: '800', color: '#FFFFFF', lineHeight: 1.1 }}>42,302</div>
+                    <div style={{ fontSize: '0.7rem', color: '#38BDF8', fontWeight: '700' }}>Visitas al Perfil</div>
                   </div>
                 </div>
 
                 <div style={{
-                  background: 'rgba(217, 119, 6, 0.08)',
-                  border: '1px solid rgba(217, 119, 6, 0.2)',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
                   borderRadius: '16px',
-                  padding: '0.75rem 0.85rem',
+                  padding: '0.8rem 0.85rem',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.65rem',
                   textAlign: 'left'
                 }}>
                   <div style={{
-                    background: '#FFFFFF',
-                    padding: '0.45rem',
+                    background: 'rgba(16, 185, 129, 0.15)',
+                    padding: '0.5rem',
                     borderRadius: '50%',
-                    color: 'var(--gold-accent)',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.06)'
+                    color: '#34D399'
                   }}>
-                    <Eye size={17} />
+                    <MousePointer size={17} />
                   </div>
                   <div>
-                    <div style={{ fontSize: '1.05rem', fontWeight: '800', color: 'var(--text-main)', lineHeight: 1.1 }}>658,848</div>
-                    <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: '600' }}>Vistas Totales</div>
+                    <div style={{ fontSize: '1.1rem', fontWeight: '800', color: '#FFFFFF', lineHeight: 1.1 }}>1,114</div>
+                    <div style={{ fontSize: '0.7rem', color: '#34D399', fontWeight: '700' }}>Clics en Enlace</div>
                   </div>
                 </div>
               </div>
 
+              {/* Bottom Card Summary */}
               <div style={{
-                background: '#F8FAFC',
+                background: 'rgba(9, 13, 22, 0.75)',
                 borderRadius: '16px',
                 padding: '0.9rem 1rem',
-                border: '1px solid var(--border-light)',
+                border: '1px solid rgba(255, 255, 255, 0.08)',
                 display: 'grid',
                 gridTemplateColumns: '1fr 1fr',
                 gap: '0.8rem',
@@ -374,14 +439,12 @@ export default function Hero({ lang }) {
                 fontSize: '0.82rem'
               }}>
                 <div>
-                  <span style={{ color: 'var(--text-muted)', display: 'block' }}>Sello Discográfico:</span>
-                  <a href="https://myoozinc.com" target="_blank" rel="noopener noreferrer" style={{ fontWeight: '700', color: 'var(--text-main)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.2rem' }}>
-                    MYOOZ InC <ExternalLink size={11} />
-                  </a>
+                  <span style={{ color: '#94A3B8', display: 'block' }}>Reel Más Viral:</span>
+                  <strong style={{ color: '#F59E0B', fontWeight: '800' }}>172K+ Reproducciones</strong>
                 </div>
                 <div>
-                  <span style={{ color: 'var(--text-muted)', display: 'block' }}>Audiencia Core:</span>
-                  <strong style={{ color: '#E65100' }}>69.4% Femenina</strong>
+                  <span style={{ color: '#94A3B8', display: 'block' }}>Audiencia Core:</span>
+                  <strong style={{ color: '#F43F5E', fontWeight: '800' }}>69.4% Femenina</strong>
                 </div>
               </div>
 
@@ -391,24 +454,29 @@ export default function Hero({ lang }) {
 
         </div>
 
-        {/* 4 Core Stat Cards */}
+        {/* 4 Core Stat Cards with Dark Urban Aesthetic */}
         <div className="grid-4" style={{ marginTop: '4.5rem' }}>
           {content.badges.map((b, i) => {
             const IconComp = b.icon;
             return (
-              <div key={i} className="glass-card" style={{
+              <div key={i} style={{
                 padding: '1.4rem',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '1rem',
-                background: '#FFFFFF'
+                background: 'rgba(15, 23, 42, 0.82)',
+                backdropFilter: 'blur(16px)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                borderRadius: 'var(--radius-lg)',
+                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.4)',
+                transition: 'var(--transition-smooth)'
               }}>
                 <div style={{
                   width: '46px',
                   height: '46px',
                   borderRadius: '12px',
-                  background: `${b.color}12`,
-                  border: `1px solid ${b.color}30`,
+                  background: `${b.color}18`,
+                  border: `1px solid ${b.color}40`,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -418,10 +486,10 @@ export default function Hero({ lang }) {
                   <IconComp size={22} />
                 </div>
                 <div>
-                  <div style={{ fontSize: '1.4rem', fontWeight: '800', color: 'var(--text-main)', lineHeight: 1.1 }}>
+                  <div style={{ fontSize: '1.45rem', fontWeight: '900', color: '#FFFFFF', lineHeight: 1.1 }}>
                     {b.val}
                   </div>
-                  <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
+                  <div style={{ fontSize: '0.82rem', color: '#94A3B8', marginTop: '0.2rem' }}>
                     {b.label}
                   </div>
                   <div style={{ fontSize: '0.72rem', color: b.color, fontWeight: '700', marginTop: '0.1rem' }}>
@@ -438,12 +506,6 @@ export default function Hero({ lang }) {
       <style>{`
         @media (max-width: 960px) {
           .hero-grid { grid-template-columns: 1fr !important; }
-          .hero-static-model {
-            opacity: 0.2 !important;
-            right: 50% !important;
-            transform: translateX(50%) !important;
-            max-height: 480px !important;
-          }
         }
       `}</style>
     </section>

@@ -4,6 +4,16 @@ import { Camera, Upload, Check, Maximize2, Disc3, Sparkles, Filter, ShieldCheck 
 const HIGH_RES_GALLERY = [
   {
     id: 1,
+    title: 'Ginger Boy • Travesía en los Pirineos (Pyrenees, Europa)',
+    category: 'Viajes & Estilo de Vida',
+    tag: 'Travel & Urban Flow',
+    url: '/images/gingerboy_pyrenees_hd.jpg',
+    badge: 'Pirineos Oficial',
+    fit: 'cover',
+    bg: '#090D16'
+  },
+  {
+    id: 2,
     title: 'Ginger Boy • Sesión GGB Beats Cap (Set Naranja)',
     category: 'Streetwear & Merch',
     tag: 'Lookbook Oficial',
@@ -13,7 +23,7 @@ const HIGH_RES_GALLERY = [
     bg: '#E65100'
   },
   {
-    id: 2,
+    id: 3,
     title: 'GGB Beats Corduroy Cap • Detalle Bordado en Relieve',
     category: 'Streetwear & Merch',
     tag: 'Prenda Oficial',
@@ -23,7 +33,7 @@ const HIGH_RES_GALLERY = [
     bg: '#D84315'
   },
   {
-    id: 3,
+    id: 4,
     title: 'Ginger Boy • Perspectiva Urbana GGB Beats',
     category: 'GGB Beats & Studio',
     tag: 'Estilo & Beatmaking',
@@ -33,7 +43,7 @@ const HIGH_RES_GALLERY = [
     bg: '#E65100'
   },
   {
-    id: 4,
+    id: 5,
     title: 'GGB Beats • Emblema Oficial (1080x1080)',
     category: 'GGB Beats & Studio',
     tag: 'Sonic Identity',
@@ -137,11 +147,11 @@ const HIGH_RES_GALLERY = [
 export default function PhotoGallery({ lang }) {
   const [photos, setPhotos] = useState(() => {
     // Purge any legacy cached versions containing old/generic placeholders
-    ['ginger_gallery_photos', 'ginger_gallery_photos_v2', 'ginger_gallery_photos_v3', 'ginger_gallery_photos_v4', 'ginger_gallery_photos_v5'].forEach(k => {
+    ['ginger_gallery_photos', 'ginger_gallery_photos_v2', 'ginger_gallery_photos_v3', 'ginger_gallery_photos_v4', 'ginger_gallery_photos_v5', 'ginger_gallery_photos_v6'].forEach(k => {
       try { localStorage.removeItem(k); } catch (e) {}
     });
     try {
-      const saved = localStorage.getItem('ginger_gallery_photos_v6');
+      const saved = localStorage.getItem('ginger_gallery_photos_v7');
       if (saved) {
         const parsed = JSON.parse(saved);
         if (parsed.length > 0) return parsed;
@@ -155,7 +165,7 @@ export default function PhotoGallery({ lang }) {
 
   useEffect(() => {
     try {
-      localStorage.setItem('ginger_gallery_photos_v6', JSON.stringify(photos));
+      localStorage.setItem('ginger_gallery_photos_v7', JSON.stringify(photos));
     } catch (e) {}
   }, [photos]);
 
@@ -180,7 +190,7 @@ export default function PhotoGallery({ lang }) {
 
   const handleReset = () => {
     setPhotos(HIGH_RES_GALLERY);
-    ['ginger_gallery_photos', 'ginger_gallery_photos_v2', 'ginger_gallery_photos_v3', 'ginger_gallery_photos_v4', 'ginger_gallery_photos_v5', 'ginger_gallery_photos_v6'].forEach(k => {
+    ['ginger_gallery_photos', 'ginger_gallery_photos_v2', 'ginger_gallery_photos_v3', 'ginger_gallery_photos_v4', 'ginger_gallery_photos_v5', 'ginger_gallery_photos_v6', 'ginger_gallery_photos_v7'].forEach(k => {
       try { localStorage.removeItem(k); } catch (e) {}
     });
   };
@@ -192,9 +202,10 @@ export default function PhotoGallery({ lang }) {
   const content = {
     es: {
       tag: 'LOOKBOOK FOTOGRÁFICO DE ALTA RESOLUCIÓN',
-      title: 'Catálogo Visual Oficial: GGB Beats, Streetwear & Apps',
-      subtitle: 'Imágenes nítidas y elementos de branding de alta fidelidad que representan el sistema completo de Ginger Boy: producciones de audio, moda urbana y plataformas humanitarias.',
+      title: 'Catálogo Visual Oficial: Viajes, GGB Beats, Streetwear & Apps',
+      subtitle: 'Imágenes nítidas y elementos de branding de alta fidelidad que representan el sistema completo de Ginger Boy: travesías internacionales, producciones de audio, moda urbana y plataformas humanitarias.',
       filterAll: 'Todas las Imágenes',
+      filterTravel: 'Viajes & Estilo de Vida',
       filterStudio: 'GGB Beats & Studio',
       filterMerch: 'Streetwear & Merch',
       filterApps: 'Apps & Ayuda Humanitaria',
@@ -204,9 +215,10 @@ export default function PhotoGallery({ lang }) {
     },
     en: {
       tag: 'HIGH-RESOLUTION VISUAL LOOKBOOK',
-      title: 'Official Visual Catalog: GGB Beats, Streetwear & Apps',
-      subtitle: 'Crisp, high-fidelity branding assets showcasing the complete Ginger Boy system: music studio productions, streetwear apparel drops, and humanitarian platforms.',
+      title: 'Official Visual Catalog: Travel, GGB Beats, Streetwear & Apps',
+      subtitle: 'Crisp, high-fidelity branding assets showcasing the complete Ginger Boy system: European travels, music studio productions, streetwear apparel drops, and humanitarian platforms.',
       filterAll: 'All Images',
+      filterTravel: 'Travel & Lifestyle',
       filterStudio: 'GGB Beats & Studio',
       filterMerch: 'Streetwear & Merch',
       filterApps: 'Apps & Humanitarian Tech',
@@ -219,7 +231,7 @@ export default function PhotoGallery({ lang }) {
   return (
     <section id="gallery" style={{
       padding: '6rem 0',
-      background: 'radial-gradient(ellipse at 50% 10%, rgba(255, 109, 0, 0.12) 0%, rgba(230, 81, 0, 0.04) 35%, #F8FAFC 70%)',
+      background: 'radial-gradient(ellipse at 50% 10%, rgba(56, 189, 248, 0.08) 0%, rgba(15, 23, 42, 0.03) 35%, #F8FAFC 70%)',
       position: 'relative',
       overflow: 'hidden'
     }}>
@@ -243,6 +255,7 @@ export default function PhotoGallery({ lang }) {
         <div style={{ display: 'flex', justifyContent: 'center', gap: '0.6rem', marginBottom: '3rem', flexWrap: 'wrap' }}>
           {[
             { id: 'All', label: content.filterAll },
+            { id: 'Viajes & Estilo de Vida', label: content.filterTravel },
             { id: 'GGB Beats & Studio', label: content.filterStudio },
             { id: 'Streetwear & Merch', label: content.filterMerch },
             { id: 'Apps & Ayuda Humanitaria', label: content.filterApps }
