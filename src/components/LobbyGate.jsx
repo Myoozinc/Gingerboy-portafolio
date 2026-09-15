@@ -252,7 +252,7 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
             style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%', display: 'block' }}
           />
 
-          {/* Interactive Awake Eyes SVG Layer */}
+          {/* Interactive Awake Eyes SVG Layer — original cartoon style from logo */}
           <svg
             viewBox="0 0 1080 1080"
             style={{
@@ -266,71 +266,139 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
             }}
           >
             <defs>
+              {/* Almond clip paths matching the actual logo eye shape */}
               <clipPath id="leftEyeClip">
-                <ellipse cx="350" cy="622" rx="58" ry="26" />
+                <path d="M 293 618 C 307 600 336 594 352 594 C 368 594 397 600 411 618 C 397 633 368 638 352 638 C 336 638 307 633 293 618 Z" />
               </clipPath>
               <clipPath id="rightEyeClip">
-                <ellipse cx="730" cy="622" rx="58" ry="26" />
+                <path d="M 670 618 C 684 600 713 594 729 594 C 745 594 774 600 788 618 C 774 633 745 638 729 638 C 713 638 684 633 670 618 Z" />
               </clipPath>
-              <radialGradient id="irisGrad" cx="38%" cy="32%" r="68%">
-                <stop offset="0%" stopColor="#FFA726" />
-                <stop offset="40%" stopColor="#E65100" />
-                <stop offset="100%" stopColor="#871C00" />
+              {/* Dark reddish-brown iris — authentic to the original illustration */}
+              <radialGradient id="irisGrad" cx="40%" cy="35%" r="65%">
+                <stop offset="0%" stopColor="#B03A1A" />
+                <stop offset="50%" stopColor="#6B1C08" />
+                <stop offset="100%" stopColor="#350802" />
+              </radialGradient>
+              {/* Warm orange ambient glow around eyes when awake */}
+              <radialGradient id="eyeGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="rgba(255,109,0,0.22)" />
+                <stop offset="100%" stopColor="rgba(255,109,0,0)" />
               </radialGradient>
             </defs>
 
-            {/* Left Eye Group */}
+            {/* ─── LEFT EYE ─── */}
             <g style={{
-              transformOrigin: '350px 622px',
+              transformOrigin: '352px 616px',
               transform: `scaleY(${isAwake && !isBlinking ? 1 : 0})`,
               opacity: isAwake && !isBlinking ? 1 : 0,
-              transition: 'transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease'
+              transition: 'transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.22s ease'
             }}>
-              <ellipse cx="350" cy="622" rx="58" ry="26" fill="#FCFCFC" stroke="#9A4315" strokeWidth="3.5" />
-              <ellipse cx="350" cy="616" rx="57" ry="22" fill="rgba(195, 190, 205, 0.3)" />
+              {/* Eye white — warm off-white sliver, visible below heavy lid */}
+              <path
+                d="M 293 618 C 307 600 336 594 352 594 C 368 594 397 600 411 618 C 397 633 368 638 352 638 C 336 638 307 633 293 618 Z"
+                fill="#EFE8DE"
+              />
 
+              {/* Iris + Pupil with cursor tracking */}
               <g clipPath="url(#leftEyeClip)">
                 <g style={{
-                  transform: `translate(${pupilOffset.x}px, ${pupilOffset.y}px)`,
-                  transition: 'transform 0.08s ease-out'
+                  transform: `translate(${pupilOffset.x}px, ${pupilOffset.y * 0.55}px)`,
+                  transition: 'transform 0.1s ease-out'
                 }}>
-                  <circle cx="350" cy="622" r="23" fill="url(#irisGrad)" stroke="#741600" strokeWidth="2" />
-                  <circle cx="350" cy="622" r="15" fill="none" stroke="#FFCC80" strokeWidth="1.2" opacity="0.65" />
-                  <circle cx="350" cy="622" r="9.5" fill="#140602" />
-                  <ellipse cx="343" cy="615" rx="4.5" ry="3.5" fill="#FFFFFF" />
-                  <circle cx="356" cy="627" r="2" fill="rgba(255, 255, 255, 0.9)" />
+                  {/* Iris */}
+                  <circle cx="352" cy="616" r="20" fill="url(#irisGrad)" />
+                  {/* Pupil */}
+                  <circle cx="352" cy="616" r="10.5" fill="#1C0604" />
+                  {/* Specular highlight — signature white dot top-left */}
+                  <ellipse cx="345" cy="608" rx="4.5" ry="3.2" fill="#FFFFFF" opacity="0.95" />
+                  {/* Micro secondary glint */}
+                  <circle cx="357" cy="623" r="1.8" fill="rgba(255,255,255,0.65)" />
                 </g>
               </g>
 
-              <path d="M 292 622 Q 350 594 408 622" fill="none" stroke="#9A4315" strokeWidth="5.5" strokeLinecap="round" />
-              <path d="M 295 622 Q 350 648 405 622" fill="none" stroke="#9A4315" strokeWidth="3" strokeLinecap="round" />
+              {/* Heavy droopy upper eyelid — the main character of the original eye */}
+              <path
+                d="M 291 617 C 306 592 337 587 352 587 C 367 587 398 592 413 617"
+                fill="none"
+                stroke="#5C1D08"
+                strokeWidth="8"
+                strokeLinecap="round"
+              />
+              {/* Upper lid inner shadow for depth */}
+              <path
+                d="M 296 617 C 310 596 337 591 352 591 C 367 591 394 596 408 617"
+                fill="none"
+                stroke="#2E0A02"
+                strokeWidth="4"
+                strokeLinecap="round"
+                opacity="0.5"
+              />
+              {/* Lower lid — gentle natural curve */}
+              <path
+                d="M 295 620 C 310 635 337 640 352 640 C 367 640 394 635 409 620"
+                fill="none"
+                stroke="#5C1D08"
+                strokeWidth="5"
+                strokeLinecap="round"
+              />
+              {/* Orange warm glow halo when awake */}
+              <ellipse cx="352" cy="616" rx="34" ry="18" fill="url(#eyeGlow)" />
             </g>
 
-            {/* Right Eye Group */}
+            {/* ─── RIGHT EYE ─── */}
             <g style={{
-              transformOrigin: '730px 622px',
+              transformOrigin: '729px 616px',
               transform: `scaleY(${isAwake && !isBlinking ? 1 : 0})`,
               opacity: isAwake && !isBlinking ? 1 : 0,
-              transition: 'transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease'
+              transition: 'transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.22s ease'
             }}>
-              <ellipse cx="730" cy="622" rx="58" ry="26" fill="#FCFCFC" stroke="#9A4315" strokeWidth="3.5" />
-              <ellipse cx="730" cy="616" rx="57" ry="22" fill="rgba(195, 190, 205, 0.3)" />
+              {/* Eye white */}
+              <path
+                d="M 670 618 C 684 600 713 594 729 594 C 745 594 774 600 788 618 C 774 633 745 638 729 638 C 713 638 684 633 670 618 Z"
+                fill="#EFE8DE"
+              />
 
+              {/* Iris + Pupil with cursor tracking */}
               <g clipPath="url(#rightEyeClip)">
                 <g style={{
-                  transform: `translate(${pupilOffset.x}px, ${pupilOffset.y}px)`,
-                  transition: 'transform 0.08s ease-out'
+                  transform: `translate(${pupilOffset.x}px, ${pupilOffset.y * 0.55}px)`,
+                  transition: 'transform 0.1s ease-out'
                 }}>
-                  <circle cx="730" cy="622" r="23" fill="url(#irisGrad)" stroke="#741600" strokeWidth="2" />
-                  <circle cx="730" cy="622" r="15" fill="none" stroke="#FFCC80" strokeWidth="1.2" opacity="0.65" />
-                  <circle cx="730" cy="622" r="9.5" fill="#140602" />
-                  <ellipse cx="723" cy="615" rx="4.5" ry="3.5" fill="#FFFFFF" />
-                  <circle cx="736" cy="627" r="2" fill="rgba(255, 255, 255, 0.9)" />
+                  <circle cx="729" cy="616" r="20" fill="url(#irisGrad)" />
+                  <circle cx="729" cy="616" r="10.5" fill="#1C0604" />
+                  {/* Specular highlight */}
+                  <ellipse cx="722" cy="608" rx="4.5" ry="3.2" fill="#FFFFFF" opacity="0.95" />
+                  <circle cx="734" cy="623" r="1.8" fill="rgba(255,255,255,0.65)" />
                 </g>
               </g>
 
-              <path d="M 672 622 Q 730 594 788 622" fill="none" stroke="#9A4315" strokeWidth="5.5" strokeLinecap="round" />
-              <path d="M 675 622 Q 730 648 785 622" fill="none" stroke="#9A4315" strokeWidth="3" strokeLinecap="round" />
+              {/* Heavy droopy upper eyelid */}
+              <path
+                d="M 668 617 C 683 592 714 587 729 587 C 744 587 775 592 790 617"
+                fill="none"
+                stroke="#5C1D08"
+                strokeWidth="8"
+                strokeLinecap="round"
+              />
+              {/* Upper lid inner shadow */}
+              <path
+                d="M 673 617 C 687 596 714 591 729 591 C 744 591 771 596 785 617"
+                fill="none"
+                stroke="#2E0A02"
+                strokeWidth="4"
+                strokeLinecap="round"
+                opacity="0.5"
+              />
+              {/* Lower lid */}
+              <path
+                d="M 672 620 C 687 635 714 640 729 640 C 744 640 771 635 786 620"
+                fill="none"
+                stroke="#5C1D08"
+                strokeWidth="5"
+                strokeLinecap="round"
+              />
+              {/* Orange warm glow halo */}
+              <ellipse cx="729" cy="616" rx="34" ry="18" fill="url(#eyeGlow)" />
             </g>
           </svg>
 
