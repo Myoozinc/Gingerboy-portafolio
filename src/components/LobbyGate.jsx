@@ -32,13 +32,12 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
         const deltaY = e.clientY - emblemCenterY;
 
         // In 1080x1080 coordinate space:
-        // Eye socket rx=58, iris r=23 -> max pupil travel X is ~26px
-        // Eye socket ry=26, iris r=23 -> max pupil travel Y is ~10px
+        // Anime eye socket with large iris: max travel X is ~22px, Y is ~13px
         const maxDistX = Math.max(window.innerWidth / 2, 300);
         const maxDistY = Math.max(window.innerHeight / 2, 300);
 
-        const clampedX = Math.min(Math.max((deltaX / maxDistX) * 26, -24), 24);
-        const clampedY = Math.min(Math.max((deltaY / maxDistY) * 11, -9), 9);
+        const clampedX = Math.min(Math.max((deltaX / maxDistX) * 22, -20), 20);
+        const clampedY = Math.min(Math.max((deltaY / maxDistY) * 14, -12), 12);
 
         setPupilOffset({ x: clampedX, y: clampedY });
       }
@@ -252,7 +251,7 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
             style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%', display: 'block' }}
           />
 
-          {/* Interactive Awake Eyes SVG Layer — original cartoon style from logo */}
+          {/* Interactive Awake Eyes SVG Layer — Big Innocent Anime Style matching original video */}
           <svg
             viewBox="0 0 1080 1080"
             style={{
@@ -266,139 +265,148 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
             }}
           >
             <defs>
-              {/* Almond clip paths matching the actual logo eye shape */}
+              {/* Big, expressive anime eye socket clip paths */}
               <clipPath id="leftEyeClip">
-                <path d="M 293 618 C 307 600 336 594 352 594 C 368 594 397 600 411 618 C 397 633 368 638 352 638 C 336 638 307 633 293 618 Z" />
+                <path d="M 272 622 C 288 586 312 576 335 582 C 355 565 385 558 405 572 C 420 584 426 612 426 630 C 405 644 375 648 348 648 C 315 648 290 640 272 622 Z" />
               </clipPath>
               <clipPath id="rightEyeClip">
-                <path d="M 670 618 C 684 600 713 594 729 594 C 745 594 774 600 788 618 C 774 633 745 638 729 638 C 713 638 684 633 670 618 Z" />
+                <path d="M 654 630 C 665 584 688 558 720 558 C 748 558 775 572 808 622 C 790 640 765 648 732 648 C 705 648 675 644 654 630 Z" />
               </clipPath>
-              {/* Dark reddish-brown iris — authentic to the original illustration */}
-              <radialGradient id="irisGrad" cx="40%" cy="35%" r="65%">
-                <stop offset="0%" stopColor="#B03A1A" />
-                <stop offset="50%" stopColor="#6B1C08" />
-                <stop offset="100%" stopColor="#350802" />
+
+              {/* Deep, warm chocolate anime iris gradient */}
+              <radialGradient id="irisGrad" cx="42%" cy="38%" r="65%">
+                <stop offset="0%" stopColor="#4D1A0D" />
+                <stop offset="45%" stopColor="#2A0B04" />
+                <stop offset="100%" stopColor="#0E0301" />
               </radialGradient>
-              {/* Warm orange ambient glow around eyes when awake */}
+
+              {/* Warm orange studio glow around eyes when awake */}
               <radialGradient id="eyeGlow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="rgba(255,109,0,0.22)" />
-                <stop offset="100%" stopColor="rgba(255,109,0,0)" />
+                <stop offset="0%" stopColor="rgba(255, 109, 0, 0.28)" />
+                <stop offset="100%" stopColor="rgba(255, 109, 0, 0)" />
               </radialGradient>
             </defs>
 
-            {/* ─── LEFT EYE ─── */}
+            {/* ─── LEFT EYE (Viewer's Left) ─── */}
             <g style={{
-              transformOrigin: '352px 616px',
+              transformOrigin: '348px 644px',
               transform: `scaleY(${isAwake && !isBlinking ? 1 : 0})`,
               opacity: isAwake && !isBlinking ? 1 : 0,
-              transition: 'transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.22s ease'
+              transition: 'transform 0.34s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.22s ease'
             }}>
-              {/* Eye white — warm off-white sliver, visible below heavy lid */}
+              {/* Warm studio glow aura */}
+              <ellipse cx="350" cy="605" rx="85" ry="55" fill="url(#eyeGlow)" />
+
+              {/* Sclera (Eye White) — Wide open innocent anime eye */}
               <path
-                d="M 293 618 C 307 600 336 594 352 594 C 368 594 397 600 411 618 C 397 633 368 638 352 638 C 336 638 307 633 293 618 Z"
-                fill="#EFE8DE"
+                d="M 272 622 C 288 586 312 576 335 582 C 355 565 385 558 405 572 C 420 584 426 612 426 630 C 405 644 375 648 348 648 C 315 648 290 640 272 622 Z"
+                fill="#FCFAF8"
               />
 
-              {/* Iris + Pupil with cursor tracking */}
+              {/* Large Dark Iris + Innocent Anime Highlights (Tracks cursor) */}
               <g clipPath="url(#leftEyeClip)">
                 <g style={{
-                  transform: `translate(${pupilOffset.x}px, ${pupilOffset.y * 0.55}px)`,
+                  transform: `translate(${pupilOffset.x}px, ${pupilOffset.y}px)`,
                   transition: 'transform 0.1s ease-out'
                 }}>
-                  {/* Iris */}
-                  <circle cx="352" cy="616" r="20" fill="url(#irisGrad)" />
-                  {/* Pupil */}
-                  <circle cx="352" cy="616" r="10.5" fill="#1C0604" />
-                  {/* Specular highlight — signature white dot top-left */}
-                  <ellipse cx="345" cy="608" rx="4.5" ry="3.2" fill="#FFFFFF" opacity="0.95" />
-                  {/* Micro secondary glint */}
-                  <circle cx="357" cy="623" r="1.8" fill="rgba(255,255,255,0.65)" />
+                  {/* Big expressive iris */}
+                  <circle cx="354" cy="605" r="44" fill="url(#irisGrad)" />
+                  {/* Subtle pupil depth */}
+                  <circle cx="354" cy="605" r="22" fill="#0C0301" />
+                  {/* Big Innocent Anime Glint (Bottom-Right) */}
+                  <circle cx="378" cy="625" r="11" fill="#FFFFFF" />
+                  {/* Secondary subtle anime micro-glint (Top-Left) */}
+                  <circle cx="336" cy="588" r="4" fill="#FFFFFF" opacity="0.75" />
                 </g>
               </g>
 
-              {/* Heavy droopy upper eyelid — the main character of the original eye */}
+              {/* Bottom Eyelid — Gentle innocent curve that covers sleeping line */}
               <path
-                d="M 291 617 C 306 592 337 587 352 587 C 367 587 398 592 413 617"
+                d="M 270 622 Q 348 650 426 630"
                 fill="none"
-                stroke="#5C1D08"
+                stroke="#7D230D"
                 strokeWidth="8"
                 strokeLinecap="round"
               />
-              {/* Upper lid inner shadow for depth */}
+
+              {/* Upper Eyelid / Lash Contour — Smooth curved arch */}
               <path
-                d="M 296 617 C 310 596 337 591 352 591 C 367 591 394 596 408 617"
+                d="M 270 622 C 288 586 312 576 335 582 C 355 565 385 558 405 572 C 420 584 426 630 426 630"
                 fill="none"
-                stroke="#2E0A02"
-                strokeWidth="4"
-                strokeLinecap="round"
-                opacity="0.5"
-              />
-              {/* Lower lid — gentle natural curve */}
-              <path
-                d="M 295 620 C 310 635 337 640 352 640 C 367 640 394 635 409 620"
-                fill="none"
-                stroke="#5C1D08"
-                strokeWidth="5"
+                stroke="#681907"
+                strokeWidth="8.5"
                 strokeLinecap="round"
               />
-              {/* Orange warm glow halo when awake */}
-              <ellipse cx="352" cy="616" rx="34" ry="18" fill="url(#eyeGlow)" />
+
+              {/* Outer corner eyelash accent */}
+              <path
+                d="M 270 622 C 260 612 258 596 266 586"
+                fill="none"
+                stroke="#7D230D"
+                strokeWidth="4.5"
+                strokeLinecap="round"
+              />
             </g>
 
-            {/* ─── RIGHT EYE ─── */}
+            {/* ─── RIGHT EYE (Viewer's Right) ─── */}
             <g style={{
-              transformOrigin: '729px 616px',
+              transformOrigin: '732px 644px',
               transform: `scaleY(${isAwake && !isBlinking ? 1 : 0})`,
               opacity: isAwake && !isBlinking ? 1 : 0,
-              transition: 'transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.22s ease'
+              transition: 'transform 0.34s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.22s ease'
             }}>
-              {/* Eye white */}
+              {/* Warm studio glow aura */}
+              <ellipse cx="730" cy="605" rx="85" ry="55" fill="url(#eyeGlow)" />
+
+              {/* Sclera (Eye White) */}
               <path
-                d="M 670 618 C 684 600 713 594 729 594 C 745 594 774 600 788 618 C 774 633 745 638 729 638 C 713 638 684 633 670 618 Z"
-                fill="#EFE8DE"
+                d="M 654 630 C 665 584 688 558 720 558 C 748 558 775 572 808 622 C 790 640 765 648 732 648 C 705 648 675 644 654 630 Z"
+                fill="#FCFAF8"
               />
 
-              {/* Iris + Pupil with cursor tracking */}
+              {/* Large Dark Iris + Innocent Anime Highlights (Tracks cursor) */}
               <g clipPath="url(#rightEyeClip)">
                 <g style={{
-                  transform: `translate(${pupilOffset.x}px, ${pupilOffset.y * 0.55}px)`,
+                  transform: `translate(${pupilOffset.x}px, ${pupilOffset.y}px)`,
                   transition: 'transform 0.1s ease-out'
                 }}>
-                  <circle cx="729" cy="616" r="20" fill="url(#irisGrad)" />
-                  <circle cx="729" cy="616" r="10.5" fill="#1C0604" />
-                  {/* Specular highlight */}
-                  <ellipse cx="722" cy="608" rx="4.5" ry="3.2" fill="#FFFFFF" opacity="0.95" />
-                  <circle cx="734" cy="623" r="1.8" fill="rgba(255,255,255,0.65)" />
+                  {/* Big expressive iris */}
+                  <circle cx="726" cy="605" r="44" fill="url(#irisGrad)" />
+                  {/* Subtle pupil depth */}
+                  <circle cx="726" cy="605" r="22" fill="#0C0301" />
+                  {/* Big Innocent Anime Glint (Bottom-Right) */}
+                  <circle cx="750" cy="625" r="11" fill="#FFFFFF" />
+                  {/* Secondary subtle anime micro-glint (Top-Left) */}
+                  <circle cx="708" cy="588" r="4" fill="#FFFFFF" opacity="0.75" />
                 </g>
               </g>
 
-              {/* Heavy droopy upper eyelid */}
+              {/* Bottom Eyelid */}
               <path
-                d="M 668 617 C 683 592 714 587 729 587 C 744 587 775 592 790 617"
+                d="M 654 630 Q 732 650 810 622"
                 fill="none"
-                stroke="#5C1D08"
+                stroke="#7D230D"
                 strokeWidth="8"
                 strokeLinecap="round"
               />
-              {/* Upper lid inner shadow */}
+
+              {/* Upper Eyelid / Lash Contour */}
               <path
-                d="M 673 617 C 687 596 714 591 729 591 C 744 591 771 596 785 617"
+                d="M 654 630 C 665 584 688 558 720 558 C 748 558 775 572 810 622"
                 fill="none"
-                stroke="#2E0A02"
-                strokeWidth="4"
-                strokeLinecap="round"
-                opacity="0.5"
-              />
-              {/* Lower lid */}
-              <path
-                d="M 672 620 C 687 635 714 640 729 640 C 744 640 771 635 786 620"
-                fill="none"
-                stroke="#5C1D08"
-                strokeWidth="5"
+                stroke="#681907"
+                strokeWidth="8.5"
                 strokeLinecap="round"
               />
-              {/* Orange warm glow halo */}
-              <ellipse cx="729" cy="616" rx="34" ry="18" fill="url(#eyeGlow)" />
+
+              {/* Outer corner eyelash accent */}
+              <path
+                d="M 810 622 C 820 612 822 596 814 586"
+                fill="none"
+                stroke="#7D230D"
+                strokeWidth="4.5"
+                strokeLinecap="round"
+              />
             </g>
           </svg>
 
