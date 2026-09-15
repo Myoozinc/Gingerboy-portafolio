@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Sparkles, Disc3, Briefcase, Compass, ArrowRight, Layers, ExternalLink } from 'lucide-react';
+import { useAudio } from '../context/AudioContext.jsx';
 
 export default function LobbyGate({ onSelectUniverse, lang }) {
+  const { isPlaying, play, togglePlay } = useAudio();
   const [isUnfolded, setIsUnfolded] = useState(false);
   const [isAwake, setIsAwake] = useState(false);
   const [isBlinking, setIsBlinking] = useState(false);
@@ -94,8 +96,8 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
       id: 'label',
       title: 'MYOOZ InC',
       handle: 'myoozinc.com',
-      tag: 'SELLO DISCOGRÁFICO',
-      color: '#0F172A',
+      tag: 'SELLO DISCOGRÁFICO OFICIAL',
+      color: '#8B3FCC',
       icon: Layers,
       desc: 'La casa discográfica oficial: colaboraciones con Rasta Mia, JOSS, co-producciones de estudio y catálogo oficial de indumentaria streetwear.'
     },
@@ -196,60 +198,72 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
         transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
       }}>
 
-        {/* Concentric Sonic Bass Ripples (Urban & Audio-Reactive) */}
-        {!isUnfolded && (
-          <div style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: '175px',
-            height: '175px',
-            pointerEvents: 'none',
-            zIndex: 1
-          }}>
-            <div className="sonic-ring sonic-ring-1" />
-            <div className="sonic-ring sonic-ring-2" />
-            <div className="sonic-ring sonic-ring-3" />
-          </div>
-        )}
-
-        {/* The Animated Emblem with Awake Eye Tracking */}
+        {/* Dedicated Emblem & Concentric Ripples Unit - Concentric Centered in both X and Y */}
         <div
-          ref={emblemRef}
-          onClick={handleLogoClick}
-          onMouseEnter={() => {
-            setIsAwake(true);
-            if (sleepTimerRef.current) clearTimeout(sleepTimerRef.current);
-          }}
           style={{
+            position: 'relative',
             width: isUnfolded ? '105px' : '175px',
             height: isUnfolded ? '105px' : '175px',
-            borderRadius: '50%',
-            overflow: 'hidden',
-            background: '#0F172A',
-            position: 'relative',
-            cursor: 'pointer',
-            padding: '3px',
-            border: isAwake ? '3.5px solid #FF6D00' : '3px solid var(--ginger-primary)',
-            boxShadow: isUnfolded 
-              ? '0 0 35px rgba(224, 83, 40, 0.4)' 
-              : isAwake 
-                ? '0 15px 50px rgba(0, 0, 0, 0.5), 0 0 60px rgba(255, 109, 0, 0.65)' 
-                : '0 15px 45px rgba(0, 0, 0, 0.35), 0 0 35px rgba(224, 83, 40, 0.35)',
-            transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             animation: !isUnfolded ? 'lobbyFloat 4.2s ease-in-out infinite' : 'none',
             transform: isUnfolded ? 'scale(0.9)' : 'scale(1)',
+            transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
             zIndex: 3
           }}
-          title={isUnfolded ? '' : 'GGB Beats'}
         >
-          {/* Base Logo with original artwork */}
-          <img
-            src="/images/ggbbeats-logo-circle.png"
-            alt="Ginger Boy & GGB Beats Official Emblem"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%', display: 'block' }}
-          />
+          {/* Concentric Sonic Bass Ripples (Urban & Audio-Reactive) */}
+          {!isUnfolded && (
+            <div style={{
+              position: 'absolute',
+              inset: 0,
+              pointerEvents: 'none',
+              zIndex: 1
+            }}>
+              <div className="sonic-ring sonic-ring-1" />
+              <div className="sonic-ring sonic-ring-2" />
+              <div className="sonic-ring sonic-ring-3" />
+            </div>
+          )}
+
+          {/* The Animated Emblem with Awake Eye Tracking */}
+          <div
+            ref={emblemRef}
+            onClick={() => {
+              handleLogoClick();
+              if (!isPlaying) play();
+            }}
+            onMouseEnter={() => {
+              setIsAwake(true);
+              if (sleepTimerRef.current) clearTimeout(sleepTimerRef.current);
+            }}
+            style={{
+              width: '100%',
+              height: '100%',
+              borderRadius: '50%',
+              overflow: 'hidden',
+              background: '#0F172A',
+              position: 'relative',
+              cursor: 'pointer',
+              padding: '3px',
+              border: isAwake ? '3.5px solid #FF6D00' : '3px solid var(--ginger-primary)',
+              boxShadow: isUnfolded 
+                ? '0 0 35px rgba(224, 83, 40, 0.4)' 
+                : isAwake 
+                  ? '0 15px 50px rgba(0, 0, 0, 0.5), 0 0 60px rgba(255, 109, 0, 0.65)' 
+                  : '0 15px 45px rgba(0, 0, 0, 0.35), 0 0 35px rgba(224, 83, 40, 0.35)',
+              transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+              zIndex: 2
+            }}
+            title={isUnfolded ? '' : 'GGB Beats'}
+          >
+            {/* Base Logo with original artwork */}
+            <img
+              src="/images/ggbbeats-logo-circle.png"
+              alt="Ginger Boy & GGB Beats Official Emblem"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%', display: 'block' }}
+            />
 
           {/* Interactive Awake Eyes SVG Layer — Big Innocent Anime Style matching original video */}
           <svg
@@ -419,12 +433,13 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
             pointerEvents: 'none'
           }} />
         </div>
+      </div>
 
-        {/* Dynamic Urban Audio Rhythm Visualizer (Replaces bulky text button) */}
+        {/* Dynamic Urban Audio Rhythm Visualizer (Click to Play/Pause Master Audio) */}
         {!isUnfolded ? (
           <div
-            onClick={handleLogoClick}
-            title="Beatmaking Sonic Pulse"
+            onClick={togglePlay}
+            title={isPlaying ? "Pausar Beat Master (Por Andromeda • GGB Beats)" : "Reproducir Beat Master (Por Andromeda • GGB Beats)"}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -435,10 +450,10 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
               cursor: 'pointer',
               padding: '0.45rem 1.1rem',
               borderRadius: 'var(--radius-full)',
-              background: 'rgba(0, 0, 0, 0.35)',
+              background: isPlaying ? 'rgba(230, 81, 0, 0.45)' : 'rgba(0, 0, 0, 0.35)',
               backdropFilter: 'blur(10px)',
-              border: '1px solid rgba(255, 255, 255, 0.14)',
-              boxShadow: '0 8px 25px rgba(0, 0, 0, 0.3)',
+              border: isPlaying ? '1px solid rgba(255, 109, 0, 0.8)' : '1px solid rgba(255, 255, 255, 0.14)',
+              boxShadow: isPlaying ? '0 0 25px rgba(255, 109, 0, 0.5)' : '0 8px 25px rgba(0, 0, 0, 0.3)',
               transition: 'all 0.3s ease'
             }}
             className="urban-eq-visualizer"
@@ -448,10 +463,11 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
                 key={i}
                 style={{
                   width: '3.5px',
-                  height: `${h}px`,
+                  height: isPlaying ? `${h}px` : '4px',
                   borderRadius: '3px',
                   background: 'linear-gradient(to top, #FF5722, #FFB300)',
-                  animation: `eqBarBounce ${0.5 + (i % 4) * 0.18}s ease-in-out infinite alternate`,
+                  transition: 'height 0.2s ease',
+                  animation: isPlaying ? `eqBarBounce ${0.5 + (i % 4) * 0.18}s ease-in-out infinite alternate` : 'none',
                   animationDelay: `${i * 0.08}s`
                 }}
               />
@@ -495,13 +511,13 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
                   key={u.id}
                   onClick={() => onSelectUniverse(u.id)}
                   style={{
-                    background: 'rgba(14, 8, 4, 0.88)',
+                    background: u.id === 'label' ? 'rgba(5, 5, 5, 0.94)' : 'rgba(14, 8, 4, 0.88)',
                     backdropFilter: 'blur(20px)',
                     WebkitBackdropFilter: 'blur(20px)',
                     borderRadius: '24px',
-                    border: '1px solid rgba(255, 255, 255, 0.14)',
+                    border: u.id === 'label' ? '1px solid rgba(139, 63, 204, 0.35)' : '1px solid rgba(255, 255, 255, 0.14)',
                     padding: '2rem 1.4rem',
-                    boxShadow: '0 20px 50px rgba(0, 0, 0, 0.5)',
+                    boxShadow: u.id === 'label' ? '0 20px 50px rgba(0, 0, 0, 0.6), 0 0 25px rgba(139, 63, 204, 0.18)' : '0 20px 50px rgba(0, 0, 0, 0.5)',
                     cursor: 'pointer',
                     display: 'flex',
                     flexDirection: 'column',
@@ -517,8 +533,8 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.14)';
-                    e.currentTarget.style.boxShadow = '0 20px 50px rgba(0, 0, 0, 0.5)';
+                    e.currentTarget.style.borderColor = u.id === 'label' ? 'rgba(139, 63, 204, 0.35)' : 'rgba(255, 255, 255, 0.14)';
+                    e.currentTarget.style.boxShadow = u.id === 'label' ? '0 20px 50px rgba(0, 0, 0, 0.6), 0 0 25px rgba(139, 63, 204, 0.18)' : '0 20px 50px rgba(0, 0, 0, 0.5)';
                   }}
                 >
                   {/* Top Category Tag */}

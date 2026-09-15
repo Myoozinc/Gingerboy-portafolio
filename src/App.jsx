@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LobbyGate from './components/LobbyGate.jsx';
 import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
@@ -14,17 +14,24 @@ import BrandAdvertisingServicesSection from './components/BrandAdvertisingServic
 import Footer from './components/Footer.jsx';
 import AudioAtmospherePlayer from './components/AudioAtmospherePlayer.jsx';
 import MediaKitPDFModal from './components/MediaKitPDFModal.jsx';
+import { AudioProvider, useAudio } from './context/AudioContext.jsx';
 
-export default function App() {
+function AppContent() {
   const [lang, setLang] = useState('es');
   const [currentUniverse, setCurrentUniverse] = useState('lobby'); // 'lobby', 'gingerboy', 'ggbbeats', 'label', 'prod_services', 'brand_services', 'all'
   const [activeFacet, setActiveFacet] = useState('ggbbeats'); // 'ggbbeats', 'dance', 'chill'
   const [isMediaKitOpen, setIsMediaKitOpen] = useState(false);
+  const { syncUniverse, play, isPlaying } = useAudio();
 
-  // If in Lobby, show only the ultra-minimalist animated emblem gate
+  // Automatically synchronize audio track when universe or facet changes
+  useEffect(() => {
+    syncUniverse(currentUniverse, activeFacet, isPlaying);
+  }, [currentUniverse, activeFacet]);
+
+  // If in Lobby, show only the ultra-minimalist animated emblem gate with discreet player
   if (currentUniverse === 'lobby') {
     return (
-      <div style={{ minHeight: '100vh', background: '#070403' }}>
+      <div style={{ minHeight: '100vh', background: '#070403', position: 'relative' }}>
         <LobbyGate 
           onSelectUniverse={(universeId) => {
             setCurrentUniverse(universeId);
@@ -32,6 +39,8 @@ export default function App() {
           }}
           lang={lang} 
         />
+        {/* Discreet Master Audio Player available in Lobby */}
+        <AudioAtmospherePlayer lang={lang} />
         <MediaKitPDFModal 
           isOpen={isMediaKitOpen} 
           onClose={() => setIsMediaKitOpen(false)} 
@@ -50,7 +59,9 @@ export default function App() {
         setLang={setLang} 
         onOpenMediaKit={() => setIsMediaKitOpen(true)} 
         currentUniverse={currentUniverse}
-        onSelectUniverse={setCurrentUniverse}
+        onSelectUniverse={(universeId) => {
+          setCurrentUniverse(universeId);
+        }}
       />
 
       <main style={{ paddingTop: '4rem' }}>
@@ -108,10 +119,7 @@ export default function App() {
       <Footer lang={lang} />
 
       {/* Floating GGB Beats Dynamic Audio Atmosphere Player */}
-      <AudioAtmospherePlayer 
-        activeFacet={activeFacet} 
-        lang={lang} 
-      />
+      <AudioAtmospherePlayer lang={lang} />
 
       {/* Media Kit PDF Download Modal */}
       <MediaKitPDFModal 
@@ -120,5 +128,13 @@ export default function App() {
         lang={lang} 
       />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <AudioProvider>
+      <AppContent />
+    </AudioProvider>
   );
 }

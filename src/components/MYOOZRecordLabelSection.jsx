@@ -9,7 +9,7 @@ export default function MYOOZRecordLabelSection({ lang }) {
       collab: 'Colaboración en sencillos oficiales: "Folie à Deux", "Mille et une nuits", "Sous emprise", "Danse"',
       youtube: 'https://www.youtube.com/watch?v=g1-wY1SpyuM',
       tag: 'Cantautora Internacional',
-      color: '#E05328'
+      color: '#A855F7'
     },
     {
       name: 'JOSS',
@@ -17,7 +17,7 @@ export default function MYOOZRecordLabelSection({ lang }) {
       collab: 'Producción de sencillos y remixes de estudio: "Fantasma Remix", "Volveré" (R&B & Rock fusión)',
       youtube: 'https://www.youtube.com/watch?v=L1XWW9W8fkw',
       tag: 'R&B / Rock / Latin',
-      color: '#D97706'
+      color: '#C084FC'
     },
     {
       name: 'Prodbycarrot',
@@ -25,7 +25,7 @@ export default function MYOOZRecordLabelSection({ lang }) {
       collab: 'Co-producción de ritmos urbanos, diseño de sonido y librerías de sampleo exclusivas para el sello',
       youtube: 'https://www.youtube.com/watch?v=yq7OlFjQ9JM',
       tag: 'Beatmaking & Audio Design',
-      color: '#7C3AED'
+      color: '#8B3FCC'
     },
     {
       name: 'Mnimal Beats & Pata Negra',
@@ -33,7 +33,7 @@ export default function MYOOZRecordLabelSection({ lang }) {
       collab: 'Desarrollo de texturas acústicas de guitarra flamenca y minimal techno para sincronizaciones comerciales',
       youtube: 'https://www.youtube.com/watch?v=RTt6GhVK7qA',
       tag: 'Acoustic & Minimalist Sync',
-      color: '#059669'
+      color: '#10B981'
     }
   ];
 
@@ -68,23 +68,23 @@ export default function MYOOZRecordLabelSection({ lang }) {
     es: {
       tag: 'SELLO DISCOGRÁFICO OFICIAL',
       title: 'MYOOZ InC • La Casa Discográfica de GGB Beats',
-      subtitle: 'Ginger Boy opera como productor insignia dentro de MYOOZ InC, coordinando composiciones, lanzamientos con artistas internacionales y sincronizaciones audiovisuales.',
+      subtitle: 'Ginger Boy opera como productor insignia dentro de MYOOZ InC, coordinando composiciones, lanzamientos con artistas internacionales y sincronizaciones audiovisuales con distribución global.',
       rosterTitle: 'Colaboraciones Oficiales con Artistas del Sello',
       rosterSub: 'Proyectos discográficos y coproducciones lanzadas bajo el sello MYOOZ InC.',
       merchTitle: 'Línea Oficial de Streetwear & Merch del Sello',
       merchSub: 'Prendas de alta confección urbana diseñadas en concordancia con los lanzamientos musicales.',
-      visitLabel: 'Visitar Plataforma de MYOOZ InC',
+      visitLabel: 'Visitar myoozinc.com',
       labelNote: 'Sello discográfico independiente con distribución global en plataformas digitales.'
     },
     en: {
       tag: 'OFFICIAL RECORD LABEL',
       title: 'MYOOZ InC • The Record Label Behind GGB Beats',
-      subtitle: 'Ginger Boy acts as the flagship producer at MYOOZ InC, driving original compositions, cross-artist releases, and audiovisual sync licensing.',
+      subtitle: 'Ginger Boy acts as the flagship producer at MYOOZ InC, driving original compositions, cross-artist releases, and global digital streaming distribution.',
       rosterTitle: 'Official Collaborations with Label Artists',
       rosterSub: 'Record releases and studio co-productions released under MYOOZ InC.',
       merchTitle: 'Official Label Streetwear & Merch Apparel',
       merchSub: 'Heavyweight streetwear collections crafted in direct connection with sonic drops.',
-      visitLabel: 'Visit MYOOZ InC Official Platform',
+      visitLabel: 'Visit myoozinc.com',
       labelNote: 'Independent record label with global digital streaming distribution.'
     }
   }[lang];
@@ -92,19 +92,33 @@ export default function MYOOZRecordLabelSection({ lang }) {
   return (
     <section id="record-label" style={{
       padding: '7rem 0',
-      background: 'linear-gradient(180deg, #0F172A 0%, #070B14 100%)',
+      background: 'linear-gradient(180deg, #050505 0%, #120424 50%, #050505 100%)',
       color: '#FFFFFF',
       position: 'relative',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      fontFamily: 'var(--font-main, Outfit, sans-serif)'
     }}>
       
-      {/* Background Architectural Grid Lines */}
+      {/* Background Neon Purple Glow Spotlight Falloff */}
+      <div style={{
+        position: 'absolute',
+        top: '15%',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: '900px',
+        height: '600px',
+        background: 'radial-gradient(ellipse at 50% 50%, rgba(139, 63, 204, 0.22) 0%, rgba(48, 3, 89, 0.1) 50%, transparent 80%)',
+        filter: 'blur(80px)',
+        pointerEvents: 'none'
+      }} />
+
+      {/* Architectural Purple Dot Grid */}
       <div style={{
         position: 'absolute',
         inset: 0,
-        backgroundImage: 'radial-gradient(rgba(224, 83, 40, 0.08) 1px, transparent 1px)',
+        backgroundImage: 'radial-gradient(rgba(139, 63, 204, 0.12) 1px, transparent 1px)',
         backgroundSize: '40px 40px',
-        opacity: 0.5,
+        opacity: 0.6,
         pointerEvents: 'none'
       }} />
 
@@ -118,7 +132,7 @@ export default function MYOOZRecordLabelSection({ lang }) {
           flexWrap: 'wrap',
           gap: '2rem',
           paddingBottom: '3.5rem',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+          borderBottom: '1px solid rgba(139, 63, 204, 0.25)',
           marginBottom: '4.5rem'
         }}>
           <div>
@@ -128,26 +142,28 @@ export default function MYOOZRecordLabelSection({ lang }) {
               gap: '0.4rem',
               fontSize: '0.78rem',
               fontWeight: '800',
-              color: '#F59E0B',
-              background: 'rgba(245, 158, 11, 0.1)',
+              color: '#C084FC',
+              background: 'rgba(139, 63, 204, 0.15)',
+              border: '1px solid rgba(139, 63, 204, 0.35)',
               padding: '0.35rem 0.9rem',
               borderRadius: 'var(--radius-full)',
               marginBottom: '1rem',
-              letterSpacing: '0.08em'
+              letterSpacing: '0.08em',
+              boxShadow: '0 0 20px rgba(139, 63, 204, 0.2)'
             }}>
-              <Disc3 size={14} />
+              <Disc3 size={14} color="#C084FC" />
               <span>{content.tag}</span>
             </div>
 
             <h2 style={{ fontSize: '2.8rem', fontWeight: '900', color: '#FFFFFF', letterSpacing: '-0.02em', margin: '0.2rem 0' }}>
-              MYOOZ InC <span style={{ color: '#E05328' }}>Record Label</span>
+              MYOOZ InC <span style={{ color: '#8B3FCC', textShadow: '0 0 35px rgba(139, 63, 204, 0.8)' }}>Record Label</span>
             </h2>
-            <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '1.1rem', maxWidth: '680px', lineHeight: '1.6', margin: '0.5rem 0 0 0' }}>
+            <p style={{ color: 'rgba(255, 255, 255, 0.72)', fontSize: '1.1rem', maxWidth: '680px', lineHeight: '1.6', margin: '0.5rem 0 0 0' }}>
               {content.subtitle}
             </p>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'flex-start' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', alignItems: 'flex-start' }}>
             <a
               href="https://myoozinc.com"
               target="_blank"
@@ -156,14 +172,15 @@ export default function MYOOZRecordLabelSection({ lang }) {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.6rem',
-                background: 'linear-gradient(135deg, #E05328 0%, #D97706 100%)',
+                background: 'linear-gradient(135deg, #8B3FCC 0%, #4C1D95 100%)',
                 color: '#FFFFFF',
                 padding: '0.85rem 1.8rem',
                 borderRadius: 'var(--radius-full)',
                 fontWeight: '800',
                 fontSize: '0.95rem',
                 textDecoration: 'none',
-                boxShadow: '0 8px 25px rgba(224, 83, 40, 0.4)',
+                boxShadow: '0 10px 30px rgba(139, 63, 204, 0.5), 0 0 20px rgba(139, 63, 204, 0.3)',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
                 transition: 'var(--transition-smooth)'
               }}
             >
@@ -172,7 +189,7 @@ export default function MYOOZRecordLabelSection({ lang }) {
             </a>
 
             <span style={{ fontSize: '0.78rem', color: 'rgba(255, 255, 255, 0.5)' }}>
-              myoozinc.com • Catálogo & Roster
+              myoozinc.com • Plataforma Oficial del Sello
             </span>
           </div>
         </div>
@@ -193,14 +210,24 @@ export default function MYOOZRecordLabelSection({ lang }) {
               <div
                 key={idx}
                 style={{
-                  background: 'rgba(255, 255, 255, 0.04)',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  background: 'rgba(10, 8, 16, 0.75)',
+                  backdropFilter: 'blur(16px)',
+                  border: '1px solid rgba(139, 63, 204, 0.22)',
                   borderRadius: '24px',
                   padding: '2rem',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
+                  boxShadow: '0 12px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(139, 63, 204, 0.08)',
                   transition: 'var(--transition-smooth)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = '#8B3FCC';
+                  e.currentTarget.style.boxShadow = '0 18px 45px rgba(0, 0, 0, 0.7), 0 0 35px rgba(139, 63, 204, 0.35)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(139, 63, 204, 0.22)';
+                  e.currentTarget.style.boxShadow = '0 12px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(139, 63, 204, 0.08)';
                 }}
               >
                 <div>
@@ -209,7 +236,8 @@ export default function MYOOZRecordLabelSection({ lang }) {
                       fontSize: '0.72rem',
                       fontWeight: '800',
                       color: artist.color,
-                      background: `${artist.color}15`,
+                      background: `${artist.color}18`,
+                      border: `1px solid ${artist.color}35`,
                       padding: '0.25rem 0.75rem',
                       borderRadius: 'var(--radius-full)',
                       letterSpacing: '0.05em'
@@ -221,7 +249,7 @@ export default function MYOOZRecordLabelSection({ lang }) {
                       href={artist.youtube}
                       target="_blank"
                       rel="noopener noreferrer"
-                      style={{ color: 'rgba(255, 255, 255, 0.6)', display: 'flex', alignItems: 'center', gap: '0.3rem', fontSize: '0.78rem', textDecoration: 'none' }}
+                      style={{ color: 'rgba(255, 255, 255, 0.7)', display: 'flex', alignItems: 'center', gap: '0.3rem', fontSize: '0.78rem', textDecoration: 'none' }}
                     >
                       <span>Ver en YouTube</span>
                       <ExternalLink size={12} />
@@ -232,7 +260,7 @@ export default function MYOOZRecordLabelSection({ lang }) {
                     {artist.name}
                   </h4>
                   
-                  <div style={{ fontSize: '0.88rem', color: '#F59E0B', fontWeight: '700', marginBottom: '1rem' }}>
+                  <div style={{ fontSize: '0.88rem', color: '#C084FC', fontWeight: '700', marginBottom: '1rem' }}>
                     {artist.role}
                   </div>
 
@@ -242,7 +270,7 @@ export default function MYOOZRecordLabelSection({ lang }) {
                 </div>
 
                 <div style={{ marginTop: '1.5rem', paddingTop: '1rem', borderTop: '1px solid rgba(255, 255, 255, 0.08)', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.78rem', color: 'rgba(255, 255, 255, 0.5)' }}>
-                  <ShieldCheck size={14} color="#10B981" />
+                  <ShieldCheck size={14} color="#8B3FCC" />
                   <span>Producción Registrada en MYOOZ InC</span>
                 </div>
               </div>
@@ -263,12 +291,12 @@ export default function MYOOZRecordLabelSection({ lang }) {
 
           {/* Urban Editorial Lookbook Spotlight */}
           <div style={{
-            background: 'linear-gradient(135deg, rgba(230, 81, 0, 0.18) 0%, rgba(15, 23, 42, 0.85) 60%)',
-            border: '1px solid rgba(230, 81, 0, 0.35)',
+            background: 'linear-gradient(135deg, rgba(48, 3, 89, 0.45) 0%, rgba(10, 8, 16, 0.95) 70%)',
+            border: '1px solid rgba(139, 63, 204, 0.35)',
             borderRadius: '24px',
             padding: '2rem',
             marginBottom: '3rem',
-            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4), 0 0 35px rgba(230, 81, 0, 0.15)',
+            boxShadow: '0 20px 50px rgba(0, 0, 0, 0.6), 0 0 35px rgba(139, 63, 204, 0.22)',
             display: 'grid',
             gridTemplateColumns: '0.9fr 1.1fr',
             gap: '2.5rem',
@@ -281,9 +309,9 @@ export default function MYOOZRecordLabelSection({ lang }) {
                 borderRadius: '16px',
                 overflow: 'hidden',
                 height: '240px',
-                background: '#E65100',
-                boxShadow: '0 10px 25px rgba(0,0,0,0.35)',
-                border: '1px solid rgba(255,255,255,0.1)'
+                background: '#181024',
+                boxShadow: '0 10px 25px rgba(0,0,0,0.45)',
+                border: '1px solid rgba(139, 63, 204, 0.3)'
               }}>
                 <img 
                   src="/images/ggb_orange_look_1.jpg" 
@@ -296,9 +324,9 @@ export default function MYOOZRecordLabelSection({ lang }) {
                 borderRadius: '16px',
                 overflow: 'hidden',
                 height: '240px',
-                background: '#D84315',
-                boxShadow: '0 10px 25px rgba(0,0,0,0.35)',
-                border: '1px solid rgba(255,255,255,0.1)'
+                background: '#181024',
+                boxShadow: '0 10px 25px rgba(0,0,0,0.45)',
+                border: '1px solid rgba(139, 63, 204, 0.3)'
               }}>
                 <img 
                   src="/images/ggb_orange_closeup.jpg" 
@@ -314,9 +342,9 @@ export default function MYOOZRecordLabelSection({ lang }) {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.4rem',
-                background: 'rgba(230, 81, 0, 0.2)',
-                border: '1px solid rgba(230, 81, 0, 0.4)',
-                color: '#FCD34D',
+                background: 'rgba(139, 63, 204, 0.2)',
+                border: '1px solid rgba(139, 63, 204, 0.45)',
+                color: '#E9D5FF',
                 padding: '0.25rem 0.8rem',
                 borderRadius: 'var(--radius-full)',
                 fontSize: '0.74rem',
@@ -325,30 +353,30 @@ export default function MYOOZRecordLabelSection({ lang }) {
                 textTransform: 'uppercase',
                 marginBottom: '0.8rem'
               }}>
-                <Sparkles size={13} />
-                <span>LOOKBOOK EDITORIAL • SET NARANJA OFICIAL</span>
+                <Sparkles size={13} color="#C084FC" />
+                <span>LOOKBOOK EDITORIAL • MYOOZ APPAREL</span>
               </div>
 
               <h4 style={{ fontSize: '1.6rem', color: '#FFFFFF', fontWeight: '800', marginBottom: '0.6rem', lineHeight: '1.2' }}>
-                Gorra Corduroy GGB Beats & Estética Urbana
+                Gorra Corduroy GGB Beats & Indumentaria del Sello
               </h4>
 
               <p style={{ fontSize: '0.88rem', color: '#CBD5E1', lineHeight: '1.6', marginBottom: '1.4rem' }}>
-                Sesión fotográfica oficial de estudio capturada sobre el icónico fondo naranja de Ginger Boy: bordado frontal en relieve del emblema GGB Beats, confección en pana negra de alta densidad y corte estructurado para productores musicales y creadores.
+                Confección en pana negra de alta densidad con bordado frontal en relieve del emblema oficial. Diseñada bajo la dirección de arte de MYOOZ InC para productores musicales y creadores urbanos.
               </p>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.84rem', color: '#E2E8F0' }}>
-                  <ShieldCheck size={16} color="#F59E0B" style={{ flexShrink: 0 }} />
-                  <span>Emblema GGB Beats bordado en hilo premium naranja y blanco</span>
+                  <ShieldCheck size={16} color="#8B3FCC" style={{ flexShrink: 0 }} />
+                  <span>Emblema GGB Beats bordado en hilo premium de alta definición</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.84rem', color: '#E2E8F0' }}>
-                  <ShieldCheck size={16} color="#F59E0B" style={{ flexShrink: 0 }} />
-                  <span>Tejido de pana acordonada (corduroy) de alta durabilidad y estilo vintage</span>
+                  <ShieldCheck size={16} color="#8B3FCC" style={{ flexShrink: 0 }} />
+                  <span>Tejido de pana acordonada (corduroy) con corte estructurado vintage</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.84rem', color: '#E2E8F0' }}>
-                  <ShieldCheck size={16} color="#F59E0B" style={{ flexShrink: 0 }} />
-                  <span>Diseñado por MYOOZ InC y testeado en estudio de grabación</span>
+                  <ShieldCheck size={16} color="#8B3FCC" style={{ flexShrink: 0 }} />
+                  <span>Distribuido por la plataforma oficial myoozinc.com</span>
                 </div>
               </div>
             </div>
@@ -360,18 +388,28 @@ export default function MYOOZRecordLabelSection({ lang }) {
               <div
                 key={i}
                 style={{
-                  background: 'rgba(255, 255, 255, 0.03)',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  background: 'rgba(10, 8, 16, 0.8)',
+                  backdropFilter: 'blur(16px)',
+                  border: '1px solid rgba(139, 63, 204, 0.2)',
                   borderRadius: '20px',
                   overflow: 'hidden',
                   display: 'flex',
                   flexDirection: 'column',
+                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)',
                   transition: 'var(--transition-smooth)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = '#8B3FCC';
+                  e.currentTarget.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(139, 63, 204, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(139, 63, 204, 0.2)';
+                  e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.5)';
                 }}
               >
                 <div style={{
                   height: '240px',
-                  background: '#0B132B',
+                  background: '#07050C',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -385,20 +423,20 @@ export default function MYOOZRecordLabelSection({ lang }) {
                       maxWidth: '100%',
                       maxHeight: '100%',
                       objectFit: 'contain',
-                      filter: 'drop-shadow(0 15px 25px rgba(0,0,0,0.4))'
+                      filter: 'drop-shadow(0 15px 25px rgba(0,0,0,0.5))'
                     }}
                   />
                   <span style={{
                     position: 'absolute',
                     top: '0.8rem',
                     left: '0.8rem',
-                    background: 'rgba(15, 23, 42, 0.85)',
-                    color: '#FFF',
+                    background: 'rgba(48, 3, 89, 0.85)',
+                    color: '#E9D5FF',
                     fontSize: '0.68rem',
                     fontWeight: '800',
                     padding: '0.2rem 0.6rem',
                     borderRadius: 'var(--radius-full)',
-                    border: '1px solid rgba(255,255,255,0.2)'
+                    border: '1px solid rgba(139, 63, 204, 0.4)'
                   }}>
                     {item.tag}
                   </span>
@@ -419,7 +457,7 @@ export default function MYOOZRecordLabelSection({ lang }) {
                       href="https://myoozinc.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      style={{ fontSize: '0.78rem', color: '#E05328', fontWeight: '800', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.2rem' }}
+                      style={{ fontSize: '0.78rem', color: '#C084FC', fontWeight: '800', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.2rem' }}
                     >
                       <span>Ver en myoozinc.com</span>
                       <ExternalLink size={12} />

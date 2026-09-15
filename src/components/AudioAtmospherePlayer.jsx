@@ -1,434 +1,377 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Volume2, VolumeX, Play, Pause, Disc3, Radio, Sparkles, Flame, Headphones, Music2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { Volume2, VolumeX, Play, Pause, Disc3, ChevronDown, ChevronUp, Music2 } from 'lucide-react';
+import { useAudio } from '../context/AudioContext.jsx';
 
-export default function AudioAtmospherePlayer({ activeFacet, lang }) {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
-  const [volume, setVolume] = useState(0.6);
-  const [isExpanded, setIsExpanded] = useState(true);
+export default function AudioAtmospherePlayer({ lang }) {
+  const {
+    currentTrack,
+    isPlaying,
+    isMuted,
+    volume,
+    play,
+    pause,
+    togglePlay,
+    setVolume,
+    toggleMute
+  } = useAudio();
 
-  const audioCtxRef = useRef(null);
-  const isPlayingRef = useRef(false);
-  const intervalRef = useRef(null);
-  const masterGainRef = useRef(null);
+  const [isMinimized, setIsMinimized] = useState(false);
+  const [showVolumeSlider, setShowVolumeSlider] = useState(false);
 
-  const facetTracks = {
-    ggbbeats: {
-      name: 'Drill & Trap Switch Session',
-      bpm: 135,
-      genre: 'Trap / Drill / Heavy Rap',
-      color: '#E05328',
-      handle: '@ggbbeats',
-      icon: Disc3,
-      desc: 'Beat urbano pesado con 808s profundos y ritmos agresivos.'
+  const t = {
+    es: {
+      masterBadge: 'MASTER OFICIAL',
+      playing: 'REPRODUCIENDO BEAT',
+      paused: 'EN PAUSA',
+      mute: 'Silenciar',
+      unmute: 'Activar sonido',
+      volumeLabel: 'Volumen',
+      minimize: 'Minimizar reproductor',
+      expand: 'Expandir reproductor'
     },
-    dance: {
-      name: 'Mami Chula • RKT & Reggaeton Club',
-      bpm: 98,
-      genre: 'Reggaeton / RKT / Dancehall',
-      color: '#D97706',
-      handle: '@ggbbeats.dance',
-      icon: Flame,
-      desc: 'Ritmo bailable tropical con dembow latino y texturas de club.'
-    },
-    chill: {
-      name: 'Bolero Flamenco & Lo-Fi Lounge',
-      bpm: 82,
-      genre: 'Lo-Fi / Chillhop / Bolero',
-      color: '#059669',
-      handle: '@ggbbeats.chill',
-      icon: Headphones,
-      desc: 'Guitarras acústicas cálidas, piano Rhodes y frecuencias relajantes.'
+    en: {
+      masterBadge: 'OFFICIAL MASTER',
+      playing: 'PLAYING BEAT',
+      paused: 'PAUSED',
+      mute: 'Mute audio',
+      unmute: 'Unmute audio',
+      volumeLabel: 'Volume',
+      minimize: 'Minimize player',
+      expand: 'Expand player'
     }
-  };
-
-  const currentInfo = facetTracks[activeFacet] || facetTracks.ggbbeats;
-
-  // Initialize Web Audio Context
-  const initAudio = () => {
-    if (!audioCtxRef.current) {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      audioCtxRef.current = new AudioContext();
-      masterGainRef.current = audioCtxRef.current.createGain();
-      masterGainRef.current.gain.value = volume;
-      masterGainRef.current.connect(audioCtxRef.current.destination);
-    }
-    if (audioCtxRef.current.state === 'suspended') {
-      audioCtxRef.current.resume();
-    }
-  };
-
-  // Sound generator matching each facet's intensity
-  const playStep = (step, facet) => {
-    if (!audioCtxRef.current || !isPlayingRef.current) return;
-    const ctx = audioCtxRef.current;
-    const now = ctx.currentTime;
-    const master = masterGainRef.current;
-
-    // FACET 1: GGBBEATS (Trap / Drill - 135 BPM)
-    if (facet === 'ggbbeats') {
-      // 808 Kick on beats 0, 6, 10
-      if (step === 0 || step === 6 || step === 10) {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(120, now);
-        osc.frequency.exponentialRampToValueAtTime(38, now + 0.28);
-        gain.gain.setValueAtTime(0.7, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
-        osc.connect(gain);
-        gain.connect(master);
-        osc.start(now);
-        osc.stop(now + 0.36);
-      }
-      // Sharp Snare on beats 4 and 12
-      if (step === 4 || step === 12) {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(240, now);
-        osc.frequency.exponentialRampToValueAtTime(90, now + 0.12);
-        gain.gain.setValueAtTime(0.4, now);
-        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.14);
-        osc.connect(gain);
-        gain.connect(master);
-        osc.start(now);
-        osc.stop(now + 0.15);
-      }
-      // Hi-Hats on every even step
-      if (step % 2 === 0) {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'highpass';
-        osc.frequency.setValueAtTime(6000 + (step * 200), now);
-        gain.gain.setValueAtTime(0.08, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
-        osc.connect(gain);
-        gain.connect(master);
-        osc.start(now);
-        osc.stop(now + 0.05);
-      }
-      // Melodic synth note on steps 0, 3, 8, 11
-      if (step === 0 || step === 3 || step === 8 || step === 11) {
-        const notes = [220, 261.6, 329.6, 293.6];
-        const note = notes[Math.floor(step / 3) % notes.length];
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'sawtooth';
-        osc.frequency.setValueAtTime(note, now);
-        gain.gain.setValueAtTime(0.06, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
-        osc.connect(gain);
-        gain.connect(master);
-        osc.start(now);
-        osc.stop(now + 0.23);
-      }
-    }
-
-    // FACET 2: DANCE (Reggaeton / RKT - 98 BPM dembow rhythm)
-    else if (facet === 'dance') {
-      // Classic Dembow: Kick on 0, 4, 8, 12. Snare on 3, 6, 11, 14
-      if (step % 4 === 0) {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(140, now);
-        osc.frequency.exponentialRampToValueAtTime(45, now + 0.18);
-        gain.gain.setValueAtTime(0.75, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
-        osc.connect(gain);
-        gain.connect(master);
-        osc.start(now);
-        osc.stop(now + 0.23);
-      }
-      if (step === 3 || step === 6 || step === 11 || step === 14) {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(320, now);
-        osc.frequency.exponentialRampToValueAtTime(120, now + 0.12);
-        gain.gain.setValueAtTime(0.45, now);
-        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
-        osc.connect(gain);
-        gain.connect(master);
-        osc.start(now);
-        osc.stop(now + 0.16);
-      }
-      // Latin Synth Chord on steps 0, 6, 12
-      if (step === 0 || step === 6 || step === 12) {
-        const chords = [[349.2, 440], [392, 493.8], [440, 523.2]];
-        const chord = chords[Math.floor(step / 5) % chords.length];
-        chord.forEach(freq => {
-          const osc = ctx.createOscillator();
-          const gain = ctx.createGain();
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(freq, now);
-          gain.gain.setValueAtTime(0.08, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
-          osc.connect(gain);
-          gain.connect(master);
-          osc.start(now);
-          osc.stop(now + 0.3);
-        });
-      }
-    }
-
-    // FACET 3: CHILL (Lo-Fi / Bolero Flamenco - 82 BPM)
-    else if (facet === 'chill') {
-      // Soft gentle kick on 0, 8
-      if (step === 0 || step === 8) {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(80, now);
-        osc.frequency.exponentialRampToValueAtTime(35, now + 0.2);
-        gain.gain.setValueAtTime(0.35, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
-        osc.connect(gain);
-        gain.connect(master);
-        osc.start(now);
-        osc.stop(now + 0.23);
-      }
-      // Soft brush rim on 4, 12
-      if (step === 4 || step === 12) {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(180, now);
-        gain.gain.setValueAtTime(0.12, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
-        osc.connect(gain);
-        gain.connect(master);
-        osc.start(now);
-        osc.stop(now + 0.11);
-      }
-      // Warm Rhodes / Nylon Guitar Chord progression on 0, 4, 8, 12
-      if (step % 4 === 0) {
-        const progression = [
-          [261.6, 329.6, 392], // C maj
-          [220, 261.6, 329.6], // A min
-          [174.6, 220, 261.6], // F maj
-          [196, 246.9, 293.6]  // G maj
-        ];
-        const triad = progression[(step / 4) % progression.length];
-        triad.forEach((f, i) => {
-          const osc = ctx.createOscillator();
-          const gain = ctx.createGain();
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(f, now + (i * 0.03));
-          gain.gain.setValueAtTime(0.06, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.7);
-          osc.connect(gain);
-          gain.connect(master);
-          osc.start(now);
-          osc.stop(now + 0.75);
-        });
-      }
-    }
-  };
-
-  // Loop manager
-  useEffect(() => {
-    if (isPlaying) {
-      initAudio();
-      isPlayingRef.current = true;
-      let step = 0;
-      const bpm = currentInfo.bpm;
-      const stepDuration = (60 / bpm / 4) * 1000;
-
-      if (intervalRef.current) clearInterval(intervalRef.current);
-
-      intervalRef.current = setInterval(() => {
-        playStep(step, activeFacet);
-        step = (step + 1) % 16;
-      }, stepDuration);
-    } else {
-      isPlayingRef.current = false;
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    }
-
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
-  }, [isPlaying, activeFacet]);
-
-  // Volume & Mute handling
-  useEffect(() => {
-    if (masterGainRef.current && audioCtxRef.current) {
-      masterGainRef.current.gain.setValueAtTime(isMuted ? 0 : volume, audioCtxRef.current.currentTime);
-    }
-  }, [volume, isMuted]);
-
-  const togglePlay = () => {
-    if (!isPlaying) {
-      initAudio();
-      setIsPlaying(true);
-    } else {
-      setIsPlaying(false);
-    }
-  };
-
-  const IconComp = currentInfo.icon;
+  }[lang || 'es'];
 
   return (
-    <div style={{
-      position: 'fixed',
-      bottom: '1.5rem',
-      right: '1.5rem',
-      zIndex: 9998,
-      fontFamily: 'var(--font-main)'
-    }}>
-      <div style={{
-        background: 'rgba(255, 255, 255, 0.95)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        borderRadius: '24px',
-        border: `1.5px solid ${currentInfo.color}35`,
-        boxShadow: '0 15px 35px rgba(0, 0, 0, 0.12), 0 0 20px ' + currentInfo.color + '20',
-        padding: isExpanded ? '1rem 1.4rem' : '0.6rem 0.8rem',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '1rem',
-        transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)'
-      }}>
+    <aside
+      aria-label="GGB Beats Master Audio Player"
+      style={{
+        position: 'fixed',
+        bottom: '24px',
+        right: '24px',
+        zIndex: 9999,
+        maxWidth: isMinimized ? '260px' : '420px',
+        transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
+        fontFamily: 'var(--font-main, Outfit, sans-serif)'
+      }}
+    >
+      <div
+        style={{
+          background: 'rgba(9, 9, 11, 0.88)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          border: `1px solid ${currentTrack.color ? `${currentTrack.color}40` : 'rgba(255, 255, 255, 0.12)'}`,
+          borderRadius: isMinimized ? '30px' : '18px',
+          boxShadow: isPlaying
+            ? `0 14px 40px rgba(0, 0, 0, 0.65), 0 0 25px ${currentTrack.color}25`
+            : '0 10px 30px rgba(0, 0, 0, 0.5)',
+          padding: isMinimized ? '0.55rem 1rem' : '0.85rem 1.15rem',
+          color: '#FFFFFF',
+          display: 'flex',
+          flexDirection: isMinimized ? 'row' : 'column',
+          alignItems: isMinimized ? 'center' : 'stretch',
+          gap: isMinimized ? '0.75rem' : '0.65rem'
+        }}
+      >
+        {/* Minimized Compact View */}
+        {isMinimized ? (
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', gap: '0.6rem' }}>
+            <button
+              onClick={togglePlay}
+              aria-label={isPlaying ? t.paused : t.playing}
+              style={{
+                width: '32px',
+                height: '32px',
+                borderRadius: '50%',
+                background: currentTrack.color || 'var(--ginger-primary)',
+                border: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                color: '#FFFFFF',
+                flexShrink: 0,
+                boxShadow: `0 0 12px ${currentTrack.color}60`
+              }}
+            >
+              {isPlaying ? <Pause size={14} /> : <Play size={14} style={{ marginLeft: '1.5px' }} />}
+            </button>
 
-        {/* Vinyl / Beat Icon with Dynamic Glow */}
-        <div 
-          onClick={togglePlay}
-          style={{
-            width: '46px',
-            height: '46px',
-            borderRadius: '50%',
-            background: `linear-gradient(135deg, ${currentInfo.color} 0%, #0F172A 100%)`,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: '#FFF',
-            cursor: 'pointer',
-            boxShadow: isPlaying ? `0 0 16px ${currentInfo.color}` : 'none',
-            flexShrink: 0,
-            position: 'relative',
-            animation: isPlaying ? 'spinSlow 6s linear infinite' : 'none'
-          }}
-          title={isPlaying ? "Pausar Música de Fondo" : "Reproducir Música de GGB Beats"}
-        >
-          {isPlaying ? <Pause size={18} /> : <Play size={18} style={{ marginLeft: '2px' }} />}
-        </div>
-
-        {/* Expanded Info and Controls */}
-        {isExpanded && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
-            
-            {/* Track & Facet Details */}
-            <div style={{ minWidth: '170px', maxWidth: '240px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.2rem' }}>
-                <span style={{
-                  fontSize: '0.68rem',
-                  fontWeight: '800',
-                  color: currentInfo.color,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.06em',
-                  background: `${currentInfo.color}15`,
-                  padding: '0.15rem 0.5rem',
-                  borderRadius: '10px'
-                }}>
-                  {currentInfo.handle}
-                </span>
-                <span style={{ fontSize: '0.72rem', color: 'var(--text-dim)', fontWeight: '600' }}>
-                  {currentInfo.bpm} BPM
-                </span>
-              </div>
-
+            <div
+              onClick={() => setIsMinimized(false)}
+              style={{
+                flex: 1,
+                minWidth: 0,
+                cursor: 'pointer',
+                display: 'flex',
+                flexDirection: 'column'
+              }}
+            >
               <div style={{
-                fontSize: '0.88rem',
-                fontWeight: '800',
-                color: 'var(--text-main)',
+                fontSize: '0.78rem',
+                fontWeight: '700',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                color: '#FFFFFF'
+              }}>
+                {currentTrack.title}
+              </div>
+              <div style={{
+                fontSize: '0.65rem',
+                color: '#94A3B8',
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
                 textOverflow: 'ellipsis'
               }}>
-                {currentInfo.name}
-              </div>
-
-              {/* Animated Equalizer Bars */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '3px', marginTop: '0.35rem', height: '12px' }}>
-                {[1, 2, 3, 4, 5, 6, 7].map((bar) => (
-                  <div
-                    key={bar}
-                    style={{
-                      width: '3px',
-                      background: isPlaying ? currentInfo.color : '#CBD5E1',
-                      borderRadius: '2px',
-                      height: isPlaying ? `${Math.sin(bar * 1.5) * 6 + 7}px` : '3px',
-                      transition: 'height 0.15s ease'
-                    }}
-                  />
-                ))}
-                <span style={{ fontSize: '0.68rem', color: 'var(--text-muted)', marginLeft: '4px', fontWeight: '500' }}>
-                  {isPlaying ? 'Sonando en vivo' : 'Audio en pausa'}
-                </span>
+                {currentTrack.album}
               </div>
             </div>
 
-            {/* Volume Mute Toggle */}
+            {/* Micro EQ Visualizer */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '2px', height: '14px', flexShrink: 0 }}>
+              {[8, 14, 10, 16, 9].map((h, i) => (
+                <span
+                  key={i}
+                  style={{
+                    width: '2px',
+                    height: isPlaying ? `${h}px` : '3px',
+                    borderRadius: '1px',
+                    background: currentTrack.color || '#FF5722',
+                    transition: 'height 0.2s ease',
+                    animation: isPlaying ? `miniEq ${0.45 + (i % 3) * 0.15}s ease-in-out infinite alternate` : 'none',
+                    animationDelay: `${i * 0.08}s`
+                  }}
+                />
+              ))}
+            </div>
+
             <button
-              onClick={() => setIsMuted(!isMuted)}
+              onClick={() => setIsMinimized(false)}
+              title={t.expand}
+              aria-label={t.expand}
               style={{
-                background: 'none',
+                background: 'transparent',
                 border: 'none',
-                color: isMuted ? '#EF4444' : 'var(--text-muted)',
+                color: '#94A3B8',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
-                padding: '0.4rem',
-                borderRadius: '50%',
-                transition: 'var(--transition-smooth)'
+                padding: '2px',
+                flexShrink: 0
               }}
-              title={isMuted ? "Activar Sonido" : "Silenciar"}
             >
-              {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+              <ChevronUp size={16} />
             </button>
-
-            {/* Collapse button */}
-            <button
-              onClick={() => setIsExpanded(false)}
-              style={{
-                background: 'none',
-                border: 'none',
-                color: 'var(--text-dim)',
-                fontSize: '0.75rem',
-                cursor: 'pointer',
-                padding: '0.2rem 0.4rem'
-              }}
-              title="Minimizar reproductor"
-            >
-              ✕
-            </button>
-
           </div>
-        )}
+        ) : (
+          /* Full Discreet Player */
+          <>
+            {/* Top Bar: Artist, Master Badge, Minimize Button */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <span
+                  style={{
+                    width: '7px',
+                    height: '7px',
+                    borderRadius: '50%',
+                    background: isPlaying ? '#10B981' : '#64748B',
+                    boxShadow: isPlaying ? '0 0 8px #10B981' : 'none'
+                  }}
+                />
+                <span style={{
+                  fontSize: '0.65rem',
+                  fontWeight: '800',
+                  letterSpacing: '0.12em',
+                  color: currentTrack.color || '#FF6D00',
+                  textTransform: 'uppercase'
+                }}>
+                  {t.masterBadge}
+                </span>
+                <span style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.7rem' }}>•</span>
+                <span style={{ fontSize: '0.65rem', color: '#94A3B8', fontWeight: '600' }}>
+                  {currentTrack.bpm} BPM
+                </span>
+              </div>
 
-        {/* Minimized Pill */}
-        {!isExpanded && (
-          <button
-            onClick={() => setIsExpanded(true)}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: currentInfo.color,
-              fontSize: '0.78rem',
-              fontWeight: '700',
-              cursor: 'pointer',
+              <button
+                onClick={() => setIsMinimized(true)}
+                title={t.minimize}
+                aria-label={t.minimize}
+                style={{
+                  background: 'rgba(255, 255, 255, 0.06)',
+                  border: 'none',
+                  borderRadius: '6px',
+                  color: '#94A3B8',
+                  width: '22px',
+                  height: '22px',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  transition: 'background 0.2s ease'
+                }}
+              >
+                <ChevronDown size={14} />
+              </button>
+            </div>
+
+            {/* Middle: Vinyl / Album Artwork Icon + Track Information */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              {/* Rotating Disc / Visual Icon */}
+              <div
+                onClick={togglePlay}
+                style={{
+                  width: '42px',
+                  height: '42px',
+                  borderRadius: '50%',
+                  background: '#18181B',
+                  border: `2px solid ${currentTrack.color || '#FF6D00'}`,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  flexShrink: 0,
+                  position: 'relative',
+                  overflow: 'hidden',
+                  animation: isPlaying ? 'spinSlow 6s linear infinite' : 'none',
+                  boxShadow: `0 0 16px ${currentTrack.color}40`
+                }}
+              >
+                <Disc3 size={24} color={currentTrack.color || '#FF6D00'} />
+              </div>
+
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{
+                  fontSize: '0.9rem',
+                  fontWeight: '800',
+                  color: '#FFFFFF',
+                  letterSpacing: '-0.01em',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis'
+                }}>
+                  {currentTrack.title}
+                </div>
+                <div style={{
+                  fontSize: '0.72rem',
+                  color: '#94A3B8',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  marginTop: '1px'
+                }}>
+                  <span>{currentTrack.album}</span>
+                  <span>•</span>
+                  <span style={{ color: currentTrack.color || '#E05328' }}>{currentTrack.genre}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Controls: Play/Pause, Volume Slider, Mute, EQ Wave */}
+            <div style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '0.3rem'
-            }}
-          >
-            <Music2 size={15} />
-            <span>{currentInfo.handle}</span>
-          </button>
-        )}
+              justifyContent: 'space-between',
+              gap: '0.8rem',
+              paddingTop: '0.35rem',
+              borderTop: '1px solid rgba(255, 255, 255, 0.08)'
+            }}>
+              {/* Main Play / Pause Button */}
+              <button
+                onClick={togglePlay}
+                aria-label={isPlaying ? t.paused : t.playing}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  background: currentTrack.color || 'var(--ginger-primary)',
+                  border: 'none',
+                  borderRadius: '24px',
+                  padding: '0.38rem 0.85rem',
+                  color: '#FFFFFF',
+                  fontSize: '0.72rem',
+                  fontWeight: '800',
+                  letterSpacing: '0.04em',
+                  cursor: 'pointer',
+                  boxShadow: `0 4px 14px ${currentTrack.color}50`,
+                  transition: 'transform 0.15s ease'
+                }}
+              >
+                {isPlaying ? <Pause size={13} /> : <Play size={13} style={{ marginLeft: '1px' }} />}
+                <span>{isPlaying ? t.playing : t.paused}</span>
+              </button>
 
+              {/* Dynamic Real-Time Animated EQ Wave */}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '3px',
+                  height: '18px',
+                  padding: '0 6px'
+                }}
+              >
+                {[9, 16, 12, 20, 14, 8, 17, 11].map((h, i) => (
+                  <span
+                    key={i}
+                    style={{
+                      width: '2.5px',
+                      height: isPlaying ? `${h}px` : '3px',
+                      borderRadius: '2px',
+                      background: currentTrack.color || '#FF5722',
+                      transition: 'height 0.25s ease',
+                      animation: isPlaying ? `miniEq ${0.4 + (i % 4) * 0.14}s ease-in-out infinite alternate` : 'none',
+                      animationDelay: `${i * 0.06}s`
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Volume & Mute Controls */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', position: 'relative' }}>
+                <button
+                  onClick={toggleMute}
+                  title={isMuted ? t.unmute : t.mute}
+                  aria-label={isMuted ? t.unmute : t.mute}
+                  style={{
+                    background: isMuted ? 'rgba(239, 68, 68, 0.2)' : 'rgba(255, 255, 255, 0.08)',
+                    border: 'none',
+                    borderRadius: '50%',
+                    width: '30px',
+                    height: '30px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    color: isMuted ? '#EF4444' : '#E2E8F0',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  {isMuted || volume === 0 ? <VolumeX size={15} /> : <Volume2 size={15} />}
+                </button>
+
+                {/* Inline Minimalist Volume Slider */}
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.02"
+                  value={isMuted ? 0 : volume}
+                  onChange={(e) => setVolume(parseFloat(e.target.value))}
+                  title={`${t.volumeLabel}: ${Math.round((isMuted ? 0 : volume) * 100)}%`}
+                  aria-label={t.volumeLabel}
+                  style={{
+                    width: '65px',
+                    height: '4px',
+                    accentColor: currentTrack.color || '#FF6D00',
+                    cursor: 'pointer',
+                    borderRadius: '2px'
+                  }}
+                />
+              </div>
+            </div>
+          </>
+        )}
       </div>
 
       <style>{`
@@ -436,7 +379,11 @@ export default function AudioAtmospherePlayer({ activeFacet, lang }) {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
         }
+        @keyframes miniEq {
+          0% { transform: scaleY(0.25); opacity: 0.5; }
+          100% { transform: scaleY(1.15); opacity: 1; }
+        }
       `}</style>
-    </div>
+    </aside>
   );
 }
