@@ -17,6 +17,9 @@ export default function LobbyGate({ onSelectUniverse, lang }) {
     const handleMouseMove = (e) => {
       // Wake up on mouse interaction
       setIsAwake(true);
+      if (!isPlaying) {
+        play();
+      }
 
       // Auto-sleep if no mouse movement for 4.8 seconds
       if (sleepTimerRef.current) clearTimeout(sleepTimerRef.current);

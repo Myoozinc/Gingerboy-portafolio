@@ -77,7 +77,7 @@ const AudioContext = createContext(null);
 
 export function AudioProvider({ children }) {
   const [activeKey, setActiveKey] = useState('lobby');
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolumeState] = useState(() => {
     const saved = localStorage.getItem('ggb_audio_volume');
@@ -88,9 +88,9 @@ export function AudioProvider({ children }) {
   const audioRef = useRef(null);
   const fadeIntervalRef = useRef(null);
   const targetKeyRef = useRef('lobby');
-  const isPlayingRef = useRef(false);
+  const isPlayingRef = useRef(true);
 
-  // Initialize HTML5 Audio instance
+  // Initialize HTML5 Audio instance with autoplay by default
   useEffect(() => {
     const audio = new Audio();
     audio.loop = true;
@@ -99,6 +99,37 @@ export function AudioProvider({ children }) {
     audio.src = TRACK_CATALOG.lobby.audioSrc;
     audioRef.current = audio;
 
+    const startPlayback = () => {
+      if (audio.paused && isPlayingRef.current) {
+        audio.play().then(() => {
+          setIsPlaying(true);
+          isPlayingRef.current = true;
+        }).catch(() => {
+          // Autoplay policy prevented immediate unmuted playback; wait for first interaction
+        });
+      }
+    };
+
+    // Immediate attempt on mount
+    startPlayback();
+
+    // Global unlocker on first user gesture anywhere in document
+    const unlockAutoplay = () => {
+      if (isPlayingRef.current && audio.paused) {
+        audio.play().then(() => {
+          setIsPlaying(true);
+          isPlayingRef.current = true;
+        }).catch(() => {});
+      }
+      window.removeEventListener('click', unlockAutoplay);
+      window.removeEventListener('touchstart', unlockAutoplay);
+      window.removeEventListener('keydown', unlockAutoplay);
+    };
+
+    window.addEventListener('click', unlockAutoplay, { passive: true });
+    window.addEventListener('touchstart', unlockAutoplay, { passive: true });
+    window.addEventListener('keydown', unlockAutoplay, { passive: true });
+
     const onEnded = () => {
       audio.currentTime = 0;
       audio.play().catch(() => {});
@@ -106,6 +137,9 @@ export function AudioProvider({ children }) {
     audio.addEventListener('ended', onEnded);
 
     return () => {
+      window.removeEventListener('click', unlockAutoplay);
+      window.removeEventListener('touchstart', unlockAutoplay);
+      window.removeEventListener('keydown', unlockAutoplay);
       audio.removeEventListener('ended', onEnded);
       audio.pause();
       if (fadeIntervalRef.current) clearInterval(fadeIntervalRef.current);
@@ -119,7 +153,7 @@ export function AudioProvider({ children }) {
     }
   }, [volume, isMuted]);
 
-  const switchTrack = (key, autoStart = false) => {
+  const switchTrack = (key, autoStart = true) => {
     if (!TRACK_CATALOG[key]) return;
     targetKeyRef.current = key;
     setActiveKey(key);
